@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensora Charity Event | James Tuttiett</title>
+    <style>
+        :root {
+            --bg-color: #fafafa;
+            --text-main: #2d3748;
+            --text-light: #4a5568;
+            --card-bg: #ffffff;
+            --border-color: rgba(0,0,0,0.05);
+            --nav-bg: rgba(250, 250, 250, 0.95);
+            --accent-azure: #007bff;
+            --accent-neon-pink: #ff007f;
+            --accent-purple: #9b51e0;
+            --btc-red: #e31b3d;
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        [data-theme="dark"] {
+            --bg-color: #0f172a; --text-main: #f1f5f9; --text-light: #94a3b8;
+            --card-bg: #1e293b; --border-color: rgba(255,255,255,0.1); --nav-bg: rgba(15, 23, 42, 0.95);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; transition: background-color 0.3s, color 0.3s; }
+
+        nav { position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; background: var(--nav-bg); backdrop-filter: blur(10px); display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 1px solid var(--border-color); }
+        .logo { font-weight: 800; font-size: 1.5rem; background: linear-gradient(45deg, var(--accent-azure), var(--accent-neon-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 500; transition: var(--transition); }
+        .nav-links a:hover { color: var(--accent-neon-pink); }
+        .nav-links a.charity-nav-link { color: var(--btc-red); font-weight: 700; border: 1px solid var(--btc-red); padding: 0.5rem 1rem; border-radius: 20px; }
+        .nav-links a.charity-nav-link:hover { background: var(--btc-red); color: white; }
+        .theme-toggle { background: transparent; border: 1px solid var(--border-color); color: var(--text-main); font-size: 1.2rem; cursor: pointer; padding: 0.4rem 0.8rem; border-radius: 20px; transition: var(--transition); }
+
+        /* HERO — two column layout */
+        .charity-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 5% 5rem;
+            background: radial-gradient(circle at top right, rgba(227,27,61,0.08), transparent 50%),
+                        radial-gradient(circle at bottom left, rgba(155,81,224,0.06), transparent 50%);
+        }
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            gap: 5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .hero-text { flex: 1.2; min-width: 300px; }
+        .hero-poster { flex: 1; min-width: 280px; max-width: 420px; }
+        .hero-poster img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+            border: 3px solid rgba(255,255,255,0.1);
+        }
+
+        .event-kicker {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            background: rgba(227,27,61,0.08); color: var(--btc-red);
+            font-weight: 700; font-size: 0.85rem; text-transform: uppercase;
+            letter-spacing: 2px; padding: 0.5rem 1.2rem;
+            border-radius: 20px; margin-bottom: 2rem;
+            border: 1px solid rgba(227,27,61,0.2);
+        }
+        .charity-hero h1 {
+            font-size: clamp(3rem, 5vw, 5rem);
+            font-weight: 900; line-height: 1.05;
+            margin-bottom: 1.5rem; letter-spacing: -1px;
+        }
+        .hero-tagline {
+            font-size: 1.15rem; color: var(--text-light);
+            max-width: 520px; margin-bottom: 2.5rem; line-height: 1.7;
+        }
+
+        .three-lines { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2.5rem; }
+        .punch-line { display: flex; align-items: center; gap: 1rem; font-size: 1.1rem; font-weight: 700; color: var(--text-main); flex-wrap: wrap; }
+        .punch-line .pill {
+            background: linear-gradient(45deg, var(--btc-red), var(--accent-purple));
+            color: white; padding: 0.3rem 0.9rem; border-radius: 20px;
+            font-size: 0.85rem; white-space: nowrap;
+        }
+
+        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .donate-btn {
+            display: inline-block; padding: 1.1rem 2.5rem;
+            background: linear-gradient(45deg, var(--btc-red), #ff4444);
+            color: white; text-decoration: none; border-radius: 30px;
+            font-weight: 700; font-size: 1rem; transition: var(--transition);
+            box-shadow: 0 4px 20px rgba(227,27,61,0.4);
+        }
+        .donate-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(227,27,61,0.5); }
+        .register-btn {
+            display: inline-block; padding: 1.1rem 2.5rem;
+            background: transparent; color: var(--text-main);
+            border: 2px solid var(--border-color);
+            text-decoration: none; border-radius: 30px;
+            font-weight: 700; font-size: 1rem; transition: var(--transition);
+        }
+        .register-btn:hover { background: var(--border-color); transform: translateY(-3px); }
+        [data-theme="dark"] .register-btn { color: white; }
+
+        /* SECTIONS */
+        .content-section { padding: 5rem 5%; max-width: 1100px; margin: 0 auto; }
+        .section-label { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-purple); margin-bottom: 1rem; display: block; }
+        .section-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.2; }
+
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 3rem 0; }
+        .feature-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--border-radius); padding: 2rem; transition: var(--transition); position: relative; overflow: hidden; }
+        .feature-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; }
+        .feature-card:nth-child(1)::before { background: linear-gradient(to right, var(--btc-red), var(--accent-purple)); }
+        .feature-card:nth-child(2)::before { background: linear-gradient(to right, var(--accent-purple), var(--accent-neon-pink)); }
+        .feature-card:nth-child(3)::before { background: linear-gradient(to right, var(--accent-azure), var(--accent-purple)); }
+        .feature-card:nth-child(4)::before { background: linear-gradient(to right, var(--accent-neon-pink), var(--btc-red)); }
+        .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+        .feature-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+        .feature-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-main); }
+        .feature-card p { color: var(--text-light); font-size: 0.9rem; line-height: 1.6; }
+
+        .why-block { background: linear-gradient(135deg, rgba(227,27,61,0.04), rgba(155,81,224,0.04)); border-radius: 16px; padding: 3rem; border-left: 5px solid var(--btc-red); margin: 3rem 0; }
+        .why-block p { font-size: 1.05rem; line-height: 1.9; color: var(--text-main); margin-bottom: 1.2rem; }
+        .why-block p:last-child { margin-bottom: 0; }
+
+        .stats-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; margin: 3rem 0; }
+        .stat-box { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--border-radius); padding: 1.5rem; text-align: center; transition: var(--transition); }
+        .stat-box:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+        .stat-number { font-size: 2.2rem; font-weight: 900; background: linear-gradient(45deg, var(--btc-red), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .stat-label { color: var(--text-light); font-size: 0.85rem; margin-top: 0.4rem; line-height: 1.4; }
+
+        .cta-block { text-align: center; padding: 4rem 2rem; background: var(--card-bg); border-radius: 20px; border: 1px solid var(--border-color); margin: 3rem 0 5rem; }
+        .cta-block h2 { font-size: 2rem; font-weight: 800; margin-bottom: 1rem; }
+        .cta-block p { color: var(--text-light); max-width: 500px; margin: 0 auto 2rem; line-height: 1.7; }
+
+        footer { text-align: center; padding: 2rem; color: var(--text-light); border-top: 1px solid var(--border-color); }
+
+        @media (max-width: 768px) {
+            nav { flex-direction: column; padding: 1rem; gap: 1rem; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 1rem; font-size: 0.9rem; }
+            .hero-inner { flex-direction: column-reverse; gap: 2.5rem; }
+            .hero-poster { max-width: 100%; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="logo">James Tuttiett.</a>
+    <div class="nav-links">
+        <a href="index.html#about">About</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="thoughts.html">Thoughts</a>
+        <a href="charity.html" class="charity-nav-link">Sensora Charity</a>
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">🌙</button>
+    </div>
+</nav>
+
+<!-- HERO — text left, poster right -->
+<div class="charity-hero">
+    <div class="hero-inner">
+
+        <div class="hero-text">
+            <div class="event-kicker">❤️ In Aid of The Brain Tumour Charity &mdash; 5 May 2026</div>
+            <h1>This one's<br>different.</h1>
+            <p class="hero-tagline">If you've ever thought charity events weren't for you, this one probably is.</p>
+
+            <div class="three-lines">
+                <div class="punch-line">
+                    <span class="pill">Michelin chefs</span>
+                    Six courses. The best in the country.
+                </div>
+                <div class="punch-line">
+                    <span class="pill">BICEP live</span>
+                    Music after dinner.
+                </div>
+                <div class="punch-line">
+                    <span class="pill">Zero</span>
+                    Small talk about golf.
+                </div>
+            </div>
+
+            <div class="hero-buttons">
+                <a href="https://www.thebraintumourcharity.org/" target="_blank" rel="noopener noreferrer" class="donate-btn">Donate Now ❤️</a>
+                <a href="mailto:jamesdtuttiett@gmail.com?subject=Sensora%20Event%20-%20Register%20Interest" class="register-btn">Register Interest →</a>
+            </div>
+        </div>
+
+        <!-- SENSORA POSTER -->
+        <div class="hero-poster">
+            <img src="sensora-poster.jpg" alt="Sensora — Feed Your Senses. 5 May at HERE at Outernet. Food by Michelin starred chefs. Music by Bicep. In aid of The Brain Tumour Charity.">
+        </div>
+
+    </div>
+</div>
+
+<!-- WHAT TO EXPECT -->
+<div class="content-section">
+    <span class="section-label">The Evening</span>
+    <h2 class="section-title">5 May. HERE at Outernet, London.<br>One night. One cause.</h2>
+
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">🍽️</div>
+            <h3>Six-Course Menu</h3>
+            <p>A bespoke tasting menu crafted by a selection of Michelin-starred chefs. Unique food you won't find anywhere else, for one night only.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🎵</div>
+            <h3>BICEP Live</h3>
+            <p>After dinner, BICEP take over. Electronic music at its finest — the perfect closer to an unforgettable evening.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🏛️</div>
+            <h3>HERE at Outernet</h3>
+            <p>One of London's most spectacular and immersive venues. Not a hotel ballroom. Not a stiff gala. Something genuinely different.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🤝</div>
+            <h3>The Right Room</h3>
+            <p>People whose lives have been touched by this disease, alongside friends, partners, and supporters who want to help drive real change.</p>
+        </div>
+    </div>
+</div>
+
+<!-- WHY THIS CAUSE -->
+<div class="content-section">
+    <span class="section-label">The Cause</span>
+    <h2 class="section-title">Brain tumours are the biggest cancer killer of people in their younger years.</h2>
+
+    <div class="why-block">
+        <p>Yet those most affected often feel invisible in the wider conversation. Brain tumour research has historically received a fraction of the funding given to other cancers — and the survival rates reflect that.</p>
+        <p>The Brain Tumour Charity is the world's leading brain tumour research funder. Every pound raised goes directly towards giving families more time, more hope, and better outcomes. This evening exists because that needs to change, and because the best way to drive change is to bring people together properly.</p>
+        <p>Unique food. Great music. Good people. All for a cause that needs more attention.</p>
+    </div>
+
+    <div class="stats-strip">
+        <div class="stat-box">
+            <div class="stat-number">£100k+</div>
+            <div class="stat-label">Raised by James for The Brain Tumour Charity to date</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">16,000</div>
+            <div class="stat-label">People diagnosed with brain tumours in the UK each year</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">#1</div>
+            <div class="stat-label">Cancer killer of under-40s in the UK</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">12%</div>
+            <div class="stat-label">Five-year survival rate — the lowest of any cancer</div>
+        </div>
+    </div>
+</div>
+
+<!-- FINAL CTA -->
+<div class="content-section">
+    <div class="cta-block">
+        <h2>Be Part of It</h2>
+        <p>To register your interest in attending, or to make a direct donation to The Brain Tumour Charity, use the buttons below. Every contribution makes a difference.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="https://www.thebraintumourcharity.org/" target="_blank" rel="noopener noreferrer" class="donate-btn">Donate to The Brain Tumour Charity ❤️</a>
+            <a href="mailto:jamesdtuttiett@gmail.com?subject=Sensora%20Event%20-%20Register%20Interest" class="register-btn">Register Interest →</a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 James Tuttiett. Built with AI.</p>
+</footer>
+
+<script>
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const rootElement = document.documentElement;
+    const savedTheme = localStorage.getItem('james-portfolio-theme');
+    if (savedTheme === 'dark') { rootElement.setAttribute('data-theme', 'dark'); themeToggleBtn.innerText = '☀️'; }
+    themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = rootElement.getAttribute('data-theme');
+        if (currentTheme === 'dark') { rootElement.removeAttribute('data-theme'); themeToggleBtn.innerText = '🌙'; localStorage.setItem('james-portfolio-theme', 'light'); }
+        else { rootElement.setAttribute('data-theme', 'dark'); themeToggleBtn.innerText = '☀️'; localStorage.setItem('james-portfolio-theme', 'dark'); }
+    });
+</script>
+</body>
+</html>
