@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>James Tuttiett | AI & Commercial Transformation Leader</title>
+
+    <style>
+        :root {
+            /* Light Mode Variables */
+            --bg-color: #fafafa;
+            --text-main: #2d3748;
+            --text-light: #4a5568;
+            --card-bg: #ffffff;
+            --border-color: rgba(0,0,0,0.05);
+            --nav-bg: rgba(250, 250, 250, 0.95);
+            --metric-bg: #ffffff;
+            --chat-body-bg: #f8fafc;
+            --chat-msg-bot: #ffffff;
+            --chat-opt-bg: #f1f5f9;
+
+            /* Core Accents (stay the same) */
+            --accent-azure: #007bff;
+            --accent-neon-pink: #ff007f;
+            --accent-purple: #9b51e0;
+            --btc-red: #e31b3d;
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* Dark Mode Override */
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --text-main: #f1f5f9;
+            --text-light: #94a3b8;
+            --card-bg: #1e293b;
+            --border-color: rgba(255,255,255,0.1);
+            --nav-bg: rgba(15, 23, 42, 0.95);
+            --metric-bg: #1e293b;
+            --chat-body-bg: #0f172a;
+            --chat-msg-bot: #1e293b;
+            --chat-opt-bg: #0f172a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; overflow-x: hidden; scroll-behavior: smooth; transition: background-color 0.3s, color 0.3s; }
+
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 1.5rem 5%;
+            background: var(--nav-bg); backdrop-filter: blur(10px);
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; border-bottom: 1px solid var(--border-color);
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .logo { font-weight: 800; font-size: 1.5rem; background: linear-gradient(45deg, var(--accent-azure), var(--accent-neon-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.5px; text-decoration: none;}
+
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 500; transition: var(--transition); }
+        .nav-links a:hover { color: var(--accent-neon-pink); }
+        .nav-links a.charity-nav-link { color: var(--btc-red); font-weight: 700; border: 1px solid var(--btc-red); padding: 0.5rem 1rem; border-radius: 20px; }
+        .nav-links a.charity-nav-link:hover { background: var(--btc-red); color: white; }
+
+        /* Dark Mode Toggle Button */
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .theme-toggle:hover { background: var(--border-color); }
+
+        header { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 0 5%; position: relative; background: radial-gradient(circle at top right, rgba(0, 123, 255, 0.05), transparent 40%), radial-gradient(circle at bottom left, rgba(255, 0, 127, 0.05), transparent 40%); }
+        header h1 { font-size: clamp(3rem, 5vw, 5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; max-width: 800px; }
+        .gradient-text { background: linear-gradient(to right, var(--accent-azure), var(--accent-purple), var(--accent-neon-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        header p { font-size: 1.25rem; color: var(--text-light); max-width: 600px; margin-bottom: 2rem; }
+
+        .cta-button { display: inline-block; padding: 1rem 2rem; background: linear-gradient(45deg, var(--accent-azure), var(--accent-purple)); color: white; text-decoration: none; border-radius: 30px; font-weight: 600; transition: var(--transition); box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3); border: none; cursor: pointer; text-align: center;}
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 0, 127, 0.4); background: linear-gradient(45deg, var(--accent-purple), var(--accent-neon-pink)); }
+        .cta-button-outline { background: transparent; color: var(--text-main); border: 2px solid var(--border-color); box-shadow: none; }
+        .cta-button-outline:hover { background: var(--border-color); transform: translateY(-2px); box-shadow: none; color: var(--text-main); }
+        [data-theme="dark"] .cta-button-outline { color: white; }
+
+        .content-section { padding: 6rem 5%; max-width: 1200px; margin: 0 auto; }
+        .section-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 3rem; position: relative; display: inline-block; }
+        .section-title::after { content: ''; position: absolute; left: 0; bottom: -10px; width: 50%; height: 4px; background: linear-gradient(to right, var(--accent-azure), var(--accent-neon-pink)); border-radius: 2px; }
+
+        .hover-card { transition: var(--transition); position: relative; z-index: 1; background: var(--card-bg); border-radius: var(--border-radius); box-shadow: 0 4px 6px rgba(0,0,0,0.02); border: 1px solid var(--border-color); }
+        .hover-card::before { content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px; background: linear-gradient(45deg, var(--accent-azure), var(--accent-neon-pink), var(--accent-purple)); z-index: -1; border-radius: calc(var(--border-radius) + 2px); opacity: 0; transition: opacity 0.3s ease; }
+        .hover-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        .hover-card:hover::before { opacity: 0.15; }
+
+        .about-content { padding: 3rem; } .about-content p { margin-bottom: 1.5rem; }
+
+        .experience-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; }
+        .exp-card { padding: 2.5rem; }
+        .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; }
+        .exp-title { font-size: 1.5rem; font-weight: 700; color: var(--accent-azure); }
+        .exp-company { font-weight: 600; color: var(--text-main); font-size: 1.1rem; margin-top: 0.2rem; }
+        .exp-content h4 { color: var(--accent-purple); margin: 1.5rem 0 0.5rem 0; font-size: 1.1rem; }
+        .exp-content p { margin-bottom: 1rem; color: var(--text-light); }
+        .exp-content ul { padding-left: 1.5rem; margin-bottom: 1rem; color: var(--text-light); }
+        .exp-content li { margin-bottom: 0.5rem; }
+
+        .data-callout { background: linear-gradient(to right, rgba(0, 123, 255, 0.05), rgba(155, 81, 224, 0.05)); padding: 2rem; border-radius: 12px; margin: 2rem 0; border-left: 4px solid var(--accent-azure); }
+        .data-metric { display: flex; align-items: flex-start; margin-bottom: 1.2rem; background: var(--metric-bg); padding: 1rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); border: 1px solid var(--border-color); }
+        .metric-icon { font-size: 1.5rem; margin-right: 1rem; }
+        .metric-text { color: var(--text-main); font-weight: 500; line-height: 1.4; }
+
+        .personal-narrative { background: linear-gradient(135deg, rgba(0,123,255,0.04), rgba(155,81,224,0.04)); border-radius: 12px; padding: 2rem; margin: 2rem 0; border: 1px solid rgba(0,123,255,0.1); }
+        .personal-narrative p { margin-bottom: 1rem; color: var(--text-main); font-size: 1.05rem; line-height: 1.8; }
+        .personal-narrative p:last-child { margin-bottom: 0; }
+        .personal-narrative .emphasis { font-weight: 700; color: var(--accent-azure); }
+
+        .stat-section-label { font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-purple); margin: 2rem 0 1rem 0; display: block; }
+
+        /* Buttons for Modals */  
+        .apac-peak-btn { display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 1.5rem; padding: 0.8rem 1.6rem; background: linear-gradient(45deg, var(--accent-purple), var(--accent-neon-pink)); color: white; border: none; border-radius: 30px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: var(--transition); box-shadow: 0 4px 15px rgba(155,81,224,0.3); }
+        .apac-peak-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,0,127,0.4); }
+
+        .deal-room-btn { display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 1.5rem; padding: 0.8rem 1.6rem; background: transparent; color: var(--accent-azure); border: 2px solid var(--accent-azure); border-radius: 30px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: var(--transition); }
+        .deal-room-btn:hover { background: var(--accent-azure); color: white; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,123,255,0.3); }
+
+        /* Modals */ 
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.85); backdrop-filter: blur(6px); display: none; justify-content: center; align-items: center; z-index: 2000; overflow-y: auto; padding: 2rem 1rem; }
+        .modal-overlay.active { display: flex; animation: fadeIn 0.3s; }
+        .modal-content { background: var(--card-bg); width: 100%; max-width: 650px; border-radius: 16px; padding: 3rem; box-shadow: 0 25px 60px rgba(0,0,0,0.25); border-top: 6px solid var(--accent-purple); position: relative; margin: auto; }
+        .modal-content h3 { font-size: 1.6rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-main); line-height: 1.2; }
+        .modal-content .modal-sub { color: var(--accent-purple); font-weight: 600; margin-bottom: 2rem; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        .apac-stat { display: flex; align-items: center; gap: 1rem; padding: 1rem; background: var(--chat-opt-bg); border-radius: 10px; margin-bottom: 0.8rem; border: 1px solid var(--border-color); }
+        .apac-stat-num { font-size: 1.6rem; font-weight: 900; background: linear-gradient(45deg, var(--accent-purple), var(--accent-neon-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; min-width: 110px; }
+        .apac-stat-label { color: var(--text-light); font-weight: 500; font-size: 0.95rem; }
+
+        /* Deal Room Modal Specifics */
+        .deal-section { margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); }
+        .deal-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .deal-section h4 { color: var(--accent-azure); margin-bottom: 0.5rem; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
+        .deal-section p { color: var(--text-main); font-size: 0.95rem; line-height: 1.6; }
+        .deal-outcome-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+        .deal-outcome-box { background: linear-gradient(45deg, rgba(0,123,255,0.05), rgba(155,81,224,0.05)); padding: 1rem; border-radius: 8px; border-left: 3px solid var(--accent-neon-pink); }
+        .deal-outcome-box strong { display: block; color: var(--text-main); font-size: 1.2rem; margin-bottom: 0.2rem; }
+        .deal-outcome-box span { color: var(--text-light); font-size: 0.85rem; }
+
+        .close-btn { display: inline-block; margin-top: 1.5rem; padding: 0.8rem 1.5rem; background: var(--chat-opt-bg); color: var(--text-main); font-weight: 600; border-radius: 8px; cursor: pointer; border: 1px solid var(--border-color); transition: var(--transition); }
+        .close-btn:hover { filter: brightness(0.95); }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .skill-card { padding: 2rem; }
+        .skill-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .skill-card h3 { font-size: 1.3rem; margin-bottom: 1rem; color: var(--text-main); }
+        .skill-card p { color: var(--text-light); font-size: 0.95rem; }
+
+        .contact-container { text-align: center; padding: 4rem 2rem; }
+        .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem; margin-top: 2rem; }
+        .contact-link { color: var(--accent-azure); text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: var(--transition); display: flex; align-items: center; gap: 0.5rem; }
+        .contact-link:hover { color: var(--accent-neon-pink); transform: translateY(-2px); }
+
+        footer { text-align: center; padding: 2rem; color: var(--text-light); border-top: 1px solid var(--border-color); margin-top: 4rem; padding-bottom: 100px; }
+
+        /* --- JAMESBOT CHAT WIDGET STYLES --- */
+        .chat-widget-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, var(--accent-azure), var(--accent-purple));
+            color: white;
+            border-radius: 50px;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        .chat-widget-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(155, 81, 224, 0.5);
+        }
+        .chat-widget-btn img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid white;
+        }
+        .chat-window {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 380px;
+            max-width: calc(100vw - 40px);
+            height: 600px;
+            max-height: calc(100vh - 120px);
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .chat-window.open {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .chat-header {
+            background: linear-gradient(45deg, var(--accent-azure), var(--accent-purple));
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chat-header-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .chat-header-info img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid white;
+        }
+        .chat-header-text h3 { font-size: 1.1rem; margin: 0; font-weight: 700; color: white; }
+        .chat-header-text p { margin: 0; font-size: 0.8rem; opacity: 0.9; color: white; }
+        .chat-close {
+            background: rgba(255,255,255,0.2); border: none; color: white;
+            width: 30px; height: 30px; border-radius: 50%; cursor: pointer;
+            font-size: 1.2rem; display: flex; justify-content: center; align-items: center; transition: background 0.2s;
+        }
+        .chat-close:hover { background: rgba(255,255,255,0.4); }
+
+        .chat-body {
+            flex: 1; padding: 20px; overflow-y: auto; background: var(--chat-body-bg);
+            display: flex; flex-direction: column; gap: 15px;
+        }
+
+        .msg { max-width: 85%; padding: 12px 16px; border-radius: 18px; font-size: 0.95rem; line-height: 1.5; animation: fadeInMsg 0.3s ease; }
+        .msg-bot { background: var(--chat-msg-bot); color: var(--text-main); align-self: flex-start; border-bottom-left-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid var(--border-color); }
+        .msg-user { background: var(--accent-azure); color: white; align-self: flex-end; border-bottom-right-radius: 4px; box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2); }
+        @keyframes fadeInMsg { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .chat-options { padding: 15px 20px; background: var(--card-bg); border-top: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 8px; }
+        .chat-option-btn { background: var(--chat-opt-bg); border: 1px solid var(--border-color); color: var(--text-main); padding: 10px 15px; border-radius: 12px; font-size: 0.9rem; text-align: left; cursor: pointer; transition: all 0.2s; font-weight: 500; }
+        .chat-option-btn:hover { background: var(--accent-azure); color: white; border-color: var(--accent-azure); }
+        .typing-indicator { display: none; align-items: center; gap: 4px; padding: 12px 16px; background: var(--chat-msg-bot); border-radius: 18px; border-bottom-left-radius: 4px; width: fit-content; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid var(--border-color); }
+        .dot { width: 6px; height: 6px; background: #cbd5e1; border-radius: 50%; animation: typing 1.4s infinite ease-in-out both; }
+        .dot:nth-child(1) { animation-delay: -0.32s; } .dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+
+        @media (max-width: 768px) {
+            nav { flex-direction: column; padding: 1rem; gap: 1rem; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 1rem; font-size: 0.9rem; }
+            .exp-header { flex-direction: column; }
+            .chat-widget-btn { bottom: 20px; right: 20px; padding: 10px 18px; }
+            .chat-widget-btn span { display: none; }
+            .chat-window { bottom: 85px; right: 15px; width: calc(100vw - 30px); height: 550px; }
+            .deal-outcome-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">James Tuttiett.</a>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="thoughts.html">Thoughts</a>
+            <a href="charity.html" class="charity-nav-link">Sensora Charity</a>
+            <!-- Dark Mode Toggle -->
+            <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">🌙</button>
+        </div>
+    </nav>
+
+    <header id="home">
+        <h1>Building the <br><span class="gradient-text">AI-Native Future</span></h1>
+        <p>Senior Enterprise AI & Commercial Transformation Leader focused on business model redesign, AI-enabled delivery, and scalable enterprise growth.</p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="#experience" class="cta-button">Explore My Work</a>
+            <a href="cv.html" class="cta-button cta-button-outline">Secure CV Portal</a>
+        </div>
+    </header>
+
+    <section id="about" class="content-section">
+        <h2 class="section-title">How I Operate</h2>
+        <div class="about-content hover-card">
+
+            <div style="display: flex; flex-wrap: wrap; gap: 3rem; align-items: stretch;">
+                <div style="flex: 1; min-width: 250px; max-width: 350px;">
+                    <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border: 4px solid var(--card-bg);">
+                        <img src="IMG_4679.jpeg" alt="James Tuttiett" style="width: 100%; height: auto; display: block; object-fit: cover;">
+                    </div>
+                </div>
+
+                <div style="flex: 2; min-width: 300px;">
+                    <p>I am a senior commercial and transformation leader with over 15 years of experience building and scaling enterprise technology businesses across the UK, EMEA, and APAC. At heart, I am a hands-on salesperson first. My focus has always been helping organisations move to the next level by working closely with customers, understanding what they actually need, and shaping the product or service offering around that reality.</p>
+                    <p>I am comfortable across the full sales spectrum, from cold outreach and opening doors through to C-level conversations, complex deal strategy, and long-term executive relationship ownership. I have built business from start-up conditions, grown regions from the ground up, and led teams through scale, whilst staying close enough to the customer to know where the product, proposition, or delivery model needs to improve.</p>
+                    <p>I work directly with C-suite and VP+ leaders to help organisations adopt new technology paradigms, evolve operating models, and turn strategic intent into repeatable commercial outcomes. I specialise in moments of transition: new markets, new technologies, and new delivery models.</p>
+                    <p>My work sits at the intersection of enterprise sales, consulting delivery, and organisational change, with a strong focus on AI-enabled services and platform-led models. I am known for clarity of thinking, credibility with senior stakeholders, and the ability to build from zero through to scale without losing the practical sales discipline required to make growth happen.</p>
+                    <p>Outside of work, I am an ambassador for the Brain Tumour Charity, having raised over £100,000. I also love endurance sports including cycling, running, and skiing, and previously played rugby to a semi-pro standard.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
+                <h4 style="color: var(--accent-azure); margin-bottom: 1.5rem; font-size: 1.3rem;">Education & Certifications</h4>
+
+                <div style="margin-bottom: 1.2rem; display: flex; align-items: flex-start; gap: 1rem;">
+                    <div style="font-size: 1.8rem; line-height: 1;">🎓</div>
+                    <div>
+                        <p style="margin-bottom: 0.2rem; font-size: 1.15rem; color: var(--text-main);">
+                            <strong><a href="https://info.oxford-onlineprogrammes.getsmarter.com/presentations/lp/oxford-ai-driven-business-transformation-executive-programme/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none; border-bottom: 1px dotted var(--accent-azure); transition: color 0.2s ease;" onmouseover="this.style.color='var(--accent-azure)'" onmouseout="this.style.color='inherit'">Oxford AI-Driven Business Transformation Executive Programme</a></strong>
+                        </p>
+                        <p style="color: var(--accent-purple); font-weight: 500; margin-bottom: 0;">University of Oxford — Saïd Business School</p>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                    <div style="font-size: 1.8rem; line-height: 1;">🏛️</div>
+                    <div>
+                        <p style="margin-bottom: 0.2rem; font-size: 1.15rem; color: var(--text-main);"><strong>B.A. Modern History</strong></p>
+                        <p style="color: var(--text-light); margin-bottom: 0;">Queen Mary University of London</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 2.5rem; padding: 1.5rem; background: linear-gradient(to right, rgba(0, 123, 255, 0.05), rgba(255, 0, 127, 0.05)); border-radius: 8px; border-left: 4px solid var(--accent-neon-pink);">
+                <h4 style="color: var(--text-main); margin-top: 0; margin-bottom: 0.5rem;">Walking the Walk: Why I Built This Site</h4>
+                <p style="margin-bottom: 0; font-size: 0.95rem;">I talk a lot about "AI Fluency" and "Curiosity" in my professional strategy. I built this custom portfolio using generative AI and deployed it entirely from scratch via GitHub Pages to demonstrate that I am actively learning modern tech stacks, prompt engineering, and AI-assisted development. Transformation starts with personal execution.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="content-section">
+        <h2 class="section-title">Experience & Execution</h2>
+        <div class="experience-grid">
+
+            <div class="exp-card hover-card">
+                <div class="exp-header">
+                    <div>
+                        <div class="exp-title">Global Director, Transformation & AI</div>
+                        <div class="exp-company">FDM Group | Jan 2026 – Present</div>
+                    </div>
+                </div>
+                <div class="exp-content">
+                    <p>Helping reposition a global consulting organisation for an AI-driven services market by leading the evolution of FDM's consulting and delivery model towards AI-enabled, outcome-led services.</p>
+
+                    <ul>
+                        <li>Working directly with senior enterprise stakeholders to understand how AI, automation, and platforms are reshaping technology strategy and operating models.</li>
+                        <li>Shaping new client propositions across technology, data, transformation, and operations.</li>
+                        <li>Embedding AI and automation into internal sales and delivery workflows to improve scale, predictability, and decision quality.</li>
+                        <li>Acting as senior sponsor across sales, delivery, and people functions to ensure alignment around a single future direction.</li>
+                    </ul>
+
+                    <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
+                        <p style="font-style: italic; color: var(--text-main);">"This role requires building new commercial and delivery approaches from first principles, rather than optimising existing ones. I drove the vision to the CEO and wider board that FDM's business model needs to change as AI transforms the working world."</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exp-card hover-card">
+                <div class="exp-header">
+                    <div>
+                        <div class="exp-title">Sales Director, UK & EMEA</div>
+                        <div class="exp-company">FDM Group | Feb 2021 – Dec 2025</div>
+                    </div>
+                </div>
+                <div class="exp-content">
+
+                    <div class="personal-narrative">
+                        <p>I have seen this model at its peak and under pressure.</p>
+                        <p>I helped lead commercial performance when FDM was producing strong growth, strong profit, and strong new client momentum. When the market turned and the model came under pressure, I did not spend my time blaming conditions or hiding behind the cycle.</p>
+                        <p><span class="emphasis">I pushed for adaptation.</span></p>
+                        <p>That meant staying close to customers, being honest about what was changing, and helping shift the conversation from selling capacity to building more outcome-led, AI-enabled services. The market changed. The job changed with it.</p>
+                        <p>What matters to me is not whether the cycle was easy or hard. It is whether the sales engine performed, whether the business kept winning, and whether we moved the model forward.</p>
+                    </div>
+
+                    <span class="stat-section-label">UK Performance — Contracting Market</span>
+                    <div class="data-callout">
+                        <div class="data-metric">
+                            <div class="metric-icon">🎉</div>
+                            <div class="metric-text">Won <strong>15 of 21 new clients</strong> across the entire Group in H1 2025 — 71% of all new logos globally.</div>
+                        </div>
+                        <div class="data-metric">
+                            <div class="metric-icon">🛡️</div>
+                            <div class="metric-text">Limited revenue decline to <strong>-14% YoY</strong> in H1 2025, versus -50% in North America and -31% in APAC.</div>
+                        </div>
+                        <div class="data-metric">
+                            <div class="metric-icon">💷</div>
+                            <div class="metric-text">Delivered <strong>~78% of Group adjusted operating profit</strong> in H1 2025 (£7.1m of £9.1m total).</div>
+                        </div>
+                        <div class="data-metric">
+                            <div class="metric-icon">🏆</div>
+                            <div class="metric-text">Maintained the UK as FDM's <strong>core commercial and profit engine</strong> throughout a sustained contracting market.</div>
+                        </div>
+                        <div class="data-metric">
+                            <div class="metric-icon">📈</div>
+                            <div class="metric-text">Peak-year proof point: <strong>23 of 47 Group new clients</strong> won by the UK in FY2023 (~49% of all global new logos).</div>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 1rem; font-style: italic; color: var(--text-main); font-weight: 600; border-left: 4px solid var(--accent-neon-pink); padding-left: 1.2rem;">This is the work I now bring into AI adoption and transformation: commercial realism, customer proximity, and model evolution under pressure.</p>
+
+                    <!-- DEAL ROOM BUTTON -->
+                    <button class="deal-room-btn" onclick="document.getElementById('dealRoomModal').classList.add('active'); document.body.style.overflow='hidden';">
+                        🔓 Anatomy of a Transformation Deal
+                    </button>
+
+                </div>
+            </div>
+
+            <div class="exp-card hover-card">
+                <div class="exp-header">
+                    <div>
+                        <div class="exp-title">Manager, APAC Region</div>
+                        <div class="exp-company">FDM Group | Sep 2011 – Feb 2021</div>
+                    </div>
+                </div>
+                <div class="exp-content">
+                    <p>Built FDM's Asia-Pacific business from true start-up conditions to a major regional operation — one of the most formative and demanding commercial builds of my career.</p>
+
+                    <span class="stat-section-label">APAC Performance — Build & Scale</span>
+                    <ul>
+                        <li>Built and scaled FDM's APAC business from start-up conditions to a major regional operation.</li>
+                        <li>Expanded across <strong>Hong Kong, Singapore, mainland China, and Australia</strong>.</li>
+                        <li>Grew the regional platform from <strong>8 employees to 1,000+</strong>.</li>
+                        <li>Built enterprise relationships and local teams across multiple regulatory and cultural environments.</li>
+                        <li>Developed repeatable early-career pipelines and local talent strategies across markets.</li>
+                        <li>Built trust and commercial traction across structurally different markets with distinct hiring and client expectations.</li>
+                    </ul>
+
+                    <button class="apac-peak-btn" onclick="document.getElementById('apacModal').classList.add('active'); document.body.style.overflow='hidden';">
+                        📈 View APAC Peak Performance Stats
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="skills" class="content-section">
+        <h2 class="section-title">Core Competencies</h2>
+        <div class="skills-grid">
+
+            <div class="skill-card hover-card">
+                <div class="skill-icon">🎯</div>
+                <h3>Enterprise Influence</h3>
+                <p>Influencing senior enterprise decision-makers (CIO, CTO, COO, CDO) and delivering board-level communication and executive alignment.</p>
+            </div>
+
+            <div class="skill-card hover-card">
+                <div class="skill-icon">🧠</div>
+                <h3>Technology Translation</h3>
+                <p>Translating emerging technology into enterprise-ready propositions, bridging frontier AI capabilities into commercially viable strategy.</p>
+            </div>
+
+            <div class="skill-card hover-card">
+                <div class="skill-icon">🌍</div>
+                <h3>Global Scaling</h3>
+                <p>Building scalable organisations across regions and cultures, with a proven track record navigating complex, regulated, data-sensitive environments.</p>
+            </div>
+
+            <div class="skill-card hover-card">
+                <div class="skill-icon">⚡</div>
+                <h3>Commercial Redesign</h3>
+                <p>Designing and executing new GTM and commercial models. Moving from a seat-based revenue model to outcome-led delivery.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" class="content-section">
+        <h2 class="section-title">Connect With Me</h2>
+        <div class="contact-container hover-card">
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Interested in discussing AI transformation, business model evolution, or the future of consulting?</p>
+
+            <div class="contact-links">
+                <a href="mailto:jamesdtuttiett@gmail.com" class="contact-link">
+                    ✉️ jamesdtuttiett@gmail.com
+                </a>
+                <a href="https://www.linkedin.com/in/james-tuttiett-b94a3322" target="_blank" rel="noopener noreferrer" class="contact-link">
+                    💼 LinkedIn
+                </a>
+                <a href="tel:+447408849527" class="contact-link">
+                    📞 07408 849527
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 James Tuttiett. Built with AI.</p>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- MODALS                                     -->
+    <!-- ========================================== -->
+
+    <!-- APAC PEAK STATS MODAL -->
+    <div class="modal-overlay" id="apacModal" onclick="if(event.target===this){this.classList.remove('active');document.body.style.overflow='auto';}">
+        <div class="modal-content">
+            <h3>APAC at Peak</h3>
+            <div class="modal-sub">Regional performance at full scale</div>
+
+            <div class="apac-stat">
+                <div class="apac-stat-num">£53.8m</div>
+                <div class="apac-stat-label">Peak annual revenue across the APAC region</div>
+            </div>
+            <div class="apac-stat">
+                <div class="apac-stat-num">£4.2m</div>
+                <div class="apac-stat-label">Adjusted operating profit at peak</div>
+            </div>
+            <div class="apac-stat">
+                <div class="apac-stat-num">1,000+</div>
+                <div class="apac-stat-label">Deployed consultants across the region</div>
+            </div>
+            <div class="apac-stat">
+                <div class="apac-stat-num">14</div>
+                <div class="apac-stat-label">New clients won in peak year</div>
+            </div>
+            <div class="apac-stat">
+                <div class="apac-stat-num" style="font-size: 1.4rem;">8 &rarr; 1,000+</div>
+                <div class="apac-stat-label">Headcount scaled from day one to peak</div>
+            </div>
+
+            <button class="close-btn" onclick="document.getElementById('apacModal').classList.remove('active');document.body.style.overflow='auto';">&larr; Back to Experience</button>
+        </div>
+    </div>
+
+    <!-- DEAL ROOM MODAL -->
+    <div class="modal-overlay" id="dealRoomModal" onclick="if(event.target===this){this.classList.remove('active');document.body.style.overflow='auto';}">
+        <div class="modal-content" style="max-width: 750px;">
+            <h3>Anatomy of a Transformation Deal</h3>
+            <div class="modal-sub">Enterprise AI Integration & Commercial Redesign</div>
+
+            <div class="deal-section">
+                <h4>1. The Situation</h4>
+                <p>A leading healthcare insurance provider was struggling to roll out Microsoft 365 Copilot. The rollout was stalled due to severe data security bottlenecks (up to 7-month delays for GDPR compliance checks on prompts) and heavy employee resistance. They were paying for enterprise licences that simply weren't delivering value.</p>
+            </div>
+
+            <div class="deal-section">
+                <h4>2. The Stakeholder Map</h4>
+                <p>Partnering directly with the C-suite, I had to shift the commercial conversation. The client didn't need to "buy more software" or standard staff augmentation—they needed an enterprise-wide change management and automation programme to unblock their own investment.</p>
+            </div>
+
+            <div class="deal-section">
+                <h4>3. The Commercial Pivot</h4>
+                <p>We pivoted the deal structure away from traditional 'Time & Materials' to a blended, outcome-focused squad model. We deployed AI-enabled consultants across Change Management, Data, and Software Engineering. They built secure automation frameworks, custom AI tools (Gemini, Power Automate), and established helpdesks to drive actual human adoption, rather than just technical implementation.</p>
+            </div>
+
+            <div class="deal-section">
+                <h4>4. The Outcome</h4>
+                <p>This pivot unlocked major cash savings, operational efficiency, and a complete reversal in employee adoption across the UK operations.</p>
+                <div class="deal-outcome-grid">
+                    <div class="deal-outcome-box">
+                        <strong>233%</strong>
+                        <span>Increase in active Copilot usage (scaled from 300 to 1,000+ users).</span>
+                    </div>
+                    <div class="deal-outcome-box">
+                        <strong>90%</strong>
+                        <span>Of employees reported immediate daily productivity gains.</span>
+                    </div>
+                    <div class="deal-outcome-box">
+                        <strong>20 Mins</strong>
+                        <span>Saved per task via bespoke prompt tools and automations.</span>
+                    </div>
+                    <div class="deal-outcome-box">
+                        <strong>30%</strong>
+                        <span>Reduction in manual task tracking and reporting times.</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="close-btn" onclick="document.getElementById('dealRoomModal').classList.remove('active');document.body.style.overflow='auto';">&larr; Back to Experience</button>
+        </div>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- JAMESBOT CHAT WIDGET HTML & JAVASCRIPT     -->
+    <!-- ========================================== -->
+
+    <div class="chat-widget-btn" onclick="toggleChat()">
+        <img src="IMG_4679.jpeg" alt="James">
+        <span>Ask James</span>
+    </div>
+
+    <div class="chat-window" id="jamesBot">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <img src="IMG_4679.jpeg" alt="James">
+                <div class="chat-header-text">
+                    <h3>James (AI Twin)</h3>
+                    <p>Typically replies instantly ⚡</p>
+                </div>
+            </div>
+            <button class="chat-close" onclick="toggleChat()">&times;</button>
+        </div>
+
+        <div class="chat-body" id="chatBody">
+            <div class="msg msg-bot">
+                Hi, I'm the digital version of James. I was built to save you time and give you a feel for how I operate.<br><br>What would you like to know?
+            </div>
+        </div>
+
+        <div class="typing-indicator" id="typingIndicator">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+
+        <div class="chat-options" id="chatOptions">
+            <button class="chat-option-btn" onclick="handleQuestion('What is your sales philosophy?')">What is your actual sales philosophy?</button>
+            <button class="chat-option-btn" onclick="handleQuestion('What does AI-enabled delivery mean?')">What does "AI-enabled delivery" mean in practice?</button>
+            <button class="chat-option-btn" onclick="handleQuestion('What is your biggest weakness?')">What is your biggest development area?</button>
+            <button class="chat-option-btn" onclick="handleQuestion('Why did you build this site using AI?')">Why did you build this site yourself using AI?</button>
+            <button class="chat-option-btn" onclick="handleQuestion('What are you reading or listening to?')">What are you reading or listening to right now?</button>
+            <button class="chat-option-btn" onclick="handleQuestion('Tell me a random fact about you.')">Tell me a random fact about you.</button>
+        </div>
+    </div>
+
+    <script>
+        // --- DARK MODE TOGGLE LOGIC ---
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const rootElement = document.documentElement;
+
+        // Check local storage for theme preference
+        const savedTheme = localStorage.getItem('james-portfolio-theme');
+        if (savedTheme === 'dark') {
+            rootElement.setAttribute('data-theme', 'dark');
+            themeToggleBtn.innerText = '☀️';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = rootElement.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                rootElement.removeAttribute('data-theme');
+                themeToggleBtn.innerText = '🌙';
+                localStorage.setItem('james-portfolio-theme', 'light');
+            } else {
+                rootElement.setAttribute('data-theme', 'dark');
+                themeToggleBtn.innerText = '☀️';
+                localStorage.setItem('james-portfolio-theme', 'dark');
+            }
+        });
+
+        // --- CHATBOT LOGIC ---
+        const chatWindow = document.getElementById('jamesBot');
+        const chatBody = document.getElementById('chatBody');
+        const chatOptions = document.getElementById('chatOptions');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        const answers = {
+            'What is your sales philosophy?': "I stay close to the customer, I'm honest with them, and I build trust through delivery. Good salespeople work smart, but I still believe in doing the hard yards—getting face-to-face and adapting what we sell to what genuinely helps them. I've worn out a lot of shoes knocking on doors, and that hustle mentality still matters to me.",
+            'What does AI-enabled delivery mean?': "It's a shift in where value comes from. You move away from selling 'bodies on seats' to delivering faster outcomes using AI to drive efficiency and quality.<br><br>But AI isn't magic. Data is king, but human curiosity unlocks it. The real value is in people who know how to prompt well, challenge the output, and apply commercial judgement.",
+            'What is your biggest weakness?': "Pace. I tend to move quickly, especially when I see where the market is going, and I can assume others are already on the same page.<br><br>I can get frustrated when adoption moves slowly in large organisations. I've had to actively work on my patience—managing up, sequencing the message, and making sure the wider business is actually moving with me rather than just arguing for the change.",
+            'Why did you build this site using AI?': "Because you have to practise what you preach. You can't talk about AI transformation to executives if you aren't willing to get your hands dirty and use the tools yourself.<br><br>I used Claude and Perplexity to code this from scratch because I wanted to understand the workflow. I'm not a full-time engineer, but I need to know where AI works, where it fails, and how it changes the way we build.",
+            'What are you reading or listening to?': "Podcasts: The Rest Is History, 99% Invisible, and Stories of Our Times.<br><br>Books: Currently reading 'The Coming Wave', but I love fiction. Sapiens was huge for me, and I like Bret Easton Ellis and Irvine Welsh for their sharp take on human behaviour. I also love James Clavell's Asia series.<br><br>Music: Electronic (Bicep, Fred again.., Jamie xx). My most played track is 'The Difference' by Flume. Oh, and I listen to a lot of classical music on YouTube when I need to get deep work done—it slaps.",
+            'Tell me a random fact about you.': "I'm a mix of endurance, food, and family.<br><br>I grew up working in a bakery from age 13, and hard work and food have stuck with me. My favourite food is spicy Thai (best meals I've had are Eleven Madison Park and Gaggan).<br><br>I also love testing myself physically—I've run ultras, a marathon on the Great Wall of China, and did a 600km London to Paris challenge in 38 hours (ran a marathon, biked to Dover, ferried to Dunkirk, finished in Paris). With three kids now, life is less tidy, but I still love a big challenge."
+        };
+
+        function toggleChat() {
+            chatWindow.classList.toggle('open');
+            if (chatWindow.classList.contains('open')) {
+                scrollToBottom();
+            }
+        }
+
+        function handleQuestion(question) {
+            chatOptions.style.display = 'none';
+
+            const userMsg = document.createElement('div');
+            userMsg.className = 'msg msg-user';
+            userMsg.innerHTML = question;
+            chatBody.appendChild(userMsg);
+            scrollToBottom();
+
+            chatBody.appendChild(typingIndicator);
+            typingIndicator.style.display = 'flex';
+            scrollToBottom();
+
+            setTimeout(() => {
+                typingIndicator.style.display = 'none';
+
+                const botMsg = document.createElement('div');
+                botMsg.className = 'msg msg-bot';
+                botMsg.innerHTML = answers[question];
+                chatBody.appendChild(botMsg);
+
+                scrollToBottom();
+
+                setTimeout(() => {
+                    chatOptions.style.display = 'flex';
+                    scrollToBottom();
+                }, 500);
+
+            }, 1200); 
+        }
+
+        function scrollToBottom() {
+            setTimeout(() => {
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 50);
+        }
+    </script>
+</body>
+</html>
