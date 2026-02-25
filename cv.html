@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure CV Portal | James Tuttiett</title>
+    <style>
+        :root {
+            --bg-color: #fafafa;
+            --text-main: #2d3748;
+            --text-light: #4a5568;
+            --card-bg: #ffffff;
+            --border-color: rgba(0,0,0,0.05);
+            --nav-bg: rgba(250, 250, 250, 0.95);
+            --accent-azure: #007bff;
+            --accent-neon-pink: #ff007f;
+            --accent-purple: #9b51e0;
+            --btc-red: #e31b3d;
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        [data-theme="dark"] {
+            --bg-color: #0f172a; --text-main: #f1f5f9; --text-light: #94a3b8;
+            --card-bg: #1e293b; --border-color: rgba(255,255,255,0.1); --nav-bg: rgba(15, 23, 42, 0.95);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; transition: background-color 0.3s, color 0.3s; min-height: 100vh; display: flex; flex-direction: column; }
+        nav { position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; background: var(--nav-bg); backdrop-filter: blur(10px); display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 1px solid var(--border-color); }
+        .logo { font-weight: 800; font-size: 1.5rem; background: linear-gradient(45deg, var(--accent-azure), var(--accent-neon-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 500; transition: var(--transition); }
+        .nav-links a:hover { color: var(--accent-neon-pink); }
+        .nav-links a.charity-nav-link { color: var(--btc-red); font-weight: 700; border: 1px solid var(--btc-red); padding: 0.5rem 1rem; border-radius: 20px; }
+        .nav-links a.charity-nav-link:hover { background: var(--btc-red); color: white; }
+        .theme-toggle { background: transparent; border: 1px solid var(--border-color); color: var(--text-main); font-size: 1.2rem; cursor: pointer; padding: 0.4rem 0.8rem; border-radius: 20px; transition: var(--transition); }
+
+        .cv-container { flex: 1; display: flex; justify-content: center; align-items: center; padding: 8rem 2rem 4rem; }
+        .cv-card { background: var(--card-bg); border-radius: 20px; padding: 3.5rem; max-width: 480px; width: 100%; border: 1px solid var(--border-color); box-shadow: 0 20px 50px rgba(0,0,0,0.08); text-align: center; }
+        .lock-icon { font-size: 3rem; margin-bottom: 1.5rem; }
+        .cv-card h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .cv-card p { color: var(--text-light); margin-bottom: 2rem; font-size: 0.95rem; line-height: 1.6; }
+
+        .cv-form input {
+            width: 100%; padding: 0.9rem 1.2rem; border: 1.5px solid var(--border-color);
+            border-radius: 10px; font-size: 1rem; margin-bottom: 1rem;
+            background: var(--bg-color); color: var(--text-main);
+            transition: border-color 0.2s; outline: none;
+        }
+        .cv-form input:focus { border-color: var(--accent-azure); }
+        .cv-submit-btn {
+            width: 100%; padding: 1rem; background: linear-gradient(45deg, var(--accent-azure), var(--accent-purple));
+            color: white; border: none; border-radius: 10px; font-size: 1rem;
+            font-weight: 700; cursor: pointer; transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+        }
+        .cv-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(155,81,224,0.4); }
+        .cv-note { margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-light); }
+        .cv-note a { color: var(--accent-azure); text-decoration: none; }
+
+        .success-state { display: none; }
+        .success-state h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-main); }
+        .success-state p { color: var(--text-light); margin-bottom: 2rem; }
+        .download-btn {
+            display: inline-block; padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--accent-azure), var(--accent-purple));
+            color: white; text-decoration: none; border-radius: 30px;
+            font-weight: 700; transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+        }
+        .download-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,0,127,0.4); background: linear-gradient(45deg, var(--accent-purple), var(--accent-neon-pink)); }
+
+        footer { text-align: center; padding: 2rem; color: var(--text-light); border-top: 1px solid var(--border-color); }
+        @media (max-width: 768px) {
+            nav { flex-direction: column; padding: 1rem; gap: 1rem; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 1rem; font-size: 0.9rem; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="logo">James Tuttiett.</a>
+    <div class="nav-links">
+        <a href="index.html#about">About</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="thoughts.html">Thoughts</a>
+        <a href="charity.html" class="charity-nav-link">Sensora Charity</a>
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">🌙</button>
+    </div>
+</nav>
+
+<div class="cv-container">
+    <div class="cv-card">
+        <div class="lock-icon">🔒</div>
+        <h1>Secure CV Portal</h1>
+        <p>My CV is available on request to ensure it reaches the right people. Please enter your details below and I will be in touch promptly.</p>
+
+        <div class="cv-form" id="cvForm">
+            <input type="text" id="nameInput" placeholder="Your Full Name" required>
+            <input type="email" id="emailInput" placeholder="Your Email Address" required>
+            <input type="text" id="companyInput" placeholder="Your Company / Organisation">
+            <button class="cv-submit-btn" onclick="handleCvRequest()">Request CV Access →</button>
+        </div>
+
+        <div class="success-state" id="successState">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem;">✅</div>
+            <h2>Request Received!</h2>
+            <p>Thank you. I will send my CV directly to your inbox shortly. In the meantime, feel free to connect with me on LinkedIn.</p>
+            <a href="https://www.linkedin.com/in/james-tuttiett-b94a3322" target="_blank" rel="noopener noreferrer" class="download-btn">Connect on LinkedIn →</a>
+        </div>
+
+        <p class="cv-note">Prefer to reach out directly? Email me at <a href="mailto:jamesdtuttiett@gmail.com">jamesdtuttiett@gmail.com</a></p>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 James Tuttiett. Built with AI.</p>
+</footer>
+
+<script>
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const rootElement = document.documentElement;
+    const savedTheme = localStorage.getItem('james-portfolio-theme');
+    if (savedTheme === 'dark') { rootElement.setAttribute('data-theme', 'dark'); themeToggleBtn.innerText = '☀️'; }
+    themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = rootElement.getAttribute('data-theme');
+        if (currentTheme === 'dark') { rootElement.removeAttribute('data-theme'); themeToggleBtn.innerText = '🌙'; localStorage.setItem('james-portfolio-theme', 'light'); }
+        else { rootElement.setAttribute('data-theme', 'dark'); themeToggleBtn.innerText = '☀️'; localStorage.setItem('james-portfolio-theme', 'dark'); }
+    });
+
+    function handleCvRequest() {
+        const name = document.getElementById('nameInput').value.trim();
+        const email = document.getElementById('emailInput').value.trim();
+        if (!name || !email) {
+            alert('Please enter your name and email address.');
+            return;
+        }
+        document.getElementById('cvForm').style.display = 'none';
+        document.getElementById('successState').style.display = 'block';
+    }
+</script>
+</body>
+</html>
