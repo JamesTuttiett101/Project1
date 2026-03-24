@@ -6,75 +6,314 @@
     <title>Thoughts | James Tuttiett</title>
     <style>
         :root {
-            --bg-color: #fafafa;
-            --text-main: #2d3748;
-            --text-light: #4a5568;
-            --card-bg: #ffffff;
-            --border-color: rgba(0,0,0,0.05);
-            --nav-bg: rgba(250, 250, 250, 0.95);
-            --accent-azure: #007bff;
-            --accent-neon-pink: #ff007f;
-            --accent-purple: #9b51e0;
+            --bg-color: #fff7fb;
+            --bg-secondary: #fff0f6;
+            --text-main: #171a28;
+            --text-light: #5c637d;
+            --card-bg: rgba(255, 255, 255, 0.76);
+            --border-color: rgba(23, 26, 40, 0.08);
+            --nav-bg: rgba(255, 247, 251, 0.72);
+            --accent-azure: #33e6ff;
+            --accent-neon-pink: #ff4fd8;
+            --accent-purple: #7a5cff;
+            --accent-sunset: #ff8a3d;
             --btc-red: #e31b3d;
-            --border-radius: 12px;
+            --border-radius: 18px;
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --surface-shadow: 0 20px 60px rgba(122, 92, 255, 0.12);
         }
+
         [data-theme="dark"] {
-            --bg-color: #0f172a;
-            --text-main: #f1f5f9;
-            --text-light: #94a3b8;
-            --card-bg: #1e293b;
-            --border-color: rgba(255,255,255,0.1);
-            --nav-bg: rgba(15, 23, 42, 0.95);
+            --bg-color: #070b17;
+            --bg-secondary: #0e1427;
+            --text-main: #f5f7ff;
+            --text-light: #aab2d1;
+            --card-bg: rgba(14, 20, 39, 0.74);
+            --border-color: rgba(94, 241, 255, 0.14);
+            --nav-bg: rgba(7, 11, 23, 0.72);
+            --surface-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; transition: background-color 0.3s, color 0.3s; }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background:
+                radial-gradient(circle at 15% 20%, rgba(51, 230, 255, 0.18), transparent 28%),
+                radial-gradient(circle at 85% 12%, rgba(255, 79, 216, 0.16), transparent 24%),
+                radial-gradient(circle at 50% 85%, rgba(255, 138, 61, 0.12), transparent 22%),
+                linear-gradient(180deg, var(--bg-color) 0%, var(--bg-secondary) 100%);
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
         nav {
-            position: fixed; top: 0; width: 100%; padding: 1.5rem 5%;
-            background: var(--nav-bg); backdrop-filter: blur(10px);
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.1rem 5%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
         }
-        .logo { font-weight: 800; font-size: 1.5rem; background: linear-gradient(45deg, var(--accent-azure), var(--accent-neon-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.55rem;
+            background: linear-gradient(45deg, var(--accent-azure), var(--accent-neon-pink), var(--accent-sunset));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
         .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 500; transition: var(--transition); }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 600; transition: var(--transition); }
         .nav-links a:hover { color: var(--accent-neon-pink); }
-        .nav-links a.charity-nav-link { color: var(--btc-red); font-weight: 700; border: 1px solid var(--btc-red); padding: 0.5rem 1rem; border-radius: 20px; }
+        .nav-links a.charity-nav-link {
+            color: var(--btc-red);
+            font-weight: 700;
+            border: 1px solid rgba(227, 27, 61, 0.4);
+            padding: 0.55rem 1rem;
+            border-radius: 999px;
+            background: rgba(227, 27, 61, 0.06);
+        }
         .nav-links a.charity-nav-link:hover { background: var(--btc-red); color: white; }
-        .theme-toggle { background: transparent; border: 1px solid var(--border-color); color: var(--text-main); font-size: 1.2rem; cursor: pointer; padding: 0.4rem 0.8rem; border-radius: 20px; transition: var(--transition); }
-        .theme-toggle:hover { background: var(--border-color); }
 
-        .page-hero { padding: 10rem 5% 4rem; max-width: 1200px; margin: 0 auto; }
-        .page-hero h1 { font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 800; margin-bottom: 1rem; }
-        .gradient-text { background: linear-gradient(to right, var(--accent-azure), var(--accent-purple), var(--accent-neon-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .page-hero p { font-size: 1.2rem; color: var(--text-light); max-width: 600px; }
+        .theme-toggle {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 0.55rem 0.95rem;
+            border-radius: 999px;
+            transition: var(--transition);
+        }
+        .theme-toggle:hover {
+            background: linear-gradient(45deg, rgba(51, 230, 255, 0.15), rgba(255, 79, 216, 0.15));
+            border-color: rgba(51, 230, 255, 0.25);
+        }
 
-        .blog-grid { padding: 2rem 5% 6rem; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2rem; }
+        .page-hero {
+            padding: 10rem 5% 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-        .blog-card { background: var(--card-bg); border-radius: var(--border-radius); border: 1px solid var(--border-color); overflow: hidden; transition: var(--transition); cursor: pointer; }
-        .blog-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
-        .blog-card-accent { height: 5px; }
+        .page-hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.04em;
+            line-height: 0.95;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--accent-azure), var(--accent-purple), var(--accent-neon-pink), var(--accent-sunset));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-hero p {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            max-width: 700px;
+        }
+
+        .hero-panel {
+            margin-top: 2rem;
+            padding: 1.4rem 1.6rem;
+            max-width: 760px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--surface-shadow);
+            backdrop-filter: blur(18px);
+        }
+
+        .hero-panel strong {
+            display: block;
+            margin-bottom: 0.35rem;
+            color: var(--text-main);
+        }
+
+        .hero-panel span { color: var(--text-light); }
+
+        .blog-grid {
+            padding: 2rem 5% 6rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+            box-shadow: var(--surface-shadow);
+            backdrop-filter: blur(18px);
+            position: relative;
+        }
+
+        .blog-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: var(--border-radius);
+            background: linear-gradient(135deg, rgba(51, 230, 255, 0.4), rgba(255, 79, 216, 0.25), rgba(255, 138, 61, 0.18));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 55px rgba(0,0,0,0.16);
+        }
+
+        .blog-card:hover::before { opacity: 0.2; }
+        .blog-card-accent { height: 6px; }
         .blog-card-body { padding: 2rem; }
-        .blog-tag { display: inline-block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 0.3rem 0.8rem; border-radius: 20px; margin-bottom: 1rem; }
-        .blog-card h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.8rem; line-height: 1.3; color: var(--text-main); }
-        .blog-card p { color: var(--text-light); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem; }
-        .blog-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: var(--text-light); }
+
+        .blog-tag {
+            display: inline-block;
+            font-size: 0.74rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
+            margin-bottom: 1rem;
+        }
+
+        .blog-card h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+            color: var(--text-main);
+        }
+
+        .blog-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
         .read-more { color: var(--accent-azure); font-weight: 600; text-decoration: none; font-size: 0.9rem; }
         .read-more:hover { color: var(--accent-neon-pink); }
 
-        /* Modal */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.85); backdrop-filter: blur(6px); display: none; justify-content: center; align-items: flex-start; z-index: 2000; overflow-y: auto; padding: 2rem 1rem; }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15,23,42,0.85);
+            backdrop-filter: blur(6px);
+            display: none;
+            justify-content: center;
+            align-items: flex-start;
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 2rem 1rem;
+        }
+
         .modal-overlay.active { display: flex; }
-        .modal-content { background: var(--card-bg); width: 100%; max-width: 750px; border-radius: 16px; padding: 3rem; box-shadow: 0 25px 60px rgba(0,0,0,0.25); margin: auto; }
-        .modal-content h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-main); line-height: 1.3; }
-        .modal-content .modal-meta { color: var(--text-light); font-size: 0.9rem; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); }
-        .modal-content p { color: var(--text-main); line-height: 1.8; margin-bottom: 1.2rem; font-size: 1rem; }
-        .modal-content h3 { color: var(--accent-azure); font-size: 1.2rem; margin: 2rem 0 0.8rem; }
-        .modal-content ul { padding-left: 1.5rem; color: var(--text-main); line-height: 1.8; margin-bottom: 1.2rem; }
-        .close-btn { display: inline-block; margin-top: 2rem; padding: 0.8rem 1.5rem; background: var(--bg-color); color: var(--text-main); font-weight: 600; border-radius: 8px; cursor: pointer; border: 1px solid var(--border-color); transition: var(--transition); }
+
+        .modal-content {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 750px;
+            border-radius: 22px;
+            padding: 3rem;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+            margin: auto;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(18px);
+        }
+
+        .modal-content h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.9rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+            line-height: 1.2;
+        }
+
+        .modal-content .modal-meta {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .modal-content p {
+            color: var(--text-main);
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+
+        .modal-content h3 {
+            color: var(--accent-azure);
+            font-size: 1.15rem;
+            margin: 2rem 0 0.8rem;
+        }
+
+        .modal-content ul {
+            padding-left: 1.5rem;
+            color: var(--text-main);
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+        }
+
+        .close-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255,255,255,0.06);
+            color: var(--text-main);
+            font-weight: 600;
+            border-radius: 999px;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
         .close-btn:hover { filter: brightness(0.95); }
 
-        footer { text-align: center; padding: 2rem; color: var(--text-light); border-top: 1px solid var(--border-color); }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            border-top: 1px solid var(--border-color);
+        }
 
         @media (max-width: 768px) {
             nav { flex-direction: column; padding: 1rem; gap: 1rem; }
@@ -82,7 +321,7 @@
             .blog-grid { grid-template-columns: 1fr; }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -90,68 +329,67 @@
     <a href="index.html" class="logo">James Tuttiett.</a>
     <div class="nav-links">
         <a href="index.html#about">About</a>
+        <a href="index.html#operating-model">Operating Model</a>
+        <a href="index.html#strategy">Strategy</a>
         <a href="index.html#experience">Experience</a>
         <a href="thoughts.html">Thoughts</a>
         <a href="charity.html" class="charity-nav-link">Sensora Charity</a>
-        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">🌙</button>
+        <button class="theme-toggle" id="themeToggle" title="Switch theme">Light Mode</button>
     </div>
 </nav>
 
 <div class="page-hero">
     <h1>My <span class="gradient-text">Thoughts</span></h1>
     <p>Perspectives on AI, enterprise transformation, commercial strategy, and the future of work. Written from the front line, not the sidelines.</p>
+    <div class="hero-panel">
+        <strong>What this page is for</strong>
+        <span>Not content for content’s sake. These are the ideas shaping how I think about AI adoption, delivery models, workforce redesign, and commercial transformation.</span>
+    </div>
 </div>
 
 <div class="blog-grid">
-
-    <!-- POST 1 -->
     <div class="blog-card" onclick="openModal('post1')">
-        <div class="blog-card-accent" style="background: linear-gradient(to right, #007bff, #9b51e0);"></div>
+        <div class="blog-card-accent" style="background: linear-gradient(to right, #33e6ff, #7a5cff);"></div>
         <div class="blog-card-body">
-            <span class="blog-tag" style="background: rgba(0,123,255,0.1); color: #007bff;">AI Strategy</span>
+            <span class="blog-tag" style="background: rgba(51,230,255,0.12); color: #33e6ff;">AI Strategy</span>
             <h2>Why Most AI Transformations Fail Before They Start</h2>
             <p>Organisations are buying AI tools at scale, but adoption rates remain stubbornly low. The problem isn't the technology. It's the change model.</p>
             <div class="blog-meta">
                 <span>February 2026</span>
-                <span class="read-more">Read More →</span>
+                <span class="read-more">Read More</span>
             </div>
         </div>
     </div>
 
-    <!-- POST 2 -->
     <div class="blog-card" onclick="openModal('post2')">
-        <div class="blog-card-accent" style="background: linear-gradient(to right, #ff007f, #9b51e0);"></div>
+        <div class="blog-card-accent" style="background: linear-gradient(to right, #ff4fd8, #7a5cff);"></div>
         <div class="blog-card-body">
-            <span class="blog-tag" style="background: rgba(255,0,127,0.1); color: #ff007f;">Commercial Strategy</span>
+            <span class="blog-tag" style="background: rgba(255,79,216,0.12); color: #ff4fd8;">Commercial Strategy</span>
             <h2>The Death of "Bodies on Seats": Rethinking the Consulting Model</h2>
             <p>The traditional Time & Materials consulting model is under terminal pressure. AI is changing where value comes from, and most firms aren't ready for the conversation.</p>
             <div class="blog-meta">
                 <span>January 2026</span>
-                <span class="read-more">Read More →</span>
+                <span class="read-more">Read More</span>
             </div>
         </div>
     </div>
 
-    <!-- POST 3 -->
     <div class="blog-card" onclick="openModal('post3')">
-        <div class="blog-card-accent" style="background: linear-gradient(to right, #9b51e0, #007bff);"></div>
+        <div class="blog-card-accent" style="background: linear-gradient(to right, #7a5cff, #33e6ff);"></div>
         <div class="blog-card-body">
-            <span class="blog-tag" style="background: rgba(155,81,224,0.1); color: #9b51e0;">Leadership</span>
+            <span class="blog-tag" style="background: rgba(122,92,255,0.12); color: #7a5cff;">Leadership</span>
             <h2>Selling in a Down Cycle: What the Numbers Actually Tell You</h2>
             <p>When the market contracts, most sales leaders hide behind conditions. The best ones use the cycle to widen the gap on their competitors.</p>
             <div class="blog-meta">
                 <span>December 2025</span>
-                <span class="read-more">Read More →</span>
+                <span class="read-more">Read More</span>
             </div>
         </div>
     </div>
-
 </div>
 
-<!-- BLOG MODAL -->
 <div class="modal-overlay" id="blogModal" onclick="if(event.target===this){closeModal()}">
-    <div class="modal-content" id="modalBody">
-    </div>
+    <div class="modal-content" id="modalBody"></div>
 </div>
 
 <footer>
@@ -162,11 +400,26 @@
     const themeToggleBtn = document.getElementById('themeToggle');
     const rootElement = document.documentElement;
     const savedTheme = localStorage.getItem('james-portfolio-theme');
-    if (savedTheme === 'dark') { rootElement.setAttribute('data-theme', 'dark'); themeToggleBtn.innerText = '☀️'; }
+
+    if (savedTheme === 'light') {
+        rootElement.removeAttribute('data-theme');
+        themeToggleBtn.innerText = 'Dark Mode';
+    } else {
+        rootElement.setAttribute('data-theme', 'dark');
+        themeToggleBtn.innerText = 'Light Mode';
+    }
+
     themeToggleBtn.addEventListener('click', () => {
         const currentTheme = rootElement.getAttribute('data-theme');
-        if (currentTheme === 'dark') { rootElement.removeAttribute('data-theme'); themeToggleBtn.innerText = '🌙'; localStorage.setItem('james-portfolio-theme', 'light'); }
-        else { rootElement.setAttribute('data-theme', 'dark'); themeToggleBtn.innerText = '☀️'; localStorage.setItem('james-portfolio-theme', 'dark'); }
+        if (currentTheme === 'dark') {
+            rootElement.removeAttribute('data-theme');
+            themeToggleBtn.innerText = 'Dark Mode';
+            localStorage.setItem('james-portfolio-theme', 'light');
+        } else {
+            rootElement.setAttribute('data-theme', 'dark');
+            themeToggleBtn.innerText = 'Light Mode';
+            localStorage.setItem('james-portfolio-theme', 'dark');
+        }
     });
 
     const posts = {
@@ -178,11 +431,11 @@
                 <p>The problem, in almost every case, is not the technology. It is the change model.</p>
                 <h3>The Assumption That Breaks Everything</h3>
                 <p>Most AI rollouts begin with the same flawed assumption: that if you give people access to a powerful tool, they will use it. This has never been true of any enterprise technology, and it is not true of AI.</p>
-                <p>The organisations that succeed treat AI adoption as a change management problem first, and a technology problem second. That means investing in people, process redesign, and cultural permission to work differently — not just licences and infrastructure.</p>
+                <p>The organisations that succeed treat AI adoption as a change management problem first, and a technology problem second. That means investing in people, process redesign, and cultural permission to work differently, not just licences and infrastructure.</p>
                 <h3>What Good Looks Like</h3>
                 <ul>
                     <li>C-suite sponsorship that is visible and genuine, not performative.</li>
-                    <li>Use-case specificity — telling people exactly which tasks AI should be applied to, not vague encouragement to "explore".</li>
+                    <li>Use-case specificity, telling people exactly which tasks AI should be applied to, not vague encouragement to explore.</li>
                     <li>Removing security and compliance friction early, not as an afterthought.</li>
                     <li>Measuring adoption and output quality, not just licence activation.</li>
                 </ul>
@@ -198,7 +451,7 @@
                 <p>For decades, the consulting and professional services model has been built on a straightforward commercial logic: clients need skilled people, we supply them, and we charge by the day or by the head. It is simple, predictable, and scalable.</p>
                 <p>AI is dismantling this logic faster than most firms are willing to admit.</p>
                 <h3>Where the Pressure Is Coming From</h3>
-                <p>The challenge is not that clients want fewer people. It is that they are beginning to ask a different question. Instead of "how many consultants do I need for this programme?", they are asking "what outcome do I need, and what is the most efficient way to deliver it?"</p>
+                <p>The challenge is not that clients want fewer people. It is that they are beginning to ask a different question. Instead of how many consultants do I need for this programme, they are asking what outcome do I need, and what is the most efficient way to deliver it?</p>
                 <p>When AI can handle significant portions of documentation, analysis, testing, and reporting, the answer to that second question starts to look very different from the traditional staffing model.</p>
                 <h3>The Firms That Will Survive This Shift</h3>
                 <p>The winners will not be the ones who resist the change. They will be the firms that move fastest to redesign their commercial models around outcomes rather than inputs. That means:</p>
