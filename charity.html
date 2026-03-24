@@ -4,288 +4,824 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sensora Charity Event | James Tuttiett</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Mono&family=Space+Grotesk:wght@400;500;700&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #fafafa;
-            --text-main: #2d3748;
-            --text-light: #4a5568;
-            --card-bg: #ffffff;
-            --border-color: rgba(0,0,0,0.05);
-            --nav-bg: rgba(250, 250, 250, 0.95);
-            --accent-azure: #007bff;
-            --accent-neon-pink: #ff007f;
-            --accent-purple: #9b51e0;
-            --btc-red: #e31b3d;
-            --border-radius: 12px;
+            --bg-color: #f6eee8;
+            --bg-secondary: #fbe3e2;
+            --text-main: #18131d;
+            --text-light: #5e5568;
+            --card-bg: rgba(255, 248, 244, 0.78);
+            --border-color: rgba(24, 19, 29, 0.1);
+            --nav-bg: rgba(246, 238, 232, 0.82);
+            --accent-coral: #ff7061;
+            --accent-fuchsia: #ff4db8;
+            --accent-gold: #f8ca80;
+            --accent-plum: #7d3df2;
+            --accent-ink: #18131d;
+            --surface-shadow: 0 24px 70px rgba(32, 16, 33, 0.12);
+            --border-radius: 24px;
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
+
         [data-theme="dark"] {
-            --bg-color: #0f172a; --text-main: #f1f5f9; --text-light: #94a3b8;
-            --card-bg: #1e293b; --border-color: rgba(255,255,255,0.1); --nav-bg: rgba(15, 23, 42, 0.95);
+            --bg-color: #09070d;
+            --bg-secondary: #16101d;
+            --text-main: #fff3ef;
+            --text-light: #c5b7c6;
+            --card-bg: rgba(21, 14, 28, 0.72);
+            --border-color: rgba(255, 209, 196, 0.12);
+            --nav-bg: rgba(9, 7, 13, 0.82);
+            --surface-shadow: 0 28px 90px rgba(0, 0, 0, 0.45);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; transition: background-color 0.3s, color 0.3s; }
 
-        nav { position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; background: var(--nav-bg); backdrop-filter: blur(10px); display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 1px solid var(--border-color); }
-        .logo { font-weight: 800; font-size: 1.5rem; background: linear-gradient(45deg, var(--accent-azure), var(--accent-neon-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
-        .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 500; transition: var(--transition); }
-        .nav-links a:hover { color: var(--accent-neon-pink); }
-        .nav-links a.charity-nav-link { color: var(--btc-red); font-weight: 700; border: 1px solid var(--btc-red); padding: 0.5rem 1rem; border-radius: 20px; }
-        .nav-links a.charity-nav-link:hover { background: var(--btc-red); color: white; }
-        .theme-toggle { background: transparent; border: 1px solid var(--border-color); color: var(--text-main); font-size: 1.2rem; cursor: pointer; padding: 0.4rem 0.8rem; border-radius: 20px; transition: var(--transition); }
-
-        /* HERO — two column layout */
-        .charity-hero {
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 8rem 5% 5rem;
-            background: radial-gradient(circle at top right, rgba(227,27,61,0.08), transparent 50%),
-                        radial-gradient(circle at bottom left, rgba(155,81,224,0.06), transparent 50%);
+            background:
+                radial-gradient(circle at 12% 18%, rgba(255, 112, 97, 0.22), transparent 24%),
+                radial-gradient(circle at 82% 20%, rgba(255, 77, 184, 0.16), transparent 22%),
+                radial-gradient(circle at 50% 86%, rgba(248, 202, 128, 0.12), transparent 24%),
+                linear-gradient(180deg, var(--bg-color) 0%, var(--bg-secondary) 100%);
+            color: var(--text-main);
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s;
         }
-        .hero-inner {
-            max-width: 1200px;
-            margin: 0 auto;
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(120deg, rgba(255, 255, 255, 0.04), transparent 32%),
+                linear-gradient(300deg, rgba(255, 255, 255, 0.03), transparent 26%);
+            opacity: 0.8;
+            z-index: -1;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
             width: 100%;
+            padding: 0.85rem 3.5%;
             display: flex;
-            gap: 5rem;
+            justify-content: space-between;
             align-items: center;
+            gap: 1rem;
+            background: linear-gradient(180deg, rgba(246, 238, 232, 0.94), rgba(246, 238, 232, 0.86));
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 12px 38px rgba(24, 19, 29, 0.06);
+            z-index: 1000;
+        }
+
+        [data-theme="dark"] nav {
+            background: linear-gradient(180deg, rgba(9, 7, 13, 0.94), rgba(9, 7, 13, 0.88));
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.32);
+        }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            text-decoration: none;
+            white-space: nowrap;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-coral), var(--accent-fuchsia));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.15rem;
             flex-wrap: wrap;
-        }
-        .hero-text { flex: 1.2; min-width: 300px; }
-        .hero-poster { flex: 1; min-width: 280px; max-width: 420px; }
-        .hero-poster img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.2);
-            border: 3px solid rgba(255,255,255,0.1);
+            justify-content: flex-end;
         }
 
-        .event-kicker {
-            display: inline-flex; align-items: center; gap: 0.6rem;
-            background: rgba(227,27,61,0.08); color: var(--btc-red);
-            font-weight: 700; font-size: 0.85rem; text-transform: uppercase;
-            letter-spacing: 2px; padding: 0.5rem 1.2rem;
-            border-radius: 20px; margin-bottom: 2rem;
-            border: 1px solid rgba(227,27,61,0.2);
+        .nav-links a,
+        .theme-toggle {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.94rem;
+            font-weight: 700;
+            transition: var(--transition);
         }
-        .charity-hero h1 {
-            font-size: clamp(3rem, 5vw, 5rem);
-            font-weight: 900; line-height: 1.05;
-            margin-bottom: 1.5rem; letter-spacing: -1px;
+
+        .nav-links a:hover { color: var(--accent-coral); }
+
+        .nav-links a.charity-nav-link {
+            border: 1px solid rgba(255, 112, 97, 0.38);
+            background: rgba(255, 112, 97, 0.08);
+            color: var(--accent-coral);
+            padding: 0.55rem 0.95rem;
+            border-radius: 999px;
         }
+
+        .nav-links a.charity-nav-link:hover {
+            background: linear-gradient(90deg, var(--accent-coral), var(--accent-fuchsia));
+            color: #fff6f1;
+            border-color: transparent;
+        }
+
+        .theme-toggle {
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 999px;
+            padding: 0.55rem 0.95rem;
+            cursor: pointer;
+        }
+
+        .theme-toggle:hover {
+            border-color: rgba(255, 112, 97, 0.35);
+            background: rgba(255, 112, 97, 0.08);
+        }
+
+        main {
+            padding: 8.2rem 4.5% 4rem;
+        }
+
+        .hero-shell,
+        .section-shell,
+        .cta-shell {
+            max-width: 1240px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(340px, 0.85fr);
+            gap: 2rem;
+            align-items: stretch;
+        }
+
+        .hero-copy,
+        .hero-visual,
+        .section-card,
+        .cta-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 32px;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            box-shadow: var(--surface-shadow);
+            backdrop-filter: blur(18px);
+        }
+
+        .hero-copy {
+            padding: 2.2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 640px;
+            background:
+                linear-gradient(160deg, rgba(255, 255, 255, 0.07), transparent 38%),
+                linear-gradient(135deg, rgba(255, 112, 97, 0.11), rgba(255, 77, 184, 0.08));
+        }
+
+        [data-theme="dark"] .hero-copy {
+            background:
+                linear-gradient(160deg, rgba(255, 255, 255, 0.04), transparent 38%),
+                linear-gradient(135deg, rgba(255, 112, 97, 0.14), rgba(255, 77, 184, 0.09));
+        }
+
+        .event-label,
+        .section-label,
+        .detail-label,
+        .stat-label,
+        .eyebrow {
+            font-family: 'PT Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+        }
+
+        .event-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            margin-bottom: 1.5rem;
+            padding: 0.7rem 1rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 112, 97, 0.32);
+            color: var(--accent-coral);
+            background: rgba(255, 112, 97, 0.08);
+            font-size: 0.72rem;
+        }
+
+        .hero-copy h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3.3rem, 8vw, 6.6rem);
+            line-height: 0.9;
+            letter-spacing: -0.06em;
+            max-width: 8ch;
+            margin-bottom: 1.2rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-coral), var(--accent-fuchsia));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         .hero-tagline {
-            font-size: 1.15rem; color: var(--text-light);
-            max-width: 520px; margin-bottom: 2.5rem; line-height: 1.7;
+            max-width: 620px;
+            font-size: 1.12rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
         }
 
-        .three-lines { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2.5rem; }
-        .punch-line { display: flex; align-items: center; gap: 1rem; font-size: 1.1rem; font-weight: 700; color: var(--text-main); flex-wrap: wrap; }
-        .punch-line .pill {
-            background: linear-gradient(45deg, var(--btc-red), var(--accent-purple));
-            color: white; padding: 0.3rem 0.9rem; border-radius: 20px;
-            font-size: 0.85rem; white-space: nowrap;
+        .line-list {
+            display: grid;
+            gap: 0.95rem;
+            margin-bottom: 2rem;
         }
 
-        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
-        .donate-btn {
-            display: inline-block; padding: 1.1rem 2.5rem;
-            background: linear-gradient(45deg, var(--btc-red), #ff4444);
-            color: white; text-decoration: none; border-radius: 30px;
-            font-weight: 700; font-size: 1rem; transition: var(--transition);
-            box-shadow: 0 4px 20px rgba(227,27,61,0.4);
+        .line-item {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+            align-items: center;
+            font-size: 1rem;
+            font-weight: 700;
         }
-        .donate-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(227,27,61,0.5); }
-        .register-btn {
-            display: inline-block; padding: 1.1rem 2.5rem;
-            background: transparent; color: var(--text-main);
-            border: 2px solid var(--border-color);
-            text-decoration: none; border-radius: 30px;
-            font-weight: 700; font-size: 1rem; transition: var(--transition);
+
+        .line-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 146px;
+            padding: 0.45rem 0.85rem;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--accent-coral), var(--accent-fuchsia));
+            color: #fff7f2;
+            font-family: 'PT Mono', monospace;
+            font-size: 0.74rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
         }
-        .register-btn:hover { background: var(--border-color); transform: translateY(-3px); }
-        [data-theme="dark"] .register-btn { color: white; }
 
-        /* SECTIONS */
-        .content-section { padding: 5rem 5%; max-width: 1100px; margin: 0 auto; }
-        .section-label { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-purple); margin-bottom: 1rem; display: block; }
-        .section-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.2; }
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.8rem;
+        }
 
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 3rem 0; }
-        .feature-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--border-radius); padding: 2rem; transition: var(--transition); position: relative; overflow: hidden; }
-        .feature-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; }
-        .feature-card:nth-child(1)::before { background: linear-gradient(to right, var(--btc-red), var(--accent-purple)); }
-        .feature-card:nth-child(2)::before { background: linear-gradient(to right, var(--accent-purple), var(--accent-neon-pink)); }
-        .feature-card:nth-child(3)::before { background: linear-gradient(to right, var(--accent-azure), var(--accent-purple)); }
-        .feature-card:nth-child(4)::before { background: linear-gradient(to right, var(--accent-neon-pink), var(--btc-red)); }
-        .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
-        .feature-icon { font-size: 2.2rem; margin-bottom: 1rem; }
-        .feature-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-main); }
-        .feature-card p { color: var(--text-light); font-size: 0.9rem; line-height: 1.6; }
+        .primary-button,
+        .secondary-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 1.55rem;
+            border-radius: 999px;
+            font-size: 0.96rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+        }
 
-        .why-block { background: linear-gradient(135deg, rgba(227,27,61,0.04), rgba(155,81,224,0.04)); border-radius: 16px; padding: 3rem; border-left: 5px solid var(--btc-red); margin: 3rem 0; }
-        .why-block p { font-size: 1.05rem; line-height: 1.9; color: var(--text-main); margin-bottom: 1.2rem; }
-        .why-block p:last-child { margin-bottom: 0; }
+        .primary-button {
+            background: linear-gradient(90deg, var(--accent-coral), var(--accent-fuchsia));
+            color: #fff6f1;
+            box-shadow: 0 16px 34px rgba(255, 77, 184, 0.22);
+        }
 
-        .stats-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; margin: 3rem 0; }
-        .stat-box { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--border-radius); padding: 1.5rem; text-align: center; transition: var(--transition); }
-        .stat-box:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
-        .stat-number { font-size: 2.2rem; font-weight: 900; background: linear-gradient(45deg, var(--btc-red), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .stat-label { color: var(--text-light); font-size: 0.85rem; margin-top: 0.4rem; line-height: 1.4; }
+        .primary-button:hover,
+        .secondary-button:hover {
+            transform: translateY(-2px);
+        }
 
-        .cta-block { text-align: center; padding: 4rem 2rem; background: var(--card-bg); border-radius: 20px; border: 1px solid var(--border-color); margin: 3rem 0 5rem; }
-        .cta-block h2 { font-size: 2rem; font-weight: 800; margin-bottom: 1rem; }
-        .cta-block p { color: var(--text-light); max-width: 500px; margin: 0 auto 2rem; line-height: 1.7; }
+        .secondary-button {
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.06);
+        }
 
-        footer { text-align: center; padding: 2rem; color: var(--text-light); border-top: 1px solid var(--border-color); }
+        .hero-notes {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.9rem;
+        }
 
-        @media (max-width: 768px) {
-            nav { flex-direction: column; padding: 1rem; gap: 1rem; }
-            .nav-links { flex-wrap: wrap; justify-content: center; gap: 1rem; font-size: 0.9rem; }
-            .hero-inner { flex-direction: column-reverse; gap: 2.5rem; }
-            .hero-poster { max-width: 100%; }
+        .detail-card {
+            padding: 1rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .detail-label {
+            display: block;
+            font-size: 0.66rem;
+            color: var(--text-light);
+            margin-bottom: 0.45rem;
+        }
+
+        .detail-card strong {
+            display: block;
+            font-size: 1rem;
+            line-height: 1.3;
+        }
+
+        .hero-visual {
+            padding: 1.35rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background:
+                radial-gradient(circle at top, rgba(255, 112, 97, 0.18), transparent 42%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+        }
+
+        .poster-frame {
+            position: relative;
+            flex: 1;
+            min-height: 520px;
+            border-radius: 26px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .poster-frame object,
+        .poster-frame iframe {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border: 0;
+            background: #120d16;
+        }
+
+        .invite-fallback {
+            position: absolute;
+            left: 1rem;
+            bottom: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1rem;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #fff6f1;
+            background: linear-gradient(90deg, var(--accent-coral), var(--accent-fuchsia));
+            box-shadow: 0 14px 28px rgba(255, 77, 184, 0.22);
+        }
+
+        .poster-overlay {
+            position: absolute;
+            right: 1rem;
+            bottom: 1rem;
+            max-width: 220px;
+            padding: 1rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(9, 7, 13, 0.74);
+            color: #fff3ef;
+            backdrop-filter: blur(14px);
+        }
+
+        .poster-overlay .eyebrow {
+            display: block;
+            color: #f8ca80;
+            font-size: 0.66rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .poster-overlay p {
+            font-size: 0.94rem;
+            line-height: 1.5;
+        }
+
+        .invite-strip {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.85rem;
+        }
+
+        .invite-chip {
+            padding: 0.95rem 1rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.04);
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .invite-chip strong {
+            display: block;
+            margin-bottom: 0.35rem;
+            color: var(--text-main);
+        }
+
+        .content-grid {
+            margin-top: 2rem;
+            display: grid;
+            gap: 1.8rem;
+        }
+
+        .section-card {
+            padding: 2rem;
+        }
+
+        .section-card::before,
+        .cta-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(140deg, rgba(255, 255, 255, 0.05), transparent 42%);
+            pointer-events: none;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.7rem;
+            color: var(--accent-coral);
+            margin-bottom: 0.9rem;
+        }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 4vw, 3.25rem);
+            line-height: 1;
+            letter-spacing: -0.04em;
+            margin-bottom: 0.85rem;
+        }
+
+        .section-intro {
+            max-width: 760px;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .experience-grid,
+        .stats-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .experience-grid {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .experience-card,
+        .stat-card {
+            padding: 1.25rem;
+            border-radius: 22px;
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .experience-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.15rem;
+            margin-bottom: 0.55rem;
+        }
+
+        .experience-card p,
+        .cause-copy p,
+        .cta-card p {
+            color: var(--text-light);
+        }
+
+        .cause-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.85fr);
+            gap: 1.2rem;
+            align-items: start;
+        }
+
+        .cause-copy {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .cause-highlight {
+            padding: 1.35rem;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 112, 97, 0.18);
+            background: linear-gradient(160deg, rgba(255, 112, 97, 0.08), rgba(255, 77, 184, 0.05));
+        }
+
+        .cause-highlight strong {
+            display: block;
+            font-family: 'PT Mono', monospace;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--accent-coral);
+            margin-bottom: 0.75rem;
+        }
+
+        .stats-grid {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            margin-top: 1.2rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 1.5rem 1rem;
+        }
+
+        .stat-value {
+            display: block;
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 3vw, 2.7rem);
+            line-height: 1;
+            letter-spacing: -0.05em;
+            margin-bottom: 0.6rem;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-coral), var(--accent-fuchsia));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 0.68rem;
+            color: var(--text-light);
+        }
+
+        .cta-shell {
+            margin-top: 1.8rem;
+        }
+
+        .cta-card {
+            padding: 2.2rem;
+            text-align: center;
+            background:
+                radial-gradient(circle at top, rgba(255, 112, 97, 0.15), transparent 38%),
+                rgba(255, 255, 255, 0.04);
+        }
+
+        .cta-card h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: -0.04em;
+            margin-bottom: 0.8rem;
+        }
+
+        .cta-actions {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.6rem;
+        }
+
+        footer {
+            max-width: 1240px;
+            margin: 2.5rem auto 0;
+            padding: 0 4.5% 2.5rem;
+            color: var(--text-light);
+            font-size: 0.92rem;
+        }
+
+        @media (max-width: 1120px) {
+            .hero,
+            .cause-grid,
+            .experience-grid,
+            .stats-grid,
+            .invite-strip,
+            .hero-notes {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-copy {
+                min-height: auto;
+            }
+
+            .poster-frame {
+                min-height: 420px;
+            }
+        }
+
+        @media (max-width: 780px) {
+            nav {
+                padding: 0.85rem 1rem;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .nav-links {
+                justify-content: center;
+                gap: 0.85rem;
+            }
+
+            main {
+                padding: 9.6rem 1rem 3rem;
+            }
+
+            .hero-copy,
+            .hero-visual,
+            .section-card,
+            .cta-card {
+                padding: 1.35rem;
+                border-radius: 24px;
+            }
+
+            .hero-copy h1 {
+                font-size: clamp(2.8rem, 16vw, 4.8rem);
+            }
+
+            .line-pill {
+                min-width: auto;
+            }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <nav>
+        <a href="index.html" class="logo">James Tuttiett.</a>
+        <div class="nav-links">
+            <a href="index.html#about">About</a>
+            <a href="index.html#operating-model">Operating Model</a>
+            <a href="index.html#strategy">Strategy</a>
+            <a href="index.html#experience">Experience</a>
+            <a href="thoughts.html">Thoughts</a>
+            <a href="charity.html" class="charity-nav-link">Sensora Charity</a>
+            <button class="theme-toggle" id="themeToggle" type="button">Dark Mode</button>
+        </div>
+    </nav>
 
-<nav>
-    <a href="index.html" class="logo">James Tuttiett.</a>
-    <div class="nav-links">
-        <a href="index.html#about">About</a>
-        <a href="index.html#experience">Experience</a>
-        <a href="thoughts.html">Thoughts</a>
-        <a href="charity.html" class="charity-nav-link">Sensora Charity</a>
-        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">🌙</button>
-    </div>
-</nav>
+    <main>
+        <section class="hero-shell">
+            <div class="hero">
+                <article class="hero-copy">
+                    <div>
+                        <div class="event-label">In aid of The Brain Tumour Charity | 5 May 2026</div>
+                        <h1>This one's <span class="gradient-text">different.</span></h1>
+                        <p class="hero-tagline">If you've ever thought charity events weren't for you, this one probably is. Sensora should feel less like a gala and more like a cultural invitation worth saying yes to.</p>
 
-<!-- HERO — text left, poster right -->
-<div class="charity-hero">
-    <div class="hero-inner">
+                        <div class="line-list">
+                            <div class="line-item"><span class="line-pill">Michelin chefs</span> Six courses. The best in the country.</div>
+                            <div class="line-item"><span class="line-pill">BICEP live</span> Music after dinner.</div>
+                            <div class="line-item"><span class="line-pill">Zero</span> Small talk about golf.</div>
+                        </div>
+                    </div>
 
-        <div class="hero-text">
-            <div class="event-kicker">❤️ In Aid of The Brain Tumour Charity &mdash; 5 May 2026</div>
-            <h1>This one's<br>different.</h1>
-            <p class="hero-tagline">If you've ever thought charity events weren't for you, this one probably is.</p>
+                    <div>
+                        <div class="hero-actions">
+                            <a href="https://www.thebraintumourcharity.org/" target="_blank" rel="noopener noreferrer" class="primary-button">Donate to The Brain Tumour Charity</a>
+                            <a href="https://uk.emma-live.com/tbtc/tickets?tid=3e308f7547acb78764882348589d90b7" target="_blank" rel="noopener noreferrer" class="secondary-button">Buy Tickets</a>
+                        </div>
 
-            <div class="three-lines">
-                <div class="punch-line">
-                    <span class="pill">Michelin chefs</span>
-                    Six courses. The best in the country.
+                        <div class="hero-notes">
+                            <div class="detail-card">
+                                <span class="detail-label">Venue</span>
+                                <strong>HERE at Outernet, London</strong>
+                            </div>
+                            <div class="detail-card">
+                                <span class="detail-label">Format</span>
+                                <strong>One-night dining and music experience</strong>
+                            </div>
+                            <div class="detail-card">
+                                <span class="detail-label">Purpose</span>
+                                <strong>Raise attention, funding, and momentum</strong>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <aside class="hero-visual">
+                    <div class="poster-frame">
+                        <object data="SENSORA_Invite.pdf#view=FitH" type="application/pdf" aria-label="Sensora invite preview">
+                            <iframe src="SENSORA_Invite.pdf#view=FitH" title="Sensora invite preview"></iframe>
+                        </object>
+                        <a href="SENSORA_Invite.pdf" target="_blank" rel="noopener noreferrer" class="invite-fallback">View Invite</a>
+                        <div class="poster-overlay">
+                            <span class="eyebrow">Invite energy</span>
+                            <p>The live invite now anchors the page so the event branding, tone, and colour story all come from the source itself.</p>
+                        </div>
+                    </div>
+                    <div class="invite-strip">
+                        <div class="invite-chip">
+                            <strong>Food</strong>
+                            Michelin-level craft and a menu that feels genuinely special.
+                        </div>
+                        <div class="invite-chip">
+                            <strong>Music</strong>
+                            BICEP live as the release after dinner.
+                        </div>
+                        <div class="invite-chip">
+                            <strong>Cause</strong>
+                            The evening exists to move support towards better outcomes.
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="section-shell content-grid">
+            <article class="section-card">
+                <span class="section-label">The Evening</span>
+                <h2 class="section-title">5 May. HERE at Outernet, London. One night. One cause.</h2>
+                <p class="section-intro">The text already worked. The redesign here is about giving it a sharper stage: more like an invitation, less like a brochure.</p>
+                <div class="experience-grid">
+                    <div class="experience-card">
+                        <h3>Six-Course Menu</h3>
+                        <p>A bespoke tasting menu crafted by a selection of Michelin-starred chefs. Unique food you will not find anywhere else, for one night only.</p>
+                    </div>
+                    <div class="experience-card">
+                        <h3>BICEP Live</h3>
+                        <p>After dinner, BICEP take over. Electronic music at its finest and the right closer to an unforgettable evening.</p>
+                    </div>
+                    <div class="experience-card">
+                        <h3>HERE at Outernet</h3>
+                        <p>One of London's most spectacular and immersive venues. Not a hotel ballroom. Not a stiff gala. Something genuinely different.</p>
+                    </div>
+                    <div class="experience-card">
+                        <h3>The Right Room</h3>
+                        <p>People whose lives have been touched by this disease, alongside friends, partners, and supporters who want to help drive real change.</p>
+                    </div>
                 </div>
-                <div class="punch-line">
-                    <span class="pill">BICEP live</span>
-                    Music after dinner.
+            </article>
+
+            <article class="section-card">
+                <span class="section-label">The Cause</span>
+                <h2 class="section-title">Brain tumours are the biggest cancer killer of people in their younger years.</h2>
+                <div class="cause-grid">
+                    <div class="cause-copy">
+                        <p>Yet those most affected often feel invisible in the wider conversation. Brain tumour research has historically received a fraction of the funding given to other cancers, and the survival rates reflect that.</p>
+                        <p>The Brain Tumour Charity is the world's leading brain tumour research funder. Every pound raised goes directly towards giving families more time, more hope, and better outcomes.</p>
+                        <p>This evening exists because that needs to change, and because the best way to drive change is to bring people together properly. Unique food. Great music. Good people. All for a cause that needs more attention.</p>
+                    </div>
+                    <div class="cause-highlight">
+                        <strong>Why this matters</strong>
+                        <p>This page should carry the same emotional signal as the invite itself: elevated enough to attract people in, clear enough to explain why showing up matters.</p>
+                    </div>
                 </div>
-                <div class="punch-line">
-                    <span class="pill">Zero</span>
-                    Small talk about golf.
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-value">GBP100k+</span>
+                        <span class="stat-label">Raised by James for The Brain Tumour Charity to date</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value">16,000</span>
+                        <span class="stat-label">People diagnosed with brain tumours in the UK each year</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value">#1</span>
+                        <span class="stat-label">Cancer killer of under-40s in the UK</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value">12%</span>
+                        <span class="stat-label">Five-year survival rate, the lowest of any cancer</span>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <section class="cta-shell">
+            <div class="cta-card">
+                <span class="section-label">Join In</span>
+                <h2>Be part of it.</h2>
+                <p>To book your place or make a direct donation to The Brain Tumour Charity, use the links below. Every contribution makes a difference.</p>
+                <div class="cta-actions">
+                    <a href="https://www.thebraintumourcharity.org/" target="_blank" rel="noopener noreferrer" class="primary-button">Donate Now</a>
+                    <a href="https://uk.emma-live.com/tbtc/tickets?tid=3e308f7547acb78764882348589d90b7" target="_blank" rel="noopener noreferrer" class="secondary-button">Buy Tickets</a>
                 </div>
             </div>
+        </section>
+    </main>
 
-            <div class="hero-buttons">
-                <a href="https://www.thebraintumourcharity.org/" target="_blank" rel="noopener noreferrer" class="donate-btn">Donate Now ❤️</a>
-                <a href="mailto:jamesdtuttiett@gmail.com?subject=Sensora%20Event%20-%20Register%20Interest" class="register-btn">Register Interest →</a>
-            </div>
-        </div>
+    <footer>
+        <p>&copy; 2026 James Tuttiett. Built with AI.</p>
+    </footer>
 
-        <!-- SENSORA POSTER -->
-        <div class="hero-poster">
-            <img src="sensora-poster.jpg" alt="Sensora — Feed Your Senses. 5 May at HERE at Outernet. Food by Michelin starred chefs. Music by Bicep. In aid of The Brain Tumour Charity.">
-        </div>
+    <script>
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const rootElement = document.documentElement;
+        const savedTheme = localStorage.getItem('james-portfolio-theme');
 
-    </div>
-</div>
+        if (savedTheme === 'light') {
+            rootElement.removeAttribute('data-theme');
+            themeToggleBtn.innerText = 'Dark Mode';
+        } else {
+            rootElement.setAttribute('data-theme', 'dark');
+            themeToggleBtn.innerText = 'Light Mode';
+        }
 
-<!-- WHAT TO EXPECT -->
-<div class="content-section">
-    <span class="section-label">The Evening</span>
-    <h2 class="section-title">5 May. HERE at Outernet, London.<br>One night. One cause.</h2>
-
-    <div class="features-grid">
-        <div class="feature-card">
-            <div class="feature-icon">🍽️</div>
-            <h3>Six-Course Menu</h3>
-            <p>A bespoke tasting menu crafted by a selection of Michelin-starred chefs. Unique food you won't find anywhere else, for one night only.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">🎵</div>
-            <h3>BICEP Live</h3>
-            <p>After dinner, BICEP take over. Electronic music at its finest — the perfect closer to an unforgettable evening.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">🏛️</div>
-            <h3>HERE at Outernet</h3>
-            <p>One of London's most spectacular and immersive venues. Not a hotel ballroom. Not a stiff gala. Something genuinely different.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">🤝</div>
-            <h3>The Right Room</h3>
-            <p>People whose lives have been touched by this disease, alongside friends, partners, and supporters who want to help drive real change.</p>
-        </div>
-    </div>
-</div>
-
-<!-- WHY THIS CAUSE -->
-<div class="content-section">
-    <span class="section-label">The Cause</span>
-    <h2 class="section-title">Brain tumours are the biggest cancer killer of people in their younger years.</h2>
-
-    <div class="why-block">
-        <p>Yet those most affected often feel invisible in the wider conversation. Brain tumour research has historically received a fraction of the funding given to other cancers — and the survival rates reflect that.</p>
-        <p>The Brain Tumour Charity is the world's leading brain tumour research funder. Every pound raised goes directly towards giving families more time, more hope, and better outcomes. This evening exists because that needs to change, and because the best way to drive change is to bring people together properly.</p>
-        <p>Unique food. Great music. Good people. All for a cause that needs more attention.</p>
-    </div>
-
-    <div class="stats-strip">
-        <div class="stat-box">
-            <div class="stat-number">£100k+</div>
-            <div class="stat-label">Raised by James for The Brain Tumour Charity to date</div>
-        </div>
-        <div class="stat-box">
-            <div class="stat-number">16,000</div>
-            <div class="stat-label">People diagnosed with brain tumours in the UK each year</div>
-        </div>
-        <div class="stat-box">
-            <div class="stat-number">#1</div>
-            <div class="stat-label">Cancer killer of under-40s in the UK</div>
-        </div>
-        <div class="stat-box">
-            <div class="stat-number">12%</div>
-            <div class="stat-label">Five-year survival rate — the lowest of any cancer</div>
-        </div>
-    </div>
-</div>
-
-<!-- FINAL CTA -->
-<div class="content-section">
-    <div class="cta-block">
-        <h2>Be Part of It</h2>
-        <p>To register your interest in attending, or to make a direct donation to The Brain Tumour Charity, use the buttons below. Every contribution makes a difference.</p>
-        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-            <a href="https://www.thebraintumourcharity.org/" target="_blank" rel="noopener noreferrer" class="donate-btn">Donate to The Brain Tumour Charity ❤️</a>
-            <a href="mailto:jamesdtuttiett@gmail.com?subject=Sensora%20Event%20-%20Register%20Interest" class="register-btn">Register Interest →</a>
-        </div>
-    </div>
-</div>
-
-<footer>
-    <p>&copy; 2026 James Tuttiett. Built with AI.</p>
-</footer>
-
-<script>
-    const themeToggleBtn = document.getElementById('themeToggle');
-    const rootElement = document.documentElement;
-    const savedTheme = localStorage.getItem('james-portfolio-theme');
-    if (savedTheme === 'dark') { rootElement.setAttribute('data-theme', 'dark'); themeToggleBtn.innerText = '☀️'; }
-    themeToggleBtn.addEventListener('click', () => {
-        const currentTheme = rootElement.getAttribute('data-theme');
-        if (currentTheme === 'dark') { rootElement.removeAttribute('data-theme'); themeToggleBtn.innerText = '🌙'; localStorage.setItem('james-portfolio-theme', 'light'); }
-        else { rootElement.setAttribute('data-theme', 'dark'); themeToggleBtn.innerText = '☀️'; localStorage.setItem('james-portfolio-theme', 'dark'); }
-    });
-</script>
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = rootElement.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                rootElement.removeAttribute('data-theme');
+                themeToggleBtn.innerText = 'Dark Mode';
+                localStorage.setItem('james-portfolio-theme', 'light');
+            } else {
+                rootElement.setAttribute('data-theme', 'dark');
+                themeToggleBtn.innerText = 'Light Mode';
+                localStorage.setItem('james-portfolio-theme', 'dark');
+            }
+        });
+    </script>
 </body>
 </html>
+
+
