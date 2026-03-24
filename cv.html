@@ -157,7 +157,8 @@
             margin-top: 1.5rem;
         }
 
-        .cv-signal {
+        .cv-signal,
+        .education-card {
             padding: 1rem;
             border-radius: 16px;
             background: rgba(255,255,255,0.08);
@@ -165,7 +166,8 @@
             backdrop-filter: blur(10px);
         }
 
-        .cv-signal strong {
+        .cv-signal strong,
+        .education-card h3 {
             display: block;
             margin-bottom: 0.25rem;
             color: var(--text-main);
@@ -173,10 +175,33 @@
             font-family: 'Syne', sans-serif;
         }
 
-        .cv-signal span {
+        .cv-signal span,
+        .education-card p,
+        .education-card li {
             color: var(--text-light);
             font-size: 0.88rem;
             line-height: 1.5;
+        }
+
+        .education-section {
+            margin-top: 1.75rem;
+            max-width: 620px;
+        }
+
+        .education-section h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.45rem;
+            margin-bottom: 0.9rem;
+        }
+
+        .education-list {
+            display: grid;
+            gap: 0.9rem;
+        }
+
+        .education-card ul {
+            margin-top: 0.55rem;
+            padding-left: 1rem;
         }
 
         .cv-card {
@@ -338,17 +363,35 @@
 <div class="cv-container">
     <div class="cv-copy">
         <h1>Secure <span class="gradient-text">CV Portal</span></h1>
-        <p>This page is designed for direct professional contact rather than open distribution. If you would like my CV, send a short request below and I will respond directly.</p>
-        <p>That keeps the interaction personal, makes sure the document reaches the right people, and gives me a little context before I send over the most relevant version.</p>
+        <p>This page gives a simpler overview of my background and provides a direct way to request my CV. I wanted this to feel clearer, more useful, and more personal than a generic download gate.</p>
+        <p>My background combines commercial leadership, market development, and AI transformation work, supported by formal study focused on how organisations adapt to AI-driven change.</p>
 
         <div class="cv-signal-grid">
             <div class="cv-signal">
-                <strong>Direct</strong>
-                <span>CV requests come straight to me rather than into a generic system.</span>
+                <strong>Commercial</strong>
+                <span>Focused on growth, proposition design, and executive-level client conversations.</span>
             </div>
             <div class="cv-signal">
-                <strong>Relevant</strong>
-                <span>I can tailor the conversation depending on the opportunity and context.</span>
+                <strong>Transformation</strong>
+                <span>Focused on AI-enabled operating models, practical adoption, and execution reality.</span>
+            </div>
+        </div>
+
+        <div class="education-section">
+            <h2>Education & Background</h2>
+            <div class="education-list">
+                <div class="education-card">
+                    <h3>Oxford AI-Driven Business Transformation Executive Programme</h3>
+                    <p>University of Oxford - Said Business School</p>
+                    <ul>
+                        <li>Focus on AI transformation, organisational redesign, operating models, and strategic leadership</li>
+                        <li>Applied learning through written assignments, strategy work, and practical business cases</li>
+                    </ul>
+                </div>
+                <div class="education-card">
+                    <h3>B.A. Modern History</h3>
+                    <p>Queen Mary University of London</p>
+                </div>
             </div>
         </div>
     </div>
@@ -356,7 +399,7 @@
     <div class="cv-card">
         <span class="portal-kicker">Private access</span>
         <h2>Request CV Access</h2>
-        <p>Please share your details below and I will be in touch promptly. If it is easier, you can also contact me directly by email or LinkedIn.</p>
+        <p>Please share your details below and I will send over my CV directly. If it is easier, you can also contact me by email or LinkedIn.</p>
 
         <div class="cv-form" id="cvForm">
             <input type="text" id="nameInput" placeholder="Your Full Name" required>
@@ -418,3 +461,4 @@
 </script>
 </body>
 </html>
+
