@@ -6,76 +6,319 @@
     <title>Secure CV Portal | James Tuttiett</title>
     <style>
         :root {
-            --bg-color: #fafafa;
-            --text-main: #2d3748;
-            --text-light: #4a5568;
-            --card-bg: #ffffff;
-            --border-color: rgba(0,0,0,0.05);
-            --nav-bg: rgba(250, 250, 250, 0.95);
-            --accent-azure: #007bff;
-            --accent-neon-pink: #ff007f;
-            --accent-purple: #9b51e0;
+            --bg-color: #fff7fb;
+            --bg-secondary: #fff0f6;
+            --text-main: #171a28;
+            --text-light: #5c637d;
+            --card-bg: rgba(255, 255, 255, 0.76);
+            --border-color: rgba(23, 26, 40, 0.08);
+            --nav-bg: rgba(255, 247, 251, 0.72);
+            --accent-azure: #33e6ff;
+            --accent-neon-pink: #ff4fd8;
+            --accent-purple: #7a5cff;
+            --accent-sunset: #ff8a3d;
             --btc-red: #e31b3d;
-            --border-radius: 12px;
+            --border-radius: 18px;
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --surface-shadow: 0 20px 60px rgba(122, 92, 255, 0.12);
         }
-        [data-theme="dark"] {
-            --bg-color: #0f172a; --text-main: #f1f5f9; --text-light: #94a3b8;
-            --card-bg: #1e293b; --border-color: rgba(255,255,255,0.1); --nav-bg: rgba(15, 23, 42, 0.95);
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; transition: background-color 0.3s, color 0.3s; min-height: 100vh; display: flex; flex-direction: column; }
-        nav { position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; background: var(--nav-bg); backdrop-filter: blur(10px); display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 1px solid var(--border-color); }
-        .logo { font-weight: 800; font-size: 1.5rem; background: linear-gradient(45deg, var(--accent-azure), var(--accent-neon-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
-        .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 500; transition: var(--transition); }
-        .nav-links a:hover { color: var(--accent-neon-pink); }
-        .nav-links a.charity-nav-link { color: var(--btc-red); font-weight: 700; border: 1px solid var(--btc-red); padding: 0.5rem 1rem; border-radius: 20px; }
-        .nav-links a.charity-nav-link:hover { background: var(--btc-red); color: white; }
-        .theme-toggle { background: transparent; border: 1px solid var(--border-color); color: var(--text-main); font-size: 1.2rem; cursor: pointer; padding: 0.4rem 0.8rem; border-radius: 20px; transition: var(--transition); }
 
-        .cv-container { flex: 1; display: flex; justify-content: center; align-items: center; padding: 8rem 2rem 4rem; }
-        .cv-card { background: var(--card-bg); border-radius: 20px; padding: 3.5rem; max-width: 480px; width: 100%; border: 1px solid var(--border-color); box-shadow: 0 20px 50px rgba(0,0,0,0.08); text-align: center; }
-        .lock-icon { font-size: 3rem; margin-bottom: 1.5rem; }
-        .cv-card h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; }
-        .cv-card p { color: var(--text-light); margin-bottom: 2rem; font-size: 0.95rem; line-height: 1.6; }
+        [data-theme="dark"] {
+            --bg-color: #070b17;
+            --bg-secondary: #0e1427;
+            --text-main: #f5f7ff;
+            --text-light: #aab2d1;
+            --card-bg: rgba(14, 20, 39, 0.74);
+            --border-color: rgba(94, 241, 255, 0.14);
+            --nav-bg: rgba(7, 11, 23, 0.72);
+            --surface-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(51, 230, 255, 0.18), transparent 28%),
+                radial-gradient(circle at 85% 12%, rgba(255, 79, 216, 0.16), transparent 24%),
+                radial-gradient(circle at 50% 85%, rgba(255, 138, 61, 0.12), transparent 22%),
+                linear-gradient(180deg, var(--bg-color) 0%, var(--bg-secondary) 100%);
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 0.85rem 3.5%;
+            background: linear-gradient(180deg, rgba(255, 247, 251, 0.96), rgba(255, 247, 251, 0.9));
+            backdrop-filter: blur(16px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(23, 26, 40, 0.06);
+        }
+
+        [data-theme="dark"] nav {
+            background: linear-gradient(180deg, rgba(7, 11, 23, 0.94), rgba(7, 11, 23, 0.9));
+            box-shadow: 0 12px 34px rgba(0, 0, 0, 0.28);
+        }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.15rem;
+            background: linear-gradient(45deg, var(--accent-azure), var(--accent-neon-pink), var(--accent-sunset));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .nav-links { display: flex; gap: 1.35rem; align-items: center; }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: var(--transition); }
+        .nav-links a:hover { color: var(--accent-neon-pink); }
+        .nav-links a.charity-nav-link {
+            color: var(--btc-red);
+            font-weight: 700;
+            border: 1px solid rgba(227, 27, 61, 0.4);
+            padding: 0.55rem 0.95rem;
+            border-radius: 999px;
+            background: rgba(227, 27, 61, 0.06);
+        }
+        .nav-links a.charity-nav-link:hover { background: var(--btc-red); color: white; }
+
+        .theme-toggle {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 0.55rem 0.95rem;
+            border-radius: 999px;
+            transition: var(--transition);
+        }
+        .theme-toggle:hover {
+            background: linear-gradient(45deg, rgba(51, 230, 255, 0.15), rgba(255, 79, 216, 0.15));
+            border-color: rgba(51, 230, 255, 0.25);
+        }
+
+        .cv-container {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 2rem;
+            align-items: center;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 9.5rem 5% 4rem;
+        }
+
+        .cv-copy h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.2rem;
+            max-width: 10ch;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--accent-azure), var(--accent-purple), var(--accent-neon-pink), var(--accent-sunset));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cv-copy p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 620px;
+            line-height: 1.8;
+            margin-bottom: 1.4rem;
+        }
+
+        .cv-signal-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            max-width: 560px;
+            margin-top: 1.5rem;
+        }
+
+        .cv-signal {
+            padding: 1rem;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+
+        .cv-signal strong {
+            display: block;
+            margin-bottom: 0.25rem;
+            color: var(--text-main);
+            font-size: 1.15rem;
+            font-family: 'Syne', sans-serif;
+        }
+
+        .cv-signal span {
+            color: var(--text-light);
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        .cv-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 2.2rem;
+            width: 100%;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--surface-shadow);
+            backdrop-filter: blur(18px);
+        }
+
+        .portal-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            padding: 0.4rem 0.75rem;
+            border-radius: 999px;
+            border: 1px solid rgba(51, 230, 255, 0.22);
+            background: rgba(255,255,255,0.08);
+            color: var(--text-main);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .portal-kicker::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent-azure), var(--accent-neon-pink));
+            box-shadow: 0 0 14px rgba(51, 230, 255, 0.55);
+        }
+
+        .cv-card h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.6rem;
+            margin-bottom: 0.65rem;
+            color: var(--text-main);
+        }
+
+        .cv-card p {
+            color: var(--text-light);
+            margin-bottom: 1.4rem;
+            font-size: 0.96rem;
+            line-height: 1.7;
+        }
 
         .cv-form input {
-            width: 100%; padding: 0.9rem 1.2rem; border: 1.5px solid var(--border-color);
-            border-radius: 10px; font-size: 1rem; margin-bottom: 1rem;
-            background: var(--bg-color); color: var(--text-main);
-            transition: border-color 0.2s; outline: none;
+            width: 100%;
+            padding: 0.95rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            font-size: 1rem;
+            margin-bottom: 0.9rem;
+            background: rgba(255,255,255,0.08);
+            color: var(--text-main);
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
         }
-        .cv-form input:focus { border-color: var(--accent-azure); }
+
+        .cv-form input:focus {
+            border-color: rgba(51, 230, 255, 0.45);
+            box-shadow: 0 0 0 4px rgba(51, 230, 255, 0.1);
+        }
+
         .cv-submit-btn {
-            width: 100%; padding: 1rem; background: linear-gradient(45deg, var(--accent-azure), var(--accent-purple));
-            color: white; border: none; border-radius: 10px; font-size: 1rem;
-            font-weight: 700; cursor: pointer; transition: var(--transition);
-            box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(45deg, var(--accent-azure), var(--accent-purple), var(--accent-neon-pink));
+            color: #08111f;
+            border: none;
+            border-radius: 999px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(122, 92, 255, 0.28);
         }
-        .cv-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(155,81,224,0.4); }
-        .cv-note { margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-light); }
+
+        .cv-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 35px rgba(255, 79, 216, 0.28);
+            filter: saturate(1.1);
+        }
+
+        .cv-note {
+            margin-top: 1.4rem;
+            font-size: 0.88rem;
+            color: var(--text-light);
+        }
         .cv-note a { color: var(--accent-azure); text-decoration: none; }
 
         .success-state { display: none; }
-        .success-state h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-main); }
-        .success-state p { color: var(--text-light); margin-bottom: 2rem; }
-        .download-btn {
-            display: inline-block; padding: 1rem 2rem;
-            background: linear-gradient(45deg, var(--accent-azure), var(--accent-purple));
-            color: white; text-decoration: none; border-radius: 30px;
-            font-weight: 700; transition: var(--transition);
-            box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+        .success-state h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
         }
-        .download-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,0,127,0.4); background: linear-gradient(45deg, var(--accent-purple), var(--accent-neon-pink)); }
+        .success-state p { color: var(--text-light); margin-bottom: 1.5rem; }
 
-        footer { text-align: center; padding: 2rem; color: var(--text-light); border-top: 1px solid var(--border-color); }
+        .download-btn {
+            display: inline-block;
+            padding: 1rem 1.6rem;
+            background: linear-gradient(45deg, var(--accent-azure), var(--accent-purple), var(--accent-neon-pink));
+            color: #08111f;
+            text-decoration: none;
+            border-radius: 999px;
+            font-weight: 700;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(122, 92, 255, 0.28);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 35px rgba(255, 79, 216, 0.28);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 900px) {
+            .cv-container,
+            .cv-signal-grid { grid-template-columns: 1fr; }
+        }
+
         @media (max-width: 768px) {
             nav { flex-direction: column; padding: 1rem; gap: 1rem; }
             .nav-links { flex-wrap: wrap; justify-content: center; gap: 1rem; font-size: 0.9rem; }
+            .cv-container { padding-top: 11rem; }
+            .cv-copy h1 { max-width: 100%; }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -83,31 +326,49 @@
     <a href="index.html" class="logo">James Tuttiett.</a>
     <div class="nav-links">
         <a href="index.html#about">About</a>
+        <a href="index.html#operating-model">Operating Model</a>
+        <a href="index.html#strategy">Strategy</a>
         <a href="index.html#experience">Experience</a>
         <a href="thoughts.html">Thoughts</a>
         <a href="charity.html" class="charity-nav-link">Sensora Charity</a>
-        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">🌙</button>
+        <button class="theme-toggle" id="themeToggle" title="Switch theme">Light Mode</button>
     </div>
 </nav>
 
 <div class="cv-container">
+    <div class="cv-copy">
+        <h1>Secure <span class="gradient-text">CV Portal</span></h1>
+        <p>This page is designed for direct professional contact rather than open distribution. If you would like my CV, send a short request below and I will respond directly.</p>
+        <p>That keeps the interaction personal, makes sure the document reaches the right people, and gives me a little context before I send over the most relevant version.</p>
+
+        <div class="cv-signal-grid">
+            <div class="cv-signal">
+                <strong>Direct</strong>
+                <span>CV requests come straight to me rather than into a generic system.</span>
+            </div>
+            <div class="cv-signal">
+                <strong>Relevant</strong>
+                <span>I can tailor the conversation depending on the opportunity and context.</span>
+            </div>
+        </div>
+    </div>
+
     <div class="cv-card">
-        <div class="lock-icon">🔒</div>
-        <h1>Secure CV Portal</h1>
-        <p>My CV is available on request to ensure it reaches the right people. Please enter your details below and I will be in touch promptly.</p>
+        <span class="portal-kicker">Private access</span>
+        <h2>Request CV Access</h2>
+        <p>Please share your details below and I will be in touch promptly. If it is easier, you can also contact me directly by email or LinkedIn.</p>
 
         <div class="cv-form" id="cvForm">
             <input type="text" id="nameInput" placeholder="Your Full Name" required>
             <input type="email" id="emailInput" placeholder="Your Email Address" required>
             <input type="text" id="companyInput" placeholder="Your Company / Organisation">
-            <button class="cv-submit-btn" onclick="handleCvRequest()">Request CV Access →</button>
+            <button class="cv-submit-btn" onclick="handleCvRequest()">Request CV Access</button>
         </div>
 
         <div class="success-state" id="successState">
-            <div style="font-size: 2.5rem; margin-bottom: 1rem;">✅</div>
-            <h2>Request Received!</h2>
+            <h2>Request Received</h2>
             <p>Thank you. I will send my CV directly to your inbox shortly. In the meantime, feel free to connect with me on LinkedIn.</p>
-            <a href="https://www.linkedin.com/in/james-tuttiett-b94a3322" target="_blank" rel="noopener noreferrer" class="download-btn">Connect on LinkedIn →</a>
+            <a href="https://www.linkedin.com/in/james-tuttiett-b94a3322" target="_blank" rel="noopener noreferrer" class="download-btn">Connect on LinkedIn</a>
         </div>
 
         <p class="cv-note">Prefer to reach out directly? Email me at <a href="mailto:jamesdtuttiett@gmail.com">jamesdtuttiett@gmail.com</a></p>
@@ -122,11 +383,26 @@
     const themeToggleBtn = document.getElementById('themeToggle');
     const rootElement = document.documentElement;
     const savedTheme = localStorage.getItem('james-portfolio-theme');
-    if (savedTheme === 'dark') { rootElement.setAttribute('data-theme', 'dark'); themeToggleBtn.innerText = '☀️'; }
+
+    if (savedTheme === 'light') {
+        rootElement.removeAttribute('data-theme');
+        themeToggleBtn.innerText = 'Dark Mode';
+    } else {
+        rootElement.setAttribute('data-theme', 'dark');
+        themeToggleBtn.innerText = 'Light Mode';
+    }
+
     themeToggleBtn.addEventListener('click', () => {
         const currentTheme = rootElement.getAttribute('data-theme');
-        if (currentTheme === 'dark') { rootElement.removeAttribute('data-theme'); themeToggleBtn.innerText = '🌙'; localStorage.setItem('james-portfolio-theme', 'light'); }
-        else { rootElement.setAttribute('data-theme', 'dark'); themeToggleBtn.innerText = '☀️'; localStorage.setItem('james-portfolio-theme', 'dark'); }
+        if (currentTheme === 'dark') {
+            rootElement.removeAttribute('data-theme');
+            themeToggleBtn.innerText = 'Dark Mode';
+            localStorage.setItem('james-portfolio-theme', 'light');
+        } else {
+            rootElement.setAttribute('data-theme', 'dark');
+            themeToggleBtn.innerText = 'Light Mode';
+            localStorage.setItem('james-portfolio-theme', 'dark');
+        }
     });
 
     function handleCvRequest() {
