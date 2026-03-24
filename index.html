@@ -7,95 +7,221 @@
 
     <style>
         :root {
-            /* Light Mode Variables */
-            --bg-color: #fafafa;
-            --text-main: #2d3748;
-            --text-light: #4a5568;
-            --card-bg: #ffffff;
-            --border-color: rgba(0,0,0,0.05);
-            --nav-bg: rgba(250, 250, 250, 0.95);
-            --metric-bg: #ffffff;
-            --chat-body-bg: #f8fafc;
-            --chat-msg-bot: #ffffff;
-            --chat-opt-bg: #f1f5f9;
-
-            /* Core Accents (stay the same) */
-            --accent-azure: #007bff;
-            --accent-neon-pink: #ff007f;
-            --accent-purple: #9b51e0;
+            --bg-color: #fff7fb;
+            --bg-secondary: #fff0f6;
+            --text-main: #171a28;
+            --text-light: #5c637d;
+            --card-bg: rgba(255, 255, 255, 0.76);
+            --border-color: rgba(23, 26, 40, 0.08);
+            --nav-bg: rgba(255, 247, 251, 0.72);
+            --metric-bg: rgba(255, 255, 255, 0.88);
+            --chat-body-bg: rgba(255, 255, 255, 0.9);
+            --chat-msg-bot: rgba(255, 255, 255, 0.92);
+            --chat-opt-bg: rgba(255, 255, 255, 0.88);
+            --accent-azure: #33e6ff;
+            --accent-neon-pink: #ff4fd8;
+            --accent-purple: #7a5cff;
+            --accent-sunset: #ff8a3d;
             --btc-red: #e31b3d;
-            --border-radius: 12px;
+            --border-radius: 18px;
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --surface-shadow: 0 20px 60px rgba(122, 92, 255, 0.12);
         }
 
         /* Dark Mode Override */
         [data-theme="dark"] {
-            --bg-color: #0f172a;
-            --text-main: #f1f5f9;
-            --text-light: #94a3b8;
-            --card-bg: #1e293b;
-            --border-color: rgba(255,255,255,0.1);
-            --nav-bg: rgba(15, 23, 42, 0.95);
-            --metric-bg: #1e293b;
-            --chat-body-bg: #0f172a;
-            --chat-msg-bot: #1e293b;
-            --chat-opt-bg: #0f172a;
+            --bg-color: #070b17;
+            --bg-secondary: #0e1427;
+            --text-main: #f5f7ff;
+            --text-light: #aab2d1;
+            --card-bg: rgba(14, 20, 39, 0.74);
+            --border-color: rgba(94, 241, 255, 0.14);
+            --nav-bg: rgba(7, 11, 23, 0.72);
+            --metric-bg: rgba(16, 23, 44, 0.84);
+            --chat-body-bg: rgba(9, 14, 28, 0.96);
+            --chat-msg-bot: rgba(16, 23, 44, 0.96);
+            --chat-opt-bg: rgba(10, 16, 31, 0.92);
+            --surface-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; overflow-x: hidden; scroll-behavior: smooth; transition: background-color 0.3s, color 0.3s; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background:
+                radial-gradient(circle at 15% 20%, rgba(51, 230, 255, 0.18), transparent 28%),
+                radial-gradient(circle at 85% 12%, rgba(255, 79, 216, 0.16), transparent 24%),
+                radial-gradient(circle at 50% 85%, rgba(255, 138, 61, 0.12), transparent 22%),
+                linear-gradient(180deg, var(--bg-color) 0%, var(--bg-secondary) 100%);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s;
+            font-family: 'Space Grotesk', sans-serif;
+        }
 
         nav {
-            position: fixed; top: 0; width: 100%; padding: 1.5rem 5%;
+            position: fixed; top: 0; width: 100%; padding: 1.1rem 5%;
             background: var(--nav-bg); backdrop-filter: blur(10px);
             display: flex; justify-content: space-between; align-items: center;
             z-index: 1000; border-bottom: 1px solid var(--border-color);
             transition: background 0.3s, border-color 0.3s;
         }
 
-        .logo { font-weight: 800; font-size: 1.5rem; background: linear-gradient(45deg, var(--accent-azure), var(--accent-neon-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.5px; text-decoration: none;}
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.55rem;
+            background: linear-gradient(45deg, var(--accent-azure), var(--accent-neon-pink), var(--accent-sunset));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+            text-decoration: none;
+        }
 
         .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 500; transition: var(--transition); }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 600; transition: var(--transition); }
         .nav-links a:hover { color: var(--accent-neon-pink); }
-        .nav-links a.charity-nav-link { color: var(--btc-red); font-weight: 700; border: 1px solid var(--btc-red); padding: 0.5rem 1rem; border-radius: 20px; }
+        .nav-links a.charity-nav-link {
+            color: var(--btc-red);
+            font-weight: 700;
+            border: 1px solid rgba(227, 27, 61, 0.4);
+            padding: 0.55rem 1rem;
+            border-radius: 999px;
+            background: rgba(227, 27, 61, 0.06);
+        }
         .nav-links a.charity-nav-link:hover { background: var(--btc-red); color: white; }
 
         /* Dark Mode Toggle Button */
         .theme-toggle {
-            background: transparent;
+            background: rgba(255,255,255,0.08);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            font-size: 1.2rem;
+            font-size: 0.9rem;
+            font-weight: 700;
             cursor: pointer;
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
+            padding: 0.55rem 0.95rem;
+            border-radius: 999px;
             transition: var(--transition);
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .theme-toggle:hover { background: var(--border-color); }
+        .theme-toggle:hover {
+            background: linear-gradient(45deg, rgba(51, 230, 255, 0.15), rgba(255, 79, 216, 0.15));
+            border-color: rgba(51, 230, 255, 0.25);
+        }
 
-        header { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 0 5%; position: relative; background: radial-gradient(circle at top right, rgba(0, 123, 255, 0.05), transparent 40%), radial-gradient(circle at bottom left, rgba(255, 0, 127, 0.05), transparent 40%); }
-        header h1 { font-size: clamp(3rem, 5vw, 5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; max-width: 800px; }
-        .gradient-text { background: linear-gradient(to right, var(--accent-azure), var(--accent-purple), var(--accent-neon-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        header p { font-size: 1.25rem; color: var(--text-light); max-width: 600px; margin-bottom: 2rem; }
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 5%;
+            position: relative;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 16% 6% auto auto;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 79, 216, 0.18), transparent 65%);
+            filter: blur(8px);
+            pointer-events: none;
+        }
+        header::after {
+            content: '';
+            position: absolute;
+            inset: auto auto 12% 4%;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(51, 230, 255, 0.14), transparent 68%);
+            pointer-events: none;
+        }
+        header h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3.6rem, 7vw, 6.5rem);
+            font-weight: 800;
+            line-height: 0.95;
+            margin-bottom: 1.1rem;
+            max-width: 900px;
+            letter-spacing: -0.04em;
+        }
+        .gradient-text { background: linear-gradient(90deg, var(--accent-azure), var(--accent-purple), var(--accent-neon-pink), var(--accent-sunset)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        header p { font-size: 1.18rem; color: var(--text-light); max-width: 640px; margin-bottom: 2rem; }
 
-        .cta-button { display: inline-block; padding: 1rem 2rem; background: linear-gradient(45deg, var(--accent-azure), var(--accent-purple)); color: white; text-decoration: none; border-radius: 30px; font-weight: 600; transition: var(--transition); box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3); border: none; cursor: pointer; text-align: center;}
-        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 0, 127, 0.4); background: linear-gradient(45deg, var(--accent-purple), var(--accent-neon-pink)); }
-        .cta-button-outline { background: transparent; color: var(--text-main); border: 2px solid var(--border-color); box-shadow: none; }
-        .cta-button-outline:hover { background: var(--border-color); transform: translateY(-2px); box-shadow: none; color: var(--text-main); }
-        [data-theme="dark"] .cta-button-outline { color: white; }
+        .cta-button {
+            display: inline-block;
+            padding: 0.95rem 1.8rem;
+            background: linear-gradient(45deg, var(--accent-azure), var(--accent-purple), var(--accent-neon-pink));
+            color: #08111f;
+            text-decoration: none;
+            border-radius: 999px;
+            font-weight: 700;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(122, 92, 255, 0.28);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 18px 35px rgba(255, 79, 216, 0.28); filter: saturate(1.1); }
+        .cta-button-outline {
+            background: rgba(255,255,255,0.06);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            box-shadow: none;
+            backdrop-filter: blur(8px);
+        }
+        .cta-button-outline:hover { background: rgba(255,255,255,0.14); transform: translateY(-2px); box-shadow: none; color: var(--text-main); }
 
         .content-section { padding: 6rem 5%; max-width: 1200px; margin: 0 auto; }
-        .section-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 3rem; position: relative; display: inline-block; }
-        .section-title::after { content: ''; position: absolute; left: 0; bottom: -10px; width: 50%; height: 4px; background: linear-gradient(to right, var(--accent-azure), var(--accent-neon-pink)); border-radius: 2px; }
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.3rem, 4vw, 3.6rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            letter-spacing: -0.03em;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -12px;
+            width: 58%;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent-azure), var(--accent-neon-pink), var(--accent-sunset));
+            border-radius: 999px;
+        }
 
-        .hover-card { transition: var(--transition); position: relative; z-index: 1; background: var(--card-bg); border-radius: var(--border-radius); box-shadow: 0 4px 6px rgba(0,0,0,0.02); border: 1px solid var(--border-color); }
-        .hover-card::before { content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px; background: linear-gradient(45deg, var(--accent-azure), var(--accent-neon-pink), var(--accent-purple)); z-index: -1; border-radius: calc(var(--border-radius) + 2px); opacity: 0; transition: opacity 0.3s ease; }
-        .hover-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
-        .hover-card:hover::before { opacity: 0.15; }
+        .hover-card {
+            transition: var(--transition);
+            position: relative;
+            z-index: 1;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--surface-shadow);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(18px);
+        }
+        .hover-card::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: linear-gradient(135deg, rgba(51, 230, 255, 0.55), rgba(255, 79, 216, 0.35), rgba(255, 138, 61, 0.25));
+            z-index: -1;
+            border-radius: calc(var(--border-radius) + 1px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .hover-card:hover { transform: translateY(-6px); box-shadow: 0 24px 55px rgba(0,0,0,0.16); }
+        .hover-card:hover::before { opacity: 0.2; }
 
         .about-content { padding: 3rem; } .about-content p { margin-bottom: 1.5rem; }
 
@@ -109,12 +235,12 @@
         .exp-content ul { padding-left: 1.5rem; margin-bottom: 1rem; color: var(--text-light); }
         .exp-content li { margin-bottom: 0.5rem; }
 
-        .data-callout { background: linear-gradient(to right, rgba(0, 123, 255, 0.05), rgba(155, 81, 224, 0.05)); padding: 2rem; border-radius: 12px; margin: 2rem 0; border-left: 4px solid var(--accent-azure); }
+        .data-callout { background: linear-gradient(135deg, rgba(51, 230, 255, 0.08), rgba(122, 92, 255, 0.08), rgba(255, 79, 216, 0.06)); padding: 2rem; border-radius: 18px; margin: 2rem 0; border-left: 4px solid var(--accent-azure); }
         .data-metric { display: flex; align-items: flex-start; margin-bottom: 1.2rem; background: var(--metric-bg); padding: 1rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); border: 1px solid var(--border-color); }
         .metric-icon { font-size: 1.5rem; margin-right: 1rem; }
         .metric-text { color: var(--text-main); font-weight: 500; line-height: 1.4; }
 
-        .personal-narrative { background: linear-gradient(135deg, rgba(0,123,255,0.04), rgba(155,81,224,0.04)); border-radius: 12px; padding: 2rem; margin: 2rem 0; border: 1px solid rgba(0,123,255,0.1); }
+        .personal-narrative { background: linear-gradient(135deg, rgba(51,230,255,0.08), rgba(122,92,255,0.08), rgba(255,79,216,0.06)); border-radius: 18px; padding: 2rem; margin: 2rem 0; border: 1px solid rgba(51,230,255,0.12); }
         .personal-narrative p { margin-bottom: 1rem; color: var(--text-main); font-size: 1.05rem; line-height: 1.8; }
         .personal-narrative p:last-child { margin-bottom: 0; }
         .personal-narrative .emphasis { font-weight: 700; color: var(--accent-azure); }
@@ -122,16 +248,16 @@
         .stat-section-label { font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-purple); margin: 2rem 0 1rem 0; display: block; }
 
         /* Buttons for Modals */  
-        .apac-peak-btn { display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 1.5rem; padding: 0.8rem 1.6rem; background: linear-gradient(45deg, var(--accent-purple), var(--accent-neon-pink)); color: white; border: none; border-radius: 30px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: var(--transition); box-shadow: 0 4px 15px rgba(155,81,224,0.3); }
+        .apac-peak-btn { display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 1.5rem; padding: 0.8rem 1.6rem; background: linear-gradient(45deg, var(--accent-purple), var(--accent-neon-pink)); color: white; border: none; border-radius: 999px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: var(--transition); box-shadow: 0 4px 15px rgba(155,81,224,0.3); }
         .apac-peak-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,0,127,0.4); }
 
-        .deal-room-btn { display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 1.5rem; padding: 0.8rem 1.6rem; background: transparent; color: var(--accent-azure); border: 2px solid var(--accent-azure); border-radius: 30px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: var(--transition); }
+        .deal-room-btn { display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 1.5rem; padding: 0.8rem 1.6rem; background: transparent; color: var(--accent-azure); border: 1px solid rgba(51,230,255,0.45); border-radius: 999px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: var(--transition); }
         .deal-room-btn:hover { background: var(--accent-azure); color: white; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,123,255,0.3); }
 
         /* Modals */ 
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.85); backdrop-filter: blur(6px); display: none; justify-content: center; align-items: center; z-index: 2000; overflow-y: auto; padding: 2rem 1rem; }
         .modal-overlay.active { display: flex; animation: fadeIn 0.3s; }
-        .modal-content { background: var(--card-bg); width: 100%; max-width: 650px; border-radius: 16px; padding: 3rem; box-shadow: 0 25px 60px rgba(0,0,0,0.25); border-top: 6px solid var(--accent-purple); position: relative; margin: auto; }
+        .modal-content { background: var(--card-bg); width: 100%; max-width: 650px; border-radius: 22px; padding: 3rem; box-shadow: 0 25px 60px rgba(0,0,0,0.25); border-top: 6px solid var(--accent-purple); position: relative; margin: auto; backdrop-filter: blur(18px); }
         .modal-content h3 { font-size: 1.6rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-main); line-height: 1.2; }
         .modal-content .modal-sub { color: var(--accent-purple); font-weight: 600; margin-bottom: 2rem; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; }
 
@@ -160,6 +286,60 @@
         .skill-card h3 { font-size: 1.3rem; margin-bottom: 1rem; color: var(--text-main); }
         .skill-card p { color: var(--text-light); font-size: 0.95rem; }
 
+        .model-intro-card { padding: 2.5rem; margin-bottom: 2rem; }
+        .model-kicker { font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-purple); margin-bottom: 0.8rem; display: block; }
+        .model-intro-card h3 { font-size: 1.9rem; line-height: 1.2; margin-bottom: 1rem; color: var(--text-main); max-width: 760px; }
+        .model-intro-card p { color: var(--text-light); font-size: 1.05rem; max-width: 760px; }
+
+        .ethos-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin: 2rem 0; }
+        .ethos-card { padding: 1.5rem; }
+        .ethos-number { display: inline-flex; width: 38px; height: 38px; border-radius: 50%; align-items: center; justify-content: center; margin-bottom: 1rem; font-weight: 800; color: white; background: linear-gradient(45deg, var(--accent-azure), var(--accent-purple)); }
+        .ethos-card h3 { font-size: 1.05rem; line-height: 1.3; margin-bottom: 0.75rem; color: var(--text-main); }
+        .ethos-card p { color: var(--text-light); font-size: 0.95rem; }
+
+        .model-rails { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 1.5rem; align-items: stretch; margin-bottom: 2rem; }
+        .model-side-card { padding: 2rem; }
+        .model-side-card h3 { font-size: 1.3rem; margin-bottom: 1rem; color: var(--text-main); }
+        .model-side-card ul { padding-left: 1.2rem; color: var(--text-light); }
+        .model-side-card li { margin-bottom: 0.75rem; }
+        .model-side-card p { color: var(--text-light); }
+
+        .pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .pillar-card { padding: 2rem; position: relative; overflow: hidden; }
+        .pillar-card::after { content: ''; position: absolute; inset: 0 auto 0 0; width: 5px; background: linear-gradient(to bottom, var(--accent-azure), var(--accent-neon-pink)); }
+        .pillar-label { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-purple); display: block; margin-bottom: 0.75rem; }
+        .pillar-card h3 { font-size: 1.35rem; margin-bottom: 0.8rem; color: var(--text-main); }
+        .pillar-objective { font-weight: 600; color: var(--text-main); margin-bottom: 1rem; }
+        .pillar-card p, .pillar-card li { color: var(--text-light); font-size: 0.95rem; }
+        .pillar-card ul { padding-left: 1.2rem; margin: 1rem 0; }
+        .pillar-card li { margin-bottom: 0.6rem; }
+        .pillar-success { margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-color); }
+        .pillar-success strong { display: block; margin-bottom: 0.5rem; color: var(--text-main); }
+
+        .insight-lead { max-width: 820px; margin-bottom: 2rem; color: var(--text-light); font-size: 1.06rem; }
+        .insight-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .insight-card { padding: 2rem; }
+        .insight-card h3 { font-family: 'Syne', sans-serif; font-size: 1.55rem; line-height: 1.2; margin-bottom: 1rem; color: var(--text-main); }
+        .insight-card p { color: var(--text-light); margin-bottom: 1rem; }
+        .insight-tag { display: inline-block; margin-bottom: 0.9rem; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.6px; color: var(--accent-neon-pink); }
+        .insight-quote { margin: 1.2rem 0; padding: 1.1rem 1.2rem; border-left: 3px solid var(--accent-azure); background: linear-gradient(135deg, rgba(51,230,255,0.08), rgba(255,79,216,0.06)); border-radius: 14px; color: var(--text-main); font-weight: 500; }
+        .insight-list { padding-left: 1.2rem; color: var(--text-light); }
+        .insight-list li { margin-bottom: 0.65rem; }
+        .signal-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .signal-box { padding: 1.4rem; text-align: left; }
+        .signal-box strong { display: block; margin-bottom: 0.45rem; color: var(--text-main); font-size: 1rem; }
+        .signal-box span { color: var(--text-light); font-size: 0.92rem; }
+
+        .strengths-section-lead { max-width: 820px; margin-bottom: 2rem; color: var(--text-light); font-size: 1.06rem; }
+        .strengths-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+        .strength-card { padding: 1.7rem; }
+        .strength-card h3 { font-size: 1.12rem; margin-bottom: 0.7rem; color: var(--text-main); }
+        .strength-card p { color: var(--text-light); font-size: 0.96rem; }
+        .strength-card-number { display: inline-block; margin-bottom: 0.9rem; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.6px; color: var(--accent-neon-pink); }
+        .strength-summary { margin-top: 1.5rem; padding: 1.7rem 1.8rem; border-radius: var(--border-radius); background: linear-gradient(135deg, rgba(51,230,255,0.1), rgba(122,92,255,0.1), rgba(255,79,216,0.08)); border: 1px solid var(--border-color); box-shadow: var(--surface-shadow); }
+        .strength-summary strong { display: block; margin-bottom: 0.6rem; color: var(--text-main); }
+        .strength-summary p { color: var(--text-main); font-size: 1.08rem; font-weight: 600; max-width: 780px; }
+
         .contact-container { text-align: center; padding: 4rem 2rem; }
         .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem; margin-top: 2rem; }
         .contact-link { color: var(--accent-azure); text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: var(--transition); display: flex; align-items: center; gap: 0.5rem; }
@@ -172,8 +352,8 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background: linear-gradient(45deg, var(--accent-azure), var(--accent-purple));
-            color: white;
+            background: linear-gradient(45deg, var(--accent-azure), var(--accent-purple), var(--accent-neon-pink));
+            color: #08111f;
             border-radius: 50px;
             padding: 12px 24px;
             display: flex;
@@ -184,7 +364,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: 600;
-            border: 2px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.25);
         }
         .chat-widget-btn:hover {
             transform: translateY(-5px);
@@ -223,7 +403,7 @@
             transform: translateY(0);
         }
         .chat-header {
-            background: linear-gradient(45deg, var(--accent-azure), var(--accent-purple));
+            background: linear-gradient(45deg, var(--accent-azure), var(--accent-purple), var(--accent-neon-pink));
             color: white;
             padding: 20px;
             display: flex;
@@ -272,6 +452,7 @@
         @media (max-width: 768px) {
             nav { flex-direction: column; padding: 1rem; gap: 1rem; }
             .nav-links { flex-wrap: wrap; justify-content: center; gap: 1rem; font-size: 0.9rem; }
+            .ethos-grid, .pillar-grid, .model-rails, .insight-grid, .signal-strip, .strengths-grid { grid-template-columns: 1fr; }
             .exp-header { flex-direction: column; }
             .chat-widget-btn { bottom: 20px; right: 20px; padding: 10px 18px; }
             .chat-widget-btn span { display: none; }
@@ -279,7 +460,7 @@
             .deal-outcome-grid { grid-template-columns: 1fr; }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -287,11 +468,13 @@
         <a href="index.html" class="logo">James Tuttiett.</a>
         <div class="nav-links">
             <a href="#about">About</a>
+            <a href="#operating-model">Operating Model</a>
+            <a href="#strategy">Strategy</a>
             <a href="#experience">Experience</a>
             <a href="thoughts.html">Thoughts</a>
             <a href="charity.html" class="charity-nav-link">Sensora Charity</a>
             <!-- Dark Mode Toggle -->
-            <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">🌙</button>
+            <button class="theme-toggle" id="themeToggle" title="Switch theme">Light Mode</button>
         </div>
     </nav>
 
@@ -350,6 +533,195 @@
                 <h4 style="color: var(--text-main); margin-top: 0; margin-bottom: 0.5rem;">Walking the Walk: Why I Built This Site</h4>
                 <p style="margin-bottom: 0; font-size: 0.95rem;">I talk a lot about "AI Fluency" and "Curiosity" in my professional strategy. I built this custom portfolio using generative AI and deployed it entirely from scratch via GitHub Pages to demonstrate that I am actively learning modern tech stacks, prompt engineering, and AI-assisted development. Transformation starts with personal execution.</p>
             </div>
+        </div>
+    </section>
+
+    <section id="operating-model" class="content-section">
+        <h2 class="section-title">Transformation Operating Model</h2>
+
+        <div class="model-intro-card hover-card">
+            <span class="model-kicker">From intent to impact</span>
+            <h3>The approach guiding how I lead internal transformation and how I shape AI-enabled products and delivery models for clients.</h3>
+            <p>This model is built to create clarity, trust, and momentum across the business. The objective is simple: help FDM use AI meaningfully across every department, make it easier to say yes to the right opportunities, and deliver those opportunities with confidence.</p>
+        </div>
+
+        <div class="model-rails">
+            <div class="model-side-card hover-card">
+                <h3>Guiding principle</h3>
+                <p>Every initiative should create tangible business value by saving time, reducing cost, improving quality, or increasing confidence in decision-making. I use this as the filter for both internal transformation work and client-facing product development.</p>
+            </div>
+
+            <div class="model-side-card hover-card">
+                <h3>What this is not</h3>
+                <ul>
+                    <li>Not a separate innovation lab</li>
+                    <li>Not a technology rollout in search of a problem</li>
+                    <li>Not a parallel organisation sitting beside the business</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="ethos-grid">
+            <div class="ethos-card hover-card">
+                <div class="ethos-number">1</div>
+                <h3>Progress over protection</h3>
+                <p>Move the business forward by managing risk through clarity, ownership, and learning rather than defaulting to no.</p>
+            </div>
+
+            <div class="ethos-card hover-card">
+                <div class="ethos-number">2</div>
+                <h3>Outcomes over activity</h3>
+                <p>Measure success by what changes in practice, not by how many initiatives are launched.</p>
+            </div>
+
+            <div class="ethos-card hover-card">
+                <div class="ethos-number">3</div>
+                <h3>Keep it small</h3>
+                <p>Test, learn, and embed what works rather than over-designing or running endless pilots.</p>
+            </div>
+
+            <div class="ethos-card hover-card">
+                <div class="ethos-number">4</div>
+                <h3>Work in the open</h3>
+                <p>Make progress, trade-offs, and decisions visible because clarity builds trust across the organisation.</p>
+            </div>
+
+            <div class="ethos-card hover-card">
+                <div class="ethos-number">5</div>
+                <h3>Support the business</h3>
+                <p>Transformation happens through the line, not around it. The role is to enable teams to succeed, not replace them.</p>
+            </div>
+        </div>
+
+        <div class="pillar-grid">
+            <div class="pillar-card hover-card">
+                <span class="pillar-label">Pillar 1</span>
+                <h3>Internal AI-Enabled Ways of Working</h3>
+                <p class="pillar-objective">Objective: Improve execution speed, quality, and consistency across FDM.</p>
+                <ul>
+                    <li>Embed AI into core workflows where it materially improves outcomes</li>
+                    <li>Reduce friction, duplication, and manual effort</li>
+                    <li>Help leaders and teams make better, faster decisions</li>
+                </ul>
+                <div class="pillar-success">
+                    <strong>Success looks like</strong>
+                    <p>Less time spent preparing and reporting, better quality of insight and judgement, and more capacity for genuinely value-adding work.</p>
+                </div>
+            </div>
+
+            <div class="pillar-card hover-card">
+                <span class="pillar-label">Pillar 2</span>
+                <h3>AI-Ready, Differentiated Consultant Workforce</h3>
+                <p class="pillar-objective">Objective: Make FDM consultants structurally more valuable in client environments shaped by AI.</p>
+                <ul>
+                    <li>Embed AI into training, assessment, and progression</li>
+                    <li>Define roles around AI-enabled ways of working, not static skill lists</li>
+                    <li>Align capability building to real delivery contexts</li>
+                </ul>
+                <div class="pillar-success">
+                    <strong>Success looks like</strong>
+                    <p>Consultants clients see as future-ready, clearer differentiation versus competitors, and stronger confidence in FDM capability to deliver.</p>
+                </div>
+            </div>
+
+            <div class="pillar-card hover-card">
+                <span class="pillar-label">Pillar 3</span>
+                <h3>Client-Facing AI Propositions</h3>
+                <p class="pillar-objective">Objective: Position FDM as a credible partner for practical, delivery-led AI adoption.</p>
+                <ul>
+                    <li>Develop AI-ready pods, squads, and delivery models</li>
+                    <li>Ground client propositions in operational reality</li>
+                    <li>Avoid hype in favour of practical solutions that work</li>
+                </ul>
+                <div class="pillar-success">
+                    <strong>Success looks like</strong>
+                    <p>More solutions-led client conversations, stronger alignment between sales and delivery, and a clearer, more credible AI market position.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="strategy" class="content-section">
+        <h2 class="section-title">Strategic Point of View</h2>
+        <p class="insight-lead">Two pieces sit behind the direction I am pushing internally: one asks what kind of business we now need to become, and the other frames the workforce reset required to make AI-native delivery real. Together, they sharpen the commercial and organisational logic behind the operating model above.</p>
+
+        <div class="insight-grid">
+            <div class="insight-card hover-card">
+                <span class="insight-tag">Strategic Leadership Thought Piece</span>
+                <h3>Do we remain a workforce supplier, or become a technical consultancy with AI at the core?</h3>
+                <div class="insight-quote">Clients are no longer buying resource. They are buying architecture, AI delivery, and outcomes.</div>
+                <p>This piece captures the strategic question I believe staffing and workforce businesses now need to answer honestly. My argument is that the market has already moved: the bottleneck is no longer tooling, but execution capability and credible technical leadership at the front of complex programmes.</p>
+                <p>It also lays out the delivery model I believe becomes more viable from here: smaller, outcome-driven teams led by senior technologists, supported by junior delivery leads, with AI agents expanding execution capacity horizontally rather than organisations defaulting back to large benches.</p>
+            </div>
+
+            <div class="insight-card hover-card">
+                <span class="insight-tag">AI Workforce Reset</span>
+                <h3>Resetting team shape, role design, and workforce value for an AI-assisted market.</h3>
+                <p>The workforce question is now inseparable from the strategy question. AI changes not only what teams produce, but how they are structured, how junior capability is developed, and how value should be measured.</p>
+                <ul class="insight-list">
+                    <li>Roles need to be redesigned around orchestration, judgement, and AI-enabled execution.</li>
+                    <li>Capability models need to move beyond static skill lists toward real delivery contexts.</li>
+                    <li>Commercial models need to reward outcomes and leverage, not just headcount.</li>
+                </ul>
+                <p>This is why I see workforce redesign as a core part of transformation, not a side conversation for HR or L&amp;D.</p>
+            </div>
+        </div>
+
+        <div class="signal-strip">
+            <div class="signal-box hover-card">
+                <strong>Market signal</strong>
+                <span>Senior buyers increasingly want AI-enabled delivery and credible technical leadership, not just additional resource.</span>
+            </div>
+            <div class="signal-box hover-card">
+                <strong>Organisational implication</strong>
+                <span>Transformation has to reshape how work is done internally and how consultant value is created externally.</span>
+            </div>
+            <div class="signal-box hover-card">
+                <strong>Delivery implication</strong>
+                <span>The winning model is likely to be smaller, sharper, and more productised, with AI embedded into execution by default.</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="selling-strengths" class="content-section">
+        <h2 class="section-title">Selling Strengths</h2>
+        <p class="strengths-section-lead">The commercial edge I bring is not traditional pipeline management on its own. It is strongest when the sale is really a strategic, operating-model, and proposition design problem that needs to be made clear, credible, and commercially real.</p>
+
+        <div class="strengths-grid">
+            <div class="strength-card hover-card">
+                <span class="strength-card-number">01</span>
+                <h3>Commercial pattern recognition</h3>
+                <p>I tend to see where a market is actually moving before most people have fully adjusted to it, and then translate that into what clients will still buy, what they will stop paying for, and what needs to change in the proposition.</p>
+            </div>
+
+            <div class="strength-card hover-card">
+                <span class="strength-card-number">02</span>
+                <h3>Translating complexity into something sellable</h3>
+                <p>I am strongest when the challenge is messy, technical, or strategically unclear. I can help turn that into a client-facing proposition people can understand, buy into, and act on.</p>
+            </div>
+
+            <div class="strength-card hover-card">
+                <span class="strength-card-number">03</span>
+                <h3>Executive credibility</h3>
+                <p>I am comfortable with senior stakeholders and tend to operate well at board, CEO, CIO, and COO level, discussing operating model, commercial trade-offs, risk, and delivery reality without relying on sales theatre.</p>
+            </div>
+
+            <div class="strength-card hover-card">
+                <span class="strength-card-number">04</span>
+                <h3>Building markets and momentum</h3>
+                <p>My background is not just account management. I have strong market-building instincts: opening regions, creating structure, establishing traction, and giving teams something repeatable to scale around.</p>
+            </div>
+
+            <div class="strength-card hover-card">
+                <span class="strength-card-number">05</span>
+                <h3>Selling with operational realism</h3>
+                <p>I care about whether a sale can actually be delivered, scaled, and defended commercially. That matters in complex environments where the real challenge is execution, not just winning the signature.</p>
+            </div>
+        </div>
+
+        <div class="strength-summary">
+            <strong>In one line</strong>
+            <p>You are strongest when the sale is really a strategic and commercial design problem, not just a pipeline problem.</p>
         </div>
     </section>
 
@@ -646,20 +1018,23 @@
 
         // Check local storage for theme preference
         const savedTheme = localStorage.getItem('james-portfolio-theme');
-        if (savedTheme === 'dark') {
+        if (savedTheme === 'light') {
+            rootElement.removeAttribute('data-theme');
+            themeToggleBtn.innerText = 'Dark Mode';
+        } else {
             rootElement.setAttribute('data-theme', 'dark');
-            themeToggleBtn.innerText = '☀️';
+            themeToggleBtn.innerText = 'Light Mode';
         }
 
         themeToggleBtn.addEventListener('click', () => {
             const currentTheme = rootElement.getAttribute('data-theme');
             if (currentTheme === 'dark') {
                 rootElement.removeAttribute('data-theme');
-                themeToggleBtn.innerText = '🌙';
+                themeToggleBtn.innerText = 'Dark Mode';
                 localStorage.setItem('james-portfolio-theme', 'light');
             } else {
                 rootElement.setAttribute('data-theme', 'dark');
-                themeToggleBtn.innerText = '☀️';
+                themeToggleBtn.innerText = 'Light Mode';
                 localStorage.setItem('james-portfolio-theme', 'dark');
             }
         });
