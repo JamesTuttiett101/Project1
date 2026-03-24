@@ -287,13 +287,13 @@
             transition: var(--transition);
         }
 
-        .primary-button {
-            background: linear-gradient(90deg, var(--accent-coral), var(--accent-fuchsia));
-            color: #fff6f1;
-            box-shadow: 0 16px 34px rgba(255, 77, 184, 0.22);
+                .ticket-button {
+            padding: 1.15rem 2rem;
+            font-size: 1.06rem;
+            min-width: 220px;
+            box-shadow: 0 20px 42px rgba(255, 77, 184, 0.3);
         }
-
-        .primary-button:hover,
+.primary-button:hover,
         .secondary-button:hover {
             transform: translateY(-2px);
         }
@@ -357,51 +357,7 @@
             display: block;
             border: 0;
             background: #120d16;
-        }
-
-        .invite-fallback {
-            position: absolute;
-            left: 1rem;
-            bottom: 1rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.75rem 1rem;
-            border-radius: 999px;
-            text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: #fff6f1;
-            background: linear-gradient(90deg, var(--accent-coral), var(--accent-fuchsia));
-            box-shadow: 0 14px 28px rgba(255, 77, 184, 0.22);
-        }
-
-        .poster-overlay {
-            position: absolute;
-            right: 1rem;
-            bottom: 1rem;
-            max-width: 220px;
-            padding: 1rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            background: rgba(9, 7, 13, 0.74);
-            color: #fff3ef;
-            backdrop-filter: blur(14px);
-        }
-
-        .poster-overlay .eyebrow {
-            display: block;
-            color: #f8ca80;
-            font-size: 0.66rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .poster-overlay p {
-            font-size: 0.94rem;
-            line-height: 1.5;
-        }
-
-        .invite-strip {
+        }.invite-strip {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 0.85rem;
@@ -668,8 +624,8 @@
 
                     <div>
                         <div class="hero-actions">
-                            <a href="https://www.thebraintumourcharity.org/" target="_blank" rel="noopener noreferrer" class="primary-button">Donate to The Brain Tumour Charity</a>
-                            <a href="https://uk.emma-live.com/tbtc/tickets?tid=3e308f7547acb78764882348589d90b7" target="_blank" rel="noopener noreferrer" class="secondary-button">Buy Tickets</a>
+                            <a href="https://uk.emma-live.com/tbtc/tickets?tid=3e308f7547acb78764882348589d90b7" target="_blank" rel="noopener noreferrer" class="primary-button ticket-button">Buy Tickets</a>
+                            <a href="https://www.thebraintumourcharity.org/" target="_blank" rel="noopener noreferrer" class="secondary-button">Donate to The Brain Tumour Charity</a>
                         </div>
 
                         <div class="hero-notes">
@@ -694,11 +650,6 @@
                         <object data="SENSORA_Invite.pdf#view=FitH" type="application/pdf" aria-label="Sensora invite preview">
                             <iframe src="SENSORA_Invite.pdf#view=FitH" title="Sensora invite preview"></iframe>
                         </object>
-                        <a href="SENSORA_Invite.pdf" target="_blank" rel="noopener noreferrer" class="invite-fallback">View Invite</a>
-                        <div class="poster-overlay">
-                            <span class="eyebrow">Invite energy</span>
-                            <p>The live invite now anchors the page so the event branding, tone, and colour story all come from the source itself.</p>
-                        </div>
                     </div>
                     <div class="invite-strip">
                         <div class="invite-chip">
@@ -784,8 +735,8 @@
                 <h2>Be part of it.</h2>
                 <p>To book your place or make a direct donation to The Brain Tumour Charity, use the links below. Every contribution makes a difference.</p>
                 <div class="cta-actions">
-                    <a href="https://www.thebraintumourcharity.org/" target="_blank" rel="noopener noreferrer" class="primary-button">Donate Now</a>
-                    <a href="https://uk.emma-live.com/tbtc/tickets?tid=3e308f7547acb78764882348589d90b7" target="_blank" rel="noopener noreferrer" class="secondary-button">Buy Tickets</a>
+                    <a href="https://uk.emma-live.com/tbtc/tickets?tid=3e308f7547acb78764882348589d90b7" target="_blank" rel="noopener noreferrer" class="primary-button ticket-button">Buy Tickets</a>
+                    <a href="https://www.thebraintumourcharity.org/" target="_blank" rel="noopener noreferrer" class="secondary-button">Donate Now</a>
                 </div>
             </div>
         </section>
@@ -823,5 +774,8 @@
     </script>
 </body>
 </html>
+
+
+
 
 
