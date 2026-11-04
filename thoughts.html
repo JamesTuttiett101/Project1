@@ -348,6 +348,44 @@
 </div>
 
 <div class="blog-grid">
+    <div class="blog-card" onclick="openModal('post6')">
+        <div class="blog-card-accent" style="background: linear-gradient(to right, #ff4fd8, #33e6ff);"></div>
+        <div class="blog-card-body">
+            <span class="blog-tag" style="background: rgba(255,79,216,0.12); color: #ff4fd8;">Future of Work</span>
+            <h2>"AI Is the Product" vs "AI Does the Work"</h2>
+            <p>Most enterprise AI conversations confuse two very different things. Separating them is the fastest way to work out where the value is and who it reaches first.</p>
+            <div class="blog-meta">
+                <span>November 2026</span>
+                <span class="read-more">Read More</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="blog-card" onclick="openModal('post5')">
+        <div class="blog-card-accent" style="background: linear-gradient(to right, #7a5cff, #ff4fd8);"></div>
+        <div class="blog-card-body">
+            <span class="blog-tag" style="background: rgba(122,92,255,0.12); color: #7a5cff;">Operating Model</span>
+            <h2>Why We Went From Five Practices to Three</h2>
+            <p>Practice structures usually describe what a firm can do. Clients do not buy that way. Build, Scale, Run is an attempt to organise around how they actually buy.</p>
+            <div class="blog-meta">
+                <span>October 2026</span>
+                <span class="read-more">Read More</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="blog-card" onclick="openModal('post4')">
+        <div class="blog-card-accent" style="background: linear-gradient(to right, #33e6ff, #ff4fd8);"></div>
+        <div class="blog-card-body">
+            <span class="blog-tag" style="background: rgba(51,230,255,0.12); color: #33e6ff;">Build in Public</span>
+            <h2>Building an AI Centre of Excellence From a Two-Week Course</h2>
+            <p>In January the AI capability was one training course and a team of two. What it took to get to consultants deployed in client environments inside a year.</p>
+            <div class="blog-meta">
+                <span>September 2026</span>
+                <span class="read-more">Read More</span>
+            </div>
+        </div>
+    </div>
     <div class="blog-card" onclick="openModal('post1')">
         <div class="blog-card-accent" style="background: linear-gradient(to right, #33e6ff, #7a5cff);"></div>
         <div class="blog-card-body">
@@ -423,6 +461,81 @@
     });
 
     const posts = {
+        post6: {
+            title: "\"AI Is the Product\" vs \"AI Does the Work\"",
+            meta: "Future of Work - November 2026 - 5 min read",
+            content: `
+                <p>Most enterprise AI conversations I sit in are really two conversations wearing the same name. One is about AI as a product: the thing you build, ship and sell, with a model somewhere inside it. The other is about AI doing the work: the way tasks inside an organisation actually get done. They need different sponsors, different budgets and different measures of success, and conflating them is the main reason AI programmes stall at the pilot stage.</p>
+                <h3>Two forms, two buyers</h3>
+                <p>"AI is the product" is a technology and engineering question. It belongs to the CTO, the product organisation and the software delivery lifecycle. It is where the industry's attention has been, and it is where the tooling is most mature.</p>
+                <p>"AI does the work" is an operating model question. It belongs to the COO, the functional heads and every knowledge worker in the building. It is less glamorous, far larger in headcount terms, and it is where the next wave of value sits.</p>
+                <h3>Engineering got there first</h3>
+                <p>Software engineering was the first profession where "AI does the work" became real. Agentic coding tools changed what one engineer could get through in a day, not by making them type faster but by letting them orchestrate: describe the outcome, set the constraints, review the result. The engineer's job moved up a level.</p>
+                <p>The same shift is now arriving for everyone else. Agent orchestration with pre-built skills, where a knowledge worker directs a set of reliable, reusable capabilities rather than prompting from scratch each time, is to analysts, account managers and operations teams what agentic coding was to engineers. It is the biggest change to knowledge work I have seen in fifteen years, and most organisations are still treating it as a licensing decision.</p>
+                <h3>What this changes commercially</h3>
+                <p>If you sell into enterprises, this matters for pricing. Covering only the software delivery population limits you to a slice of the organisation. Covering both populations, the engineers and the knowledge workers, is what supports enterprise-grade commitments, because the value case now spans the whole operating model rather than one department.</p>
+                <h3>In practice, this means</h3>
+                <ul>
+                    <li>Run the two conversations separately. Different sponsor, different success measure, different roadmap.</li>
+                    <li>For "AI does the work", invest in skills and workflows before models. The model is rarely the constraint.</li>
+                    <li>Measure orchestration, not activation. Licences switched on tell you nothing. Tasks completed differently tell you everything.</li>
+                    <li>Build fluency in tiers. People need to be aware, then productive, then operational, then orchestrating. Skipping the middle two is where adoption dies.</li>
+                </ul>
+                <p>The core issue is not whether AI will change knowledge work. It is whether leadership teams recognise that it is already an operating model decision, not a technology one.</p>
+            `
+        },
+        post5: {
+            title: "Why We Went From Five Practices to Three",
+            meta: "Operating Model - October 2026 - 5 min read",
+            content: `
+                <p>Earlier this year we reorganised FDM's practice structure from five practices to three: Build, Scale and Run. On paper it looks like a tidy-up. In reality it was a decision about identity, and about organising around how clients buy rather than how we like to describe ourselves.</p>
+                <h3>The problem with five</h3>
+                <p>Five practices described capability. Technology, data, transformation, operations and so on. Each was defensible on its own, and together they produced a brochure that read well internally. The trouble is that no client wakes up wanting a practice. They have something to build, something that needs to grow, or something that has to keep running better and cheaper. Our structure made them do the translation.</p>
+                <p>There was a deeper issue too. A firm that has grown up supplying talent has to decide at some point whether it is a talent business or a consultancy. Five practices let us avoid that choice. Three verbs forced it.</p>
+                <h3>Build, Scale, Run</h3>
+                <ul>
+                    <li><strong>Build</strong> is where something new gets made: a product, a platform, a capability. Senior technologists at the front, small teams, AI in the delivery stack by default.</li>
+                    <li><strong>Scale</strong> is where something that works needs to work across the organisation: adoption, change, capability transfer, operating model.</li>
+                    <li><strong>Run</strong> is where things have to keep working: operations, service, resilience, continuous improvement.</li>
+                </ul>
+                <p>AI does not appear as a fourth box. It sits inside each practice by design. A Build engagement without AI in the toolchain is not a modern Build engagement. A Run engagement that does not use automation to take cost out is not a credible one. Making AI a separate practice would have signalled that it was optional.</p>
+                <h3>What changed in the business</h3>
+                <p>Three things happened quickly. Sales conversations got shorter, because account managers could open with the client's problem rather than our org chart. Delivery and sales aligned, because both now used the same three words. And the AI Centre of Excellence stopped looking like an innovation lab on the side and started looking like the engineering engine behind all three practices.</p>
+                <h3>What I would tell anyone considering the same move</h3>
+                <ul>
+                    <li>Organise around the client's verb, not your noun. If a client cannot say which of your practices they need in one sentence, the structure is for you, not them.</li>
+                    <li>Put the Heads of Practice in charge of content as well as delivery. The practice has to own what it teaches.</li>
+                    <li>Do not create an AI practice. Put AI in every practice and make the heads accountable for it.</li>
+                    <li>Expect the change to surface an identity question you have been avoiding. That is the point.</li>
+                </ul>
+            `
+        },
+        post4: {
+            title: "Building an AI Centre of Excellence From a Two-Week Course",
+            meta: "Build in Public - September 2026 - 6 min read",
+            content: `
+                <p>In January 2026 FDM's AI capability was a two-week AI fluency training course. The AI transformation team was two people. By late summer we had an AI Centre of Excellence with its own consultants deployed in client environments across banking, insurance, professional services and specialist lending, and two internal AI products in user acceptance testing. This is what it took, including the parts that were harder than expected.</p>
+                <h3>Start with the strategy, not the lab</h3>
+                <p>The first deliverable was not a team. It was a written AI strategy for the CEO, built around a clear thesis: the market had moved from buying resource to buying outcomes, and FDM needed to move from workforce supplier to technical consultancy with AI in the core of delivery. Getting that adopted at Board level and rolled out as the group-wide operating plan was the unlock. Everything after that had cover.</p>
+                <p>The lesson is simple. A Centre of Excellence without a Board-adopted strategy behind it is an innovation lab, and innovation labs get cut in the next budget round.</p>
+                <h3>Run it as a product organisation</h3>
+                <p>We structured the CoE as an internal product organisation rather than a consulting pool. Product managers own problems and orchestrate engineering teams. The engineering stack is Azure AI Foundry and Claude Code. The first products were internal on purpose: a sales meeting assistant and a consultant matching tool, both now in UAT with real users. Internal products are the fastest way to earn the right to sell externally, because every rough edge is found by colleagues rather than clients.</p>
+                <h3>The consultant model</h3>
+                <p>The CoE consultant is a different profile from the traditional graduate placement. The construct we use is a forward deployed one: a consultant who sits inside the client's business problem, builds and ships, and leaves capability behind. I prefer "product engineer" to "forward deployed engineer" because the latter is software terminology and this role is about business problems first.</p>
+                <p>Spec-driven development is the standard methodology. The agent-assisted lifecycle starts with a written specification, not with code, which is the only way to keep quality consistent when AI is doing much of the execution.</p>
+                <h3>Hackathons as the front door</h3>
+                <p>The most effective sales motion turned out to be the in-person client hackathon. We ran them through 2026 with banks, a transport authority and a share registrar, as well as inside FDM's own business functions. A day in a room with the client's engineers, their data and their problem produces working software and a sponsor. Slide decks do neither.</p>
+                <h3>The fluency framework underneath</h3>
+                <p>None of this works without a workforce that can use the tools. We introduced a four-tier AI Fluency Framework (AI Aware, AI Productive, AI Operational, AI Orchestrating) and built the expected skills and behaviours at each tier around three cultural principles: confident, curious, secure. Safe and responsible use is built into the tools the CoE ships rather than bolted on as policy.</p>
+                <h3>What I would do differently</h3>
+                <ul>
+                    <li>Price an external engagement earlier. We scoped and costed the first externally-funded CoE engagement later than we should have. Commercial proof forces discipline that internal products do not.</li>
+                    <li>Hire the Head of CoE before the engineers. Sequencing matters more than speed.</li>
+                    <li>Treat partnerships as a portfolio from day one. Microsoft, OpenAI, Anthropic, Cognition and a delivery partner each played a different role. No single vendor relationship would have got us here.</li>
+                </ul>
+                <p>The starting point was a course. The thing that made the difference was treating the CoE as the engine of a repositioned business rather than a showcase beside the old one.</p>
+            `
+        },
         post1: {
             title: "Why Most AI Transformations Fail Before They Start",
             meta: "AI Strategy - February 2026 - 5 min read",
