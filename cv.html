@@ -3,7 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure CV Portal | James Tuttiett</title>
+    <title>CV | James Tuttiett</title>
+    <meta name="description" content="CV of James Tuttiett, Global Director of Transformation &amp; AI at FDM Group.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CV | James Tuttiett">
+    <meta property="og:description" content="CV of James Tuttiett, Global Director of Transformation &amp; AI at FDM Group.">
+    <meta property="og:url" content="https://jamestuttiett101.github.io/Project1/cv.html">
+    <meta property="og:image" content="https://jamestuttiett101.github.io/Project1/IMG_4679.jpeg">
+    <meta property="og:site_name" content="James Tuttiett">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://jamestuttiett101.github.io/Project1/cv.html">
+    <meta name="robots" content="noindex">
     <style>
         :root {
             --bg-color: #fff7fb;
@@ -362,7 +372,7 @@
 
 <div class="cv-container">
     <div class="cv-copy">
-        <h1>Secure <span class="gradient-text">CV Portal</span></h1>
+        <h1>Request my <span class="gradient-text">CV</span></h1>
         <p>This page gives a simpler overview of my background and provides a direct way to request my CV. I wanted this to feel clearer, more useful, and more personal than a generic download gate.</p>
         <p>My background combines commercial leadership, market development, and AI transformation work, supported by formal study focused on how organisations adapt to AI-driven change.</p>
 
@@ -410,7 +420,7 @@
 
         <div class="success-state" id="successState">
             <h2>Request Received</h2>
-            <p>Thank you. I will send my CV directly to your inbox shortly. In the meantime, feel free to connect with me on LinkedIn.</p>
+            <p>Thank you. Your email client should have opened with the request ready to send; if it did not, email me directly using the address below and I will send my CV straight back. In the meantime, feel free to connect on LinkedIn.</p>
             <a href="https://www.linkedin.com/in/james-tuttiett-b94a3322" target="_blank" rel="noopener noreferrer" class="download-btn">Connect on LinkedIn</a>
         </div>
 
@@ -455,8 +465,12 @@
             alert('Please enter your name and email address.');
             return;
         }
+        const company = document.getElementById('companyInput').value.trim();
+        const subject = encodeURIComponent('CV request from ' + name + (company ? ' (' + company + ')' : ''));
+        const body = encodeURIComponent('Hi James,\n\nPlease could you send over your CV.\n\nName: ' + name + '\nEmail: ' + email + '\nOrganisation: ' + (company || 'not given') + '\n');
         document.getElementById('cvForm').style.display = 'none';
         document.getElementById('successState').style.display = 'block';
+        window.location.href = 'mailto:jamesdtuttiett@gmail.com?subject=' + subject + '&body=' + body;
     }
 </script>
 </body>

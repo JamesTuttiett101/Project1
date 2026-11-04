@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>James Tuttiett - Thoughts</title>
+    <link>https://jamestuttiett101.github.io/Project1/thoughts.html</link>
+    <description>Perspectives on AI transformation, consulting operating models and the future of work.</description>
+    <language>en-gb</language>
+    <item>
+      <title>&quot;AI Is the Product&quot; vs &quot;AI Does the Work&quot;</title>
+      <link>https://jamestuttiett101.github.io/Project1/thoughts/ai-is-the-product-vs-ai-does-the-work.html</link>
+      <guid>https://jamestuttiett101.github.io/Project1/thoughts/ai-is-the-product-vs-ai-does-the-work.html</guid>
+      <pubDate>Sun, 01 Nov 2026 09:00:00 +0000</pubDate>
+      <description>Most enterprise AI conversations confuse two very different things. Separating them is the fastest way to work out where the value is and who it reaches first.</description>
+    </item>
+    <item>
+      <title>Why We Went From Five Practices to Three</title>
+      <link>https://jamestuttiett101.github.io/Project1/thoughts/why-we-went-from-five-practices-to-three.html</link>
+      <guid>https://jamestuttiett101.github.io/Project1/thoughts/why-we-went-from-five-practices-to-three.html</guid>
+      <pubDate>Thu, 01 Oct 2026 09:00:00 +0000</pubDate>
+      <description>Practice structures usually describe what a firm can do. Clients do not buy that way. Build, Scale, Run is an attempt to organise around how they actually buy.</description>
+    </item>
+    <item>
+      <title>Building an AI Centre of Excellence From a Two-Week Course</title>
+      <link>https://jamestuttiett101.github.io/Project1/thoughts/building-an-ai-centre-of-excellence-from-a-two-week-course.html</link>
+      <guid>https://jamestuttiett101.github.io/Project1/thoughts/building-an-ai-centre-of-excellence-from-a-two-week-course.html</guid>
+      <pubDate>Tue, 01 Sep 2026 09:00:00 +0000</pubDate>
+      <description>In January the AI capability was one training course and a team of two. What it took to get to consultants deployed in client environments inside a year.</description>
+    </item>
+    <item>
+      <title>Why Most AI Transformations Fail Before They Start</title>
+      <link>https://jamestuttiett101.github.io/Project1/thoughts/why-most-ai-transformations-fail-before-they-start.html</link>
+      <guid>https://jamestuttiett101.github.io/Project1/thoughts/why-most-ai-transformations-fail-before-they-start.html</guid>
+      <pubDate>Sun, 01 Feb 2026 09:00:00 +0000</pubDate>
+      <description>Organisations are buying AI tools at scale, but adoption rates remain stubbornly low. The problem isn&#x27;t the technology. It&#x27;s the change model.</description>
+    </item>
+    <item>
+      <title>The Death of &#x27;Bodies on Seats&#x27;: Rethinking the Consulting Model</title>
+      <link>https://jamestuttiett101.github.io/Project1/thoughts/death-of-bodies-on-seats.html</link>
+      <guid>https://jamestuttiett101.github.io/Project1/thoughts/death-of-bodies-on-seats.html</guid>
+      <pubDate>Thu, 01 Jan 2026 09:00:00 +0000</pubDate>
+      <description>The traditional Time &amp; Materials consulting model is under terminal pressure. AI is changing where value comes from, and most firms aren&#x27;t ready for the conversation.</description>
+    </item>
+    <item>
+      <title>Selling in a Down Cycle: What the Numbers Actually Tell You</title>
+      <link>https://jamestuttiett101.github.io/Project1/thoughts/selling-in-a-down-cycle.html</link>
+      <guid>https://jamestuttiett101.github.io/Project1/thoughts/selling-in-a-down-cycle.html</guid>
+      <pubDate>Mon, 01 Dec 2025 09:00:00 +0000</pubDate>
+      <description>When the market contracts, most sales leaders hide behind conditions. The best ones use the cycle to widen the gap on their competitors.</description>
+    </item>
+  </channel>
+</rss>
