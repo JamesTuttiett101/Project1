@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building an AI Centre of Excellence From a Two-Week Course | James Tuttiett</title>
+    <meta name="description" content="In January the AI capability was one training course and a team of two. What it took to get to consultants deployed in client environments inside a year.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Building an AI Centre of Excellence From a Two-Week Course">
+    <meta property="og:description" content="In January the AI capability was one training course and a team of two. What it took to get to consultants deployed in client environments inside a year.">
+    <meta property="og:url" content="https://jamestuttiett101.github.io/Project1/thoughts/building-an-ai-centre-of-excellence-from-a-two-week-course.html">
+    <meta property="og:image" content="https://jamestuttiett101.github.io/Project1/IMG_4679.jpeg">
+    <meta property="og:site_name" content="James Tuttiett">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://jamestuttiett101.github.io/Project1/thoughts/building-an-ai-centre-of-excellence-from-a-two-week-course.html">
+
+    <style>
+        :root {
+            --bg-color: #fff7fb;
+            --bg-secondary: #fff0f6;
+            --text-main: #171a28;
+            --text-light: #5c637d;
+            --card-bg: rgba(255, 255, 255, 0.76);
+            --border-color: rgba(23, 26, 40, 0.08);
+            --nav-bg: rgba(255, 247, 251, 0.72);
+            --accent-azure: #33e6ff;
+            --accent-neon-pink: #ff4fd8;
+            --accent-purple: #7a5cff;
+            --accent-sunset: #ff8a3d;
+            --btc-red: #e31b3d;
+            --border-radius: 18px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --surface-shadow: 0 20px 60px rgba(122, 92, 255, 0.12);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #070b17;
+            --bg-secondary: #0e1427;
+            --text-main: #f5f7ff;
+            --text-light: #aab2d1;
+            --card-bg: rgba(14, 20, 39, 0.74);
+            --border-color: rgba(94, 241, 255, 0.14);
+            --nav-bg: rgba(7, 11, 23, 0.72);
+            --surface-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background:
+                radial-gradient(circle at 15% 20%, rgba(51, 230, 255, 0.18), transparent 28%),
+                radial-gradient(circle at 85% 12%, rgba(255, 79, 216, 0.16), transparent 24%),
+                radial-gradient(circle at 50% 85%, rgba(255, 138, 61, 0.12), transparent 22%),
+                linear-gradient(180deg, var(--bg-color) 0%, var(--bg-secondary) 100%);
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.1rem 5%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.55rem;
+            background: linear-gradient(45deg, var(--accent-azure), var(--accent-neon-pink), var(--accent-sunset));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 600; transition: var(--transition); }
+        .nav-links a:hover { color: var(--accent-neon-pink); }
+        .nav-links a.charity-nav-link {
+            color: var(--btc-red);
+            font-weight: 700;
+            border: 1px solid rgba(227, 27, 61, 0.4);
+            padding: 0.55rem 1rem;
+            border-radius: 999px;
+            background: rgba(227, 27, 61, 0.06);
+        }
+        .nav-links a.charity-nav-link:hover { background: var(--btc-red); color: white; }
+
+        .theme-toggle {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 0.55rem 0.95rem;
+            border-radius: 999px;
+            transition: var(--transition);
+        }
+        .theme-toggle:hover {
+            background: linear-gradient(45deg, rgba(51, 230, 255, 0.15), rgba(255, 79, 216, 0.15));
+            border-color: rgba(51, 230, 255, 0.25);
+        }
+
+        .page-hero {
+            padding: 10rem 5% 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.04em;
+            line-height: 0.95;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--accent-azure), var(--accent-purple), var(--accent-neon-pink), var(--accent-sunset));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-hero p {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            max-width: 700px;
+        }
+
+        .hero-panel {
+            margin-top: 2rem;
+            padding: 1.4rem 1.6rem;
+            max-width: 760px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--surface-shadow);
+            backdrop-filter: blur(18px);
+        }
+
+        .hero-panel strong {
+            display: block;
+            margin-bottom: 0.35rem;
+            color: var(--text-main);
+        }
+
+        .hero-panel span { color: var(--text-light); }
+
+        .blog-grid {
+            padding: 2rem 5% 6rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+            box-shadow: var(--surface-shadow);
+            backdrop-filter: blur(18px);
+            position: relative;
+        }
+
+        .blog-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: var(--border-radius);
+            background: linear-gradient(135deg, rgba(51, 230, 255, 0.4), rgba(255, 79, 216, 0.25), rgba(255, 138, 61, 0.18));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 55px rgba(0,0,0,0.16);
+        }
+
+        .blog-card:hover::before { opacity: 0.2; }
+        .blog-card-accent { height: 6px; }
+        .blog-card-body { padding: 2rem; }
+
+        .blog-tag {
+            display: inline-block;
+            font-size: 0.74rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
+            margin-bottom: 1rem;
+        }
+
+        .blog-card h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+            color: var(--text-main);
+        }
+
+        .blog-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .read-more { color: var(--accent-azure); font-weight: 600; text-decoration: none; font-size: 0.9rem; }
+        .read-more:hover { color: var(--accent-neon-pink); }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15,23,42,0.85);
+            backdrop-filter: blur(6px);
+            display: none;
+            justify-content: center;
+            align-items: flex-start;
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 2rem 1rem;
+        }
+
+        .modal-overlay.active { display: flex; }
+
+        .modal-content {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 750px;
+            border-radius: 22px;
+            padding: 3rem;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+            margin: auto;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(18px);
+        }
+
+        .modal-content h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.9rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+            line-height: 1.2;
+        }
+
+        .modal-content .modal-meta {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .modal-content p {
+            color: var(--text-main);
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+
+        .modal-content h3 {
+            color: var(--accent-azure);
+            font-size: 1.15rem;
+            margin: 2rem 0 0.8rem;
+        }
+
+        .modal-content ul {
+            padding-left: 1.5rem;
+            color: var(--text-main);
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+        }
+
+        .close-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255,255,255,0.06);
+            color: var(--text-main);
+            font-weight: 600;
+            border-radius: 999px;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .close-btn:hover { filter: brightness(0.95); }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 768px) {
+            nav { flex-direction: column; padding: 1rem; gap: 1rem; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 1rem; font-size: 0.9rem; }
+            .blog-grid { grid-template-columns: 1fr; }
+        }
+            .post-page { margin: 3rem auto; }
+        .post-page .post-tag { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 0.35rem 0.8rem; border-radius: 999px; margin-bottom: 1rem; }
+        .post-share { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); color: var(--text-light); font-size: 0.9rem; }
+        .post-share a { color: var(--accent-azure); font-weight: 600; text-decoration: none; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav>
+    <a href="../index.html" class="logo">James Tuttiett.</a>
+    <div class="nav-links">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#operating-model">Operating Model</a>
+        <a href="../index.html#strategy">Strategy</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../thoughts.html">Thoughts</a>
+        <a href="../charity.html" class="charity-nav-link">Sensora Charity</a>
+        <button class="theme-toggle" id="themeToggle" title="Switch theme">Light Mode</button>
+    </div>
+</nav>
+
+<article class="modal-content post-page">
+    <span class="post-tag" style="background: rgba(51,230,255,0.12); color: #33e6ff;">Build in Public</span>
+    <h2>Building an AI Centre of Excellence From a Two-Week Course</h2>
+    <div class="modal-meta">James Tuttiett - September 2026 - 6 min read</div>
+    <p>In January 2026 FDM's AI capability was a two-week AI fluency training course. The AI transformation team was two people. By late summer we had an AI Centre of Excellence with its own consultants deployed in client environments across banking, insurance, professional services and specialist lending, and two internal AI products in user acceptance testing. This is what it took, including the parts that were harder than expected.</p>
+                <h3>Start with the strategy, not the lab</h3>
+                <p>The first deliverable was not a team. It was a written AI strategy for the CEO, built around a clear thesis: the market had moved from buying resource to buying outcomes, and FDM needed to move from workforce supplier to technical consultancy with AI in the core of delivery. Getting that adopted at Board level and rolled out as the group-wide operating plan was the unlock. Everything after that had cover.</p>
+                <p>The lesson is simple. A Centre of Excellence without a Board-adopted strategy behind it is an innovation lab, and innovation labs get cut in the next budget round.</p>
+                <h3>Run it as a product organisation</h3>
+                <p>We structured the CoE as an internal product organisation rather than a consulting pool. Product managers own problems and orchestrate engineering teams. The engineering stack is Azure AI Foundry and Claude Code. The first products were internal on purpose: a sales meeting assistant and a consultant matching tool, both now in UAT with real users. Internal products are the fastest way to earn the right to sell externally, because every rough edge is found by colleagues rather than clients.</p>
+                <h3>The consultant model</h3>
+                <p>The CoE consultant is a different profile from the traditional graduate placement. The construct we use is a forward deployed one: a consultant who sits inside the client's business problem, builds and ships, and leaves capability behind. I prefer "product engineer" to "forward deployed engineer" because the latter is software terminology and this role is about business problems first.</p>
+                <p>Spec-driven development is the standard methodology. The agent-assisted lifecycle starts with a written specification, not with code, which is the only way to keep quality consistent when AI is doing much of the execution.</p>
+                <h3>Hackathons as the front door</h3>
+                <p>The most effective sales motion turned out to be the in-person client hackathon. We ran them through 2026 with banks, a transport authority and a share registrar, as well as inside FDM's own business functions. A day in a room with the client's engineers, their data and their problem produces working software and a sponsor. Slide decks do neither.</p>
+                <h3>The fluency framework underneath</h3>
+                <p>None of this works without a workforce that can use the tools. We introduced a four-tier AI Fluency Framework (AI Aware, AI Productive, AI Operational, AI Orchestrating) and built the expected skills and behaviours at each tier around three cultural principles: confident, curious, secure. Safe and responsible use is built into the tools the CoE ships rather than bolted on as policy.</p>
+                <h3>What I would do differently</h3>
+                <ul>
+                    <li>Price an external engagement earlier. We scoped and costed the first externally-funded CoE engagement later than we should have. Commercial proof forces discipline that internal products do not.</li>
+                    <li>Hire the Head of CoE before the engineers. Sequencing matters more than speed.</li>
+                    <li>Treat partnerships as a portfolio from day one. Microsoft, OpenAI, Anthropic, Cognition and a delivery partner each played a different role. No single vendor relationship would have got us here.</li>
+                </ul>
+                <p>The starting point was a course. The thing that made the difference was treating the CoE as the engine of a repositioned business rather than a showcase beside the old one.</p>
+    <div class="post-share">Written by James Tuttiett, Global Director of Transformation &amp; AI at FDM Group. <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://jamestuttiett101.github.io/Project1/thoughts/building-an-ai-centre-of-excellence-from-a-two-week-course.html" target="_blank" rel="noopener noreferrer">Share on LinkedIn</a></div>
+    <a class="close-btn" href="../thoughts.html">&larr; Back to Thoughts</a>
+</article>
+
+<footer>
+    <p>&copy; 2026 James Tuttiett. Built with AI.</p>
+</footer>
+
+<script>
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const rootElement = document.documentElement;
+    const savedTheme = localStorage.getItem('james-portfolio-theme');
+
+    if (savedTheme === 'light') {
+        rootElement.removeAttribute('data-theme');
+        themeToggleBtn.innerText = 'Dark Mode';
+    } else {
+        rootElement.setAttribute('data-theme', 'dark');
+        themeToggleBtn.innerText = 'Light Mode';
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = rootElement.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+            rootElement.removeAttribute('data-theme');
+            themeToggleBtn.innerText = 'Dark Mode';
+            localStorage.setItem('james-portfolio-theme', 'light');
+        } else {
+            rootElement.setAttribute('data-theme', 'dark');
+            themeToggleBtn.innerText = 'Light Mode';
+            localStorage.setItem('james-portfolio-theme', 'dark');
+        }
+    });
+</script>
+</body>
+</html>
