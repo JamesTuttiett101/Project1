@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frameworks | James Tuttiett</title>
+    <meta name="description" content="Five working frameworks for AI-native transformation: the AI Fluency Framework, Build/Scale/Run, the BUILD qualification lens, the 2+1 AI-native pod and the hackathon as the front door. Each one screen, each downloadable.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Frameworks | James Tuttiett">
+    <meta property="og:description" content="Five working frameworks for AI-native transformation, each on one screen and downloadable as a PDF.">
+    <meta property="og:url" content="https://jamestuttiett101.github.io/Project1/frameworks.html">
+    <meta property="og:image" content="https://jamestuttiett101.github.io/Project1/IMG_4679.jpeg">
+    <meta property="og:site_name" content="James Tuttiett">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://jamestuttiett101.github.io/Project1/frameworks.html">
+    
+    <style>
+        :root {
+            --bg-color: #fff7fb;
+            --bg-secondary: #fff0f6;
+            --text-main: #171a28;
+            --text-light: #5c637d;
+            --card-bg: rgba(255, 255, 255, 0.76);
+            --border-color: rgba(23, 26, 40, 0.08);
+            --nav-bg: rgba(255, 247, 251, 0.72);
+            --accent-azure: #33e6ff;
+            --accent-neon-pink: #ff4fd8;
+            --accent-purple: #7a5cff;
+            --accent-sunset: #ff8a3d;
+            --btc-red: #e31b3d;
+            --border-radius: 18px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --surface-shadow: 0 20px 60px rgba(122, 92, 255, 0.12);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #070b17;
+            --bg-secondary: #0e1427;
+            --text-main: #f5f7ff;
+            --text-light: #aab2d1;
+            --card-bg: rgba(14, 20, 39, 0.74);
+            --border-color: rgba(94, 241, 255, 0.14);
+            --nav-bg: rgba(7, 11, 23, 0.72);
+            --surface-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background:
+                radial-gradient(circle at 15% 20%, rgba(51, 230, 255, 0.18), transparent 28%),
+                radial-gradient(circle at 85% 12%, rgba(255, 79, 216, 0.16), transparent 24%),
+                radial-gradient(circle at 50% 85%, rgba(255, 138, 61, 0.12), transparent 22%),
+                linear-gradient(180deg, var(--bg-color) 0%, var(--bg-secondary) 100%);
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.1rem 5%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.55rem;
+            background: linear-gradient(45deg, var(--accent-azure), var(--accent-neon-pink), var(--accent-sunset));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 600; transition: var(--transition); }
+        .nav-links a:hover { color: var(--accent-neon-pink); }
+        .nav-links a.charity-nav-link {
+            color: var(--btc-red);
+            font-weight: 700;
+            border: 1px solid rgba(227, 27, 61, 0.4);
+            padding: 0.55rem 1rem;
+            border-radius: 999px;
+            background: rgba(227, 27, 61, 0.06);
+        }
+        .nav-links a.charity-nav-link:hover { background: var(--btc-red); color: white; }
+
+        .theme-toggle {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 0.55rem 0.95rem;
+            border-radius: 999px;
+            transition: var(--transition);
+        }
+        .theme-toggle:hover {
+            background: linear-gradient(45deg, rgba(51, 230, 255, 0.15), rgba(255, 79, 216, 0.15));
+            border-color: rgba(51, 230, 255, 0.25);
+        }
+
+        .page-hero {
+            padding: 10rem 5% 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.04em;
+            line-height: 0.95;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--accent-azure), var(--accent-purple), var(--accent-neon-pink), var(--accent-sunset));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-hero p {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            max-width: 700px;
+        }
+
+        .hero-panel {
+            margin-top: 2rem;
+            padding: 1.4rem 1.6rem;
+            max-width: 760px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--surface-shadow);
+            backdrop-filter: blur(18px);
+        }
+
+        .hero-panel strong {
+            display: block;
+            margin-bottom: 0.35rem;
+            color: var(--text-main);
+        }
+
+        .hero-panel span { color: var(--text-light); }
+
+        .blog-grid {
+            padding: 2rem 5% 6rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+            box-shadow: var(--surface-shadow);
+            backdrop-filter: blur(18px);
+            position: relative;
+        }
+
+        .blog-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: var(--border-radius);
+            background: linear-gradient(135deg, rgba(51, 230, 255, 0.4), rgba(255, 79, 216, 0.25), rgba(255, 138, 61, 0.18));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 55px rgba(0,0,0,0.16);
+        }
+
+        .blog-card:hover::before { opacity: 0.2; }
+        .blog-card-accent { height: 6px; }
+        .blog-card-body { padding: 2rem; }
+
+        .blog-tag {
+            display: inline-block;
+            font-size: 0.74rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
+            margin-bottom: 1rem;
+        }
+
+        .blog-card h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+            color: var(--text-main);
+        }
+
+        .blog-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .read-more { color: var(--accent-azure); font-weight: 600; text-decoration: none; font-size: 0.9rem; }
+        .read-more:hover { color: var(--accent-neon-pink); }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15,23,42,0.85);
+            backdrop-filter: blur(6px);
+            display: none;
+            justify-content: center;
+            align-items: flex-start;
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 2rem 1rem;
+        }
+
+        .modal-overlay.active { display: flex; }
+
+        .modal-content {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 750px;
+            border-radius: 22px;
+            padding: 3rem;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+            margin: auto;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(18px);
+        }
+
+        .modal-content h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.9rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+            line-height: 1.2;
+        }
+
+        .modal-content .modal-meta {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .modal-content p {
+            color: var(--text-main);
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+
+        .modal-content h3 {
+            color: var(--accent-azure);
+            font-size: 1.15rem;
+            margin: 2rem 0 0.8rem;
+        }
+
+        .modal-content ul {
+            padding-left: 1.5rem;
+            color: var(--text-main);
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+        }
+
+        .close-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255,255,255,0.06);
+            color: var(--text-main);
+            font-weight: 600;
+            border-radius: 999px;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .close-btn:hover { filter: brightness(0.95); }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 768px) {
+            nav { flex-direction: column; padding: 1rem; gap: 1rem; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 1rem; font-size: 0.9rem; }
+            .blog-grid { grid-template-columns: 1fr; }
+        }
+            .fw-jump { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 0 auto 2.5rem; max-width: 1200px; padding: 0 5%; }
+        .fw-jump a { font-size: 0.85rem; font-weight: 700; padding: 0.5rem 0.9rem; border-radius: 999px; border: 1px solid var(--border-color); color: var(--text-main); text-decoration: none; background: rgba(255,255,255,0.04); }
+        .fw-list { max-width: 1200px; margin: 0 auto; padding: 0 5% 4rem; display: grid; gap: 2rem; }
+        .fw-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--border-radius); box-shadow: var(--surface-shadow); backdrop-filter: blur(18px); overflow: hidden; scroll-margin-top: 6rem; }
+        .fw-accent { height: 6px; }
+        .fw-body { padding: 2.2rem 2.4rem; }
+        .fw-body h2 { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin: 0 0 0.4rem; line-height: 1.2; }
+        .fw-strap { color: var(--text-light); font-size: 1.05rem; margin-bottom: 1.4rem; }
+        .fw-body p { color: var(--text-main); line-height: 1.75; margin-bottom: 1rem; }
+        .fw-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1.4rem 0; }
+        .fw-sec { padding: 1.1rem 1.2rem; border-radius: 16px; border: 1px solid var(--border-color); background: rgba(255,255,255,0.03); }
+        .fw-sec h3 { font-size: 1rem; margin: 0 0 0.5rem; color: var(--accent-azure); }
+        .fw-sec p { font-size: 0.95rem; margin: 0; }
+        .fw-use { margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid var(--border-color); }
+        .fw-use h3 { font-size: 1rem; margin: 0 0 0.6rem; color: var(--text-main); }
+        .fw-use ul { padding-left: 1.3rem; color: var(--text-main); line-height: 1.7; margin: 0; }
+        .fw-use li { margin-bottom: 0.4rem; }
+        .fw-actions { margin-top: 1.5rem; display: flex; gap: 0.8rem; flex-wrap: wrap; }
+        .fw-dl { display: inline-block; padding: 0.75rem 1.3rem; border-radius: 999px; font-weight: 700; text-decoration: none; color: #08111f; background: linear-gradient(45deg, #33e6ff, #7a5cff, #ff4fd8); }
+        .fw-dl.alt { background: rgba(255,255,255,0.06); color: var(--text-main); border: 1px solid var(--border-color); }
+        @media (max-width: 780px) { .fw-grid { grid-template-columns: 1fr; } .fw-body { padding: 1.5rem 1.2rem; } .fw-body h2 { font-size: 1.45rem; } }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Cdefs%3E%3ClinearGradient id=%27g%27 x1=%270%27 y1=%270%27 x2=%271%27 y2=%271%27%3E%3Cstop offset=%270%27 stop-color=%27%2333e6ff%27/%3E%3Cstop offset=%27.5%27 stop-color=%27%237a5cff%27/%3E%3Cstop offset=%271%27 stop-color=%27%23ff4fd8%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230b0f1c%27/%3E%3Ctext x=%2732%27 y=%2743%27 text-anchor=%27middle%27 font-family=%27Arial,Helvetica,sans-serif%27 font-weight=%27800%27 font-size=%2730%27 fill=%27url(%23g)%27%3EJT%3C/text%3E%3C/svg%3E">
+    <style id="mobile-nav">
+        nav .logo { white-space: nowrap; margin-right: 1.5rem; }
+        @media (max-width: 1440px) { .nav-links { gap: 1.1rem !important; } .nav-links a { font-size: 0.92rem; } }
+        @media (max-width: 1100px) and (min-width: 781px) { .nav-links { gap: 0.55rem !important; } .nav-links a { font-size: 0.8rem; } .nav-links .theme-toggle, .nav-links .charity-nav-link { font-size: 0.8rem; padding: 0.45rem 0.7rem; } nav .logo { font-size: 1.15rem; margin-right: 0.75rem; } }
+        .nav-toggle { display: none; align-items: center; gap: 0.5rem; background: transparent; border: 1px solid var(--border-color); color: var(--text-main); border-radius: 10px; padding: 0.45rem 0.75rem; font: inherit; font-weight: 700; font-size: 0.9rem; cursor: pointer; }
+        .nav-toggle span { display: block; width: 18px; height: 2px; background: currentColor; box-shadow: 0 -6px 0 currentColor, 0 6px 0 currentColor; }
+        @media (max-width: 780px) {
+            nav { flex-direction: row !important; flex-wrap: wrap !important; justify-content: space-between !important; align-items: center !important; gap: 0 !important; padding: 0.75rem 1rem !important; }
+            .nav-toggle { display: inline-flex; }
+            .nav-links { display: none !important; width: 100%; flex-direction: column !important; align-items: stretch !important; gap: 0.15rem !important; padding: 0.75rem 0 0.25rem; }
+            .nav-links.open { display: flex !important; }
+            .nav-links a, .nav-links button { padding: 0.65rem 0.5rem !important; text-align: left; justify-content: flex-start; width: 100%; }
+            .nav-links .theme-toggle { margin-top: 0.35rem; width: auto; align-self: flex-start; }
+            header { padding-top: 6rem !important; }
+            .cv-container { padding-top: 6rem !important; }
+            .page-hero { padding-top: 6rem !important; }
+            main { padding-top: 5.5rem !important; }
+            .post-page { margin-top: 5.5rem !important; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="logo">James Tuttiett.</a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Menu" aria-expanded="false"><span></span> Menu</button>
+    <div class="nav-links">
+        <a href="index.html#about">About</a>
+        <a href="index.html#operating-model">Operating Model</a>
+        <a href="index.html#strategy">Strategy</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="thoughts.html">Thoughts</a>
+        <a href="frameworks.html">Frameworks</a>
+        <a href="charity.html" class="charity-nav-link">Sensora Charity</a>
+        <button class="theme-toggle" id="themeToggle" title="Switch theme">Light Mode</button>
+    </div>
+</nav>
+
+<div class="page-hero">
+    <h1>Working <span class="gradient-text">Frameworks</span></h1>
+    <p>Five tools I use to run AI transformation in practice. Each fits on one screen, each is downloadable, and each has been applied inside a real business rather than drawn on a whiteboard.</p>
+    <div class="hero-panel">
+        <strong>How to read this page</strong>
+        <span>These are working documents, not finished theory. Take them, adapt them, and tell me where they break. <a href="pdfs/james-tuttiett-frameworks.pdf" download style="color: var(--accent-azure); font-weight: 700; text-decoration: none;">Download all five as one PDF.</a></span>
+    </div>
+</div>
+
+<div class="fw-jump"><a href="#ai-fluency-framework">The AI Fluency Framework</a><a href="#build-scale-run">Build, Scale, Run</a><a href="#build-qualification-lens">The BUILD Qualification Lens</a><a href="#ai-native-pod">The 2+1 AI-Native Pod</a><a href="#hackathon-front-door">The Hackathon as the Front Door</a></div>
+
+<div class="fw-list">
+    <article class="fw-card" id="ai-fluency-framework">
+        <div class="fw-accent" style="background: linear-gradient(to right, #33e6ff, #7a5cff);"></div>
+        <div class="fw-body">
+            <span class="blog-tag" style="background: #33e6ff22; color: #33e6ff;">Workforce</span>
+            <h2>The AI Fluency Framework</h2>
+            <p class="fw-strap">Four tiers that describe how someone works with AI, not what they know about it.</p>
+            <p>Most AI training programmes measure awareness: who has done the course, who has a licence. None of that tells you whether work is being done differently. This framework replaces the question "have they been trained?" with "how do they work now?", and gives every role a target tier.</p>
+<p>It is built around three behaviours (confident, curious, secure) and applied inside each practice (Build, Scale, Run), so a tier means something specific for an engineer, a change lead or an operations analyst rather than one generic standard for everyone.</p>
+            <div class="fw-grid"><div class="fw-sec"><h3>Tier 1: AI Aware</h3><p>Understands what the tools can and cannot do. Uses them occasionally. Knows the safe-use rules and follows them. This is the floor for everyone in the organisation, and it is reached in days, not months.</p></div><div class="fw-sec"><h3>Tier 2: AI Productive</h3><p>Uses AI every day on their own tasks: drafting, analysis, research, preparation. Can show time saved and quality maintained. Most knowledge workers should be here within a quarter of starting, and most organisations stall at this tier because nothing has changed except the individual.</p></div><div class="fw-sec"><h3>Tier 3: AI Operational</h3><p>Has redesigned at least one workflow or process around AI, not just their own habits. Builds reusable prompts, skills or templates that colleagues pick up. Owns the quality of AI-assisted output in their area and can explain where it should not be used.</p></div><div class="fw-sec"><h3>Tier 4: AI Orchestrating</h3><p>Directs agents and pre-built skills across multi-step work. Designs how a team, a function or a client engagement operates with AI in the loop. Accountable for outcomes rather than tasks. This is the tier that changes the economics of a business, and it is where senior practitioners need to be.</p></div></div>
+            <div class="fw-use"><h3>How to use it</h3><ul>
+<li>Set a target tier for every role, not every person. A Head of Practice and a first-year consultant need different tiers.</li>
+<li>Move people one tier at a time. The jump from Productive to Operational is the hard one, because it needs permission to change how work is done, not just a tool.</li>
+<li>Measure by what has changed in practice: workflows redesigned, skills reused, outcomes owned. Licence activation and course completion are not measures.</li>
+<li>Bake safe and responsible use into the tools rather than a policy document. Secure is a behaviour, not a sign-off.</li>
+</ul></div>
+            <div class="fw-actions">
+                <a class="fw-dl" href="pdfs/ai-fluency-framework.pdf" download>Download as PDF</a>
+                <a class="fw-dl alt" href="https://www.linkedin.com/sharing/share-offsite/?url=https://jamestuttiett101.github.io/Project1/frameworks.html%23ai-fluency-framework" target="_blank" rel="noopener noreferrer">Share on LinkedIn</a>
+            </div>
+        </div>
+    </article>
+    <article class="fw-card" id="build-scale-run">
+        <div class="fw-accent" style="background: linear-gradient(to right, #7a5cff, #7a5cff);"></div>
+        <div class="fw-body">
+            <span class="blog-tag" style="background: #7a5cff22; color: #7a5cff;">Operating Model</span>
+            <h2>Build, Scale, Run</h2>
+            <p class="fw-strap">Three practices organised around what the client needs done, not what the firm can do.</p>
+            <p>Practice structures usually describe capability: technology, data, transformation, operations. Clients do not buy capability. They have something to build, something that works and needs to grow, or something that has to keep running better and cheaper. Three verbs let the client name what they need in one sentence, and make the firm choose whether it is a talent business or a consultancy.</p>
+            <div class="fw-grid"><div class="fw-sec"><h3>Build</h3><p>Something new gets made: a product, a platform, a capability. Senior technologists at the front, small teams, AI in the delivery stack by default. Priced on what ships, not who is in the room.</p></div><div class="fw-sec"><h3>Scale</h3><p>Something that works needs to work across the organisation: adoption, change, capability transfer, operating model redesign. This is where most AI programmes fail, because the pilot proved the technology and nobody owned the change.</p></div><div class="fw-sec"><h3>Run</h3><p>Things have to keep working: operations, service, resilience, continuous improvement. A Run engagement that is not using automation to take cost and risk out is not a credible one.</p></div><div class="fw-sec"><h3>Where AI sits</h3><p>Not in a fourth box. AI is inside each practice by design, and the Head of each practice is accountable for it. A separate AI practice signals that it is optional. It is not.</p></div></div>
+            <div class="fw-use"><h3>How to use it</h3><ul>
+<li>Test the structure with one question: can a client say which practice they need in a single sentence? If not, the structure is for you, not them.</li>
+<li>Give each Head of Practice ownership of content as well as delivery. The practice has to own what it teaches.</li>
+<li>Expect the move to surface an identity question the firm has been avoiding. That is the point of doing it.</li>
+<li>Keep the specialists as doers, in squads under the practice, not as a management layer.</li>
+</ul></div>
+            <div class="fw-actions">
+                <a class="fw-dl" href="pdfs/build-scale-run.pdf" download>Download as PDF</a>
+                <a class="fw-dl alt" href="https://www.linkedin.com/sharing/share-offsite/?url=https://jamestuttiett101.github.io/Project1/frameworks.html%23build-scale-run" target="_blank" rel="noopener noreferrer">Share on LinkedIn</a>
+            </div>
+        </div>
+    </article>
+    <article class="fw-card" id="build-qualification-lens">
+        <div class="fw-accent" style="background: linear-gradient(to right, #ff4fd8, #7a5cff);"></div>
+        <div class="fw-body">
+            <span class="blog-tag" style="background: #ff4fd822; color: #ff4fd8;">Commercial</span>
+            <h2>The BUILD Qualification Lens</h2>
+            <p class="fw-strap">Five questions that tell you whether an AI opportunity is real before you spend a week on it.</p>
+            <p>Most AI opportunities fail qualification for reasons that were visible in the first conversation: no real buyer, a use case chosen for novelty, an incumbent who will absorb the work, or a deal shape the client cannot sign. BUILD is a five-lens check designed for account managers who come from a recruitment or staffing background and need a repeatable way to qualify consulting work.</p>
+            <div class="fw-grid"><div class="fw-sec"><h3>B: Buyer</h3><p>Who owns the problem and the budget, and are they the same person? An AI opportunity sponsored by an innovation team without a line-of-business owner will not survive the next budget round. Look for a buyer whose own numbers move if this works.</p></div><div class="fw-sec"><h3>U: Use case</h3><p>Is it specific, measurable and painful today? "Explore AI in operations" is not a use case. "Cut the time to produce a client onboarding pack from four days to one" is. If the client cannot name the current cost, there is no business case yet.</p></div><div class="fw-sec"><h3>I: Incumbent landscape</h3><p>Who is already in the account and what will they do when this surfaces? The big systems integrators will claim AI work as an extension of what they already run. You need a reason the incumbent cannot or will not do this, or a sponsor who does not want them to.</p></div><div class="fw-sec"><h3>L: Left-behind appetite</h3><p>What does the client want to be left with when you leave? Some want a working system and nothing else. Others want capability: a build-operate-transfer model, consultants who convert to permanent, their own teams upskilled. The answer changes the delivery model and the commercial shape, so ask it early.</p></div><div class="fw-sec"><h3>D: Deal shape</h3><p>Can this be bought the way it needs to be delivered? Outcome-priced work needs a client who can sign for an outcome. Fixed-scope work needs a scope. If the only contract vehicle in the account is day rates, the proposition has to be shaped to fit that or the deal will stall in procurement.</p></div></div>
+            <div class="fw-use"><h3>How to use it</h3><ul>
+<li>Score each lens red, amber or green after the first meeting. Two reds means do not invest further until they turn.</li>
+<li>Use the lenses as discovery questions, not a checklist filled in afterwards. They are written so a non-technical account manager can ask them.</li>
+<li>Left-behind appetite is the lens most teams skip and the one that most often decides whether the engagement is a one-off or a relationship.</li>
+</ul></div>
+            <div class="fw-actions">
+                <a class="fw-dl" href="pdfs/build-qualification-lens.pdf" download>Download as PDF</a>
+                <a class="fw-dl alt" href="https://www.linkedin.com/sharing/share-offsite/?url=https://jamestuttiett101.github.io/Project1/frameworks.html%23build-qualification-lens" target="_blank" rel="noopener noreferrer">Share on LinkedIn</a>
+            </div>
+        </div>
+    </article>
+    <article class="fw-card" id="ai-native-pod">
+        <div class="fw-accent" style="background: linear-gradient(to right, #ff7061, #7a5cff);"></div>
+        <div class="fw-body">
+            <span class="blog-tag" style="background: #ff706122; color: #ff7061;">Delivery</span>
+            <h2>The 2+1 AI-Native Pod</h2>
+            <p class="fw-strap">The smallest team that can own an outcome, with AI agents as the capacity multiplier.</p>
+            <p>The traditional delivery model answers "how many people do you need?" with a bench. The AI-native model answers "what outcome do you need?" with the smallest senior-led team that can own it, and uses AI agents to expand execution capacity horizontally rather than adding headcount. The pod is the unit of delivery, the unit of pricing and the unit of accountability.</p>
+            <div class="fw-grid"><div class="fw-sec"><h3>The shape</h3><p>A senior technologist who owns the outcome and the architecture. A junior delivery lead who runs the day-to-day, learns on the job and grows into the senior role. Plus AI agents, directed by both, doing the execution work that used to need three or four more people: documentation, testing, analysis, first-draft code, reporting.</p></div><div class="fw-sec"><h3>Why senior-led</h3><p>AI makes execution cheap and judgement expensive. The constraint in complex programmes is no longer tooling, it is credible technical leadership at the front. Put the senior person where the judgement is needed and let the agents do the volume.</p></div><div class="fw-sec"><h3>Why the junior still matters</h3><p>Because the senior bench of the future has to come from somewhere. The junior role is redesigned around orchestration and judgement rather than manual execution, which is how early-career capability gets built when the entry-level tasks have been automated.</p></div><div class="fw-sec"><h3>How it is priced</h3><p>On the outcome the pod owns, not the days it works. The efficiency AI creates is passed back to the client as value rather than hidden in a rate card. That is what makes the model defensible against a cheaper bench.</p></div></div>
+            <div class="fw-use"><h3>How to use it</h3><ul>
+<li>Start with one pod on one outcome the client can measure. Do not try to convert a whole programme at once.</li>
+<li>Use spec-driven development as the working method: the specification comes first, the agents build to it, the humans review against it.</li>
+<li>Expect the client to ask where the rest of the team is. The answer is the outcome, delivered.</li>
+</ul></div>
+            <div class="fw-actions">
+                <a class="fw-dl" href="pdfs/ai-native-pod.pdf" download>Download as PDF</a>
+                <a class="fw-dl alt" href="https://www.linkedin.com/sharing/share-offsite/?url=https://jamestuttiett101.github.io/Project1/frameworks.html%23ai-native-pod" target="_blank" rel="noopener noreferrer">Share on LinkedIn</a>
+            </div>
+        </div>
+    </article>
+    <article class="fw-card" id="hackathon-front-door">
+        <div class="fw-accent" style="background: linear-gradient(to right, #f8ca80, #7a5cff);"></div>
+        <div class="fw-body">
+            <span class="blog-tag" style="background: #f8ca8022; color: #f8ca80;">Go to Market</span>
+            <h2>The Hackathon as the Front Door</h2>
+            <p class="fw-strap">One day, the client&#x27;s engineers, their data, their problem. Working software and a sponsor by the end of it.</p>
+            <p>The most effective AI sales motion I have found is not a pitch. It is a day in a room with the client's own engineers, their real data and a problem they actually have, building something that works before everyone goes home. A slide deck produces a follow-up meeting. A hackathon produces working software and a sponsor who has seen it run.</p>
+            <div class="fw-grid"><div class="fw-sec"><h3>Before: the three things that decide it</h3><p>A named sponsor with a budget, who will be in the room at the end. A real problem chosen by the client, not by you, that is small enough to make progress on in a day and painful enough that someone cares. And data access and security sign-off sorted in advance, because the day is lost if the first four hours are spent on permissions.</p></div><div class="fw-sec"><h3>During: small teams, spec first, ship</h3><p>Mixed teams of client engineers and your consultants, three or four people each. Every team writes a one-page specification before touching code: what it does, what good looks like, what is out of scope. Agent-assisted tooling does the heavy lifting. The target is something that runs on the client's data by the afternoon, not a prototype on synthetic data.</p></div><div class="fw-sec"><h3>After: the sponsor conversation</h3><p>The day ends with each team demonstrating to the sponsor. The conversation that follows is not "would you like a proposal?" but "which of these do you want in production, and what would it take?". Scope the engagement from the thing that worked.</p></div><div class="fw-sec"><h3>What it is not</h3><p>Not a training day, not a showcase of your tools, not a hackathon on your problem. If the client's people are watching rather than building, it is a demo, and demos do not create sponsors.</p></div></div>
+            <div class="fw-use"><h3>How to use it</h3><ul>
+<li>Run it inside your own business first. Every rough edge is found by colleagues rather than clients, and you get an internal proof point.</li>
+<li>Keep the format identical across clients. Repeatability is what makes it a motion rather than an event.</li>
+<li>Capture the specification and the working output as the engagement's starting point. The hackathon is day one of delivery, not a pre-sales cost.</li>
+</ul></div>
+            <div class="fw-actions">
+                <a class="fw-dl" href="pdfs/hackathon-front-door.pdf" download>Download as PDF</a>
+                <a class="fw-dl alt" href="https://www.linkedin.com/sharing/share-offsite/?url=https://jamestuttiett101.github.io/Project1/frameworks.html%23hackathon-front-door" target="_blank" rel="noopener noreferrer">Share on LinkedIn</a>
+            </div>
+        </div>
+    </article>
+</div>
+
+<footer>
+    <p>&copy; 2026 James Tuttiett. Built with AI.</p>
+</footer>
+
+<script>
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const rootElement = document.documentElement;
+    const savedTheme = localStorage.getItem('james-portfolio-theme');
+
+    if (savedTheme === 'light') {
+        rootElement.removeAttribute('data-theme');
+        themeToggleBtn.innerText = 'Dark Mode';
+    } else {
+        rootElement.setAttribute('data-theme', 'dark');
+        themeToggleBtn.innerText = 'Light Mode';
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = rootElement.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+            rootElement.removeAttribute('data-theme');
+            themeToggleBtn.innerText = 'Dark Mode';
+            localStorage.setItem('james-portfolio-theme', 'light');
+        } else {
+            rootElement.setAttribute('data-theme', 'dark');
+            themeToggleBtn.innerText = 'Light Mode';
+            localStorage.setItem('james-portfolio-theme', 'dark');
+        }
+    });
+
+</script>
+<script>
+    (function(){
+        var t = document.getElementById('navToggle'), l = document.querySelector('.nav-links');
+        if (!t || !l) return;
+        t.addEventListener('click', function(){ var open = l.classList.toggle('open'); t.setAttribute('aria-expanded', open ? 'true' : 'false'); });
+        l.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ l.classList.remove('open'); t.setAttribute('aria-expanded','false'); }); });
+    })();
+</script>
+</body>
+</html>
