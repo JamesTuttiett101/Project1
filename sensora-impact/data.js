@@ -30,8 +30,6 @@ window.SENSORA_DATA = {
     { value: "300", label: "Guests on the night",
       source: { label: "SENSORA 2027 partner materials", date: "2026-11-05" } },
     { value: "6 courses", label: "One course for each of the senses",
-      source: { label: "The Brain Tumour Charity story page", date: "2026-04-15" } },
-    { value: "BICEP", label: "Music for the night",
       source: { label: "The Brain Tumour Charity story page", date: "2026-04-15" } }
   ],
 
@@ -85,7 +83,12 @@ window.SENSORA_DATA = {
   chefsSource2027: { label: "SENSORA 2027 partner materials", date: "2026-11-05" },
   chefsSource2026: { label: "The Brain Tumour Charity story page", date: "2026-04-15" },
 
-  music: { y2026: "BICEP", y2027: "Fatboy Slim" },
+  // Music photos. "credit" is shown under the photo: it is required for any
+  // Creative Commons image (photographer, licence, link).
+  music: {
+    y2026: { name: "BICEP", image: "assets/img/music-bicep.webp", alt: "Black and white photo of BICEP", credit: "" },
+    y2027: { name: "Fatboy Slim", image: "assets/img/music-fatboy-slim.webp", alt: "Black and white photo of Fatboy Slim DJing", credit: "" }
+  },
 
   nextEvent: {
     date: "Tuesday 8 June 2027",

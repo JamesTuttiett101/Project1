@@ -18,24 +18,10 @@
     var m = ["January","February","March","April","May","June","July","August","September","October","November","December"][+p[1] - 1];
     return (+p[2]) + " " + m + " " + p[0];
   }
-  // Evidence drawer: source label and date for a figure
-  function sourceDrawer(src) {
-    if (!src) return document.createTextNode("");
-    var d = el("details", { "class": "src" });
-    d.appendChild(el("summary", null, "Source"));
-    var dl = el("dl");
-    dl.appendChild(el("dt", null, "Source")); dl.appendChild(el("dd", null, src.label));
-    dl.appendChild(el("dt", null, "Dated")); dl.appendChild(el("dd", null, fmtDate(src.date)));
-    dl.appendChild(el("dt", null, "Last updated")); dl.appendChild(el("dd", null, fmtDate(D.meta.lastUpdated)));
-    d.appendChild(dl);
-    return d;
-  }
-
   /* Banner, money, footer */
   $("approval-text").textContent = D.meta.approvalBanner;
   $("money").textContent = D.moneyRaised.display;
   $("money-cap").textContent = D.moneyRaised.caption;
-  $("money-src").appendChild(sourceDrawer(D.moneyRaised.source));
   var up = $("updated"); up.textContent = fmtDate(D.meta.lastUpdated); up.setAttribute("datetime", D.meta.lastUpdated);
 
   /* Hide any section (and its menu link) whose list in data.js is empty */
@@ -51,7 +37,6 @@
     var li = el("li");
     li.appendChild(el("b", null, a.value));
     li.appendChild(el("span", { "class": "lbl" }, a.label));
-    li.appendChild(sourceDrawer(a.source));
     facts.appendChild(li);
   });
   $("film").href = D.film.url;
@@ -71,7 +56,6 @@
     $("beats").appendChild(li);
   });
   $("article").href = S.articleUrl;
-  $("beats").parentNode.appendChild(sourceDrawer(S.source));
   if (S.video && S.video.src) {
     var v = $("video");
     v.setAttribute("poster", S.video.poster);
@@ -87,7 +71,13 @@
   var N = D.nextEvent;
   $("next-date").textContent = N.date;
   $("next-venue").textContent = N.venue;
-  $("next-music").textContent = "With " + N.music;
+  ["y2026", "y2027"].forEach(function (y) {
+    var m = D.music[y], k = y === "y2026" ? "26" : "27";
+    var img = $("music" + k + "-img");
+    if (m.image) { img.src = m.image; img.alt = m.alt || m.name; } else { img.closest(".act-img").hidden = true; }
+    $("music" + k + "-name").textContent = m.name + (y === "y2027" ? " (confirmed)" : "");
+    if (m.credit) $("music" + k + "-credit").textContent = m.credit; else $("music" + k + "-credit").hidden = true;
+  });
   $("next-link").href = N.previewUrl;
 
   /* Support */
@@ -279,11 +269,6 @@
       if (c.recognition) li.appendChild(el("em", null, c.recognition));
       stars.appendChild(li);
     });
-    var mus = $("music"); mus.innerHTML = "";
-    mus.appendChild(document.createTextNode("Music: "));
-    mus.appendChild(el("span", null, year === "2026" ? D.music.y2026 : D.music.y2027 + " (confirmed)"));
-    var srcSlot = $("chefs-src"); srcSlot.innerHTML = "";
-    srcSlot.appendChild(sourceDrawer(year === "2026" ? D.chefsSource2026 : D.chefsSource2027));
   }
   tabs.forEach(function (t, i) {
     t.addEventListener("click", function () { showYear(t.getAttribute("data-year")); });
