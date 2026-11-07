@@ -105,13 +105,5 @@ window.SENSORA_DATA = {
   charitySupport: {
     phone: "0808 800 0004",
     url: "https://www.thebraintumourcharity.org"
-  },
-
-  howBuilt: [
-    "Brief prepared with AI assistance from approved SENSORA facts.",
-    "Page built with Claude, working in this site's code on a separate branch, on a plain HTML, CSS and JavaScript stack.",
-    "Every figure lives in one editable file, so updates need no coding.",
-    "Facts, privacy and wording reviewed by people, with Charity approval before public sharing.",
-    "Hosted as an unlisted page on the existing GitHub Pages site, with no paid services."
-  ]
+  }
 };

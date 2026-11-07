@@ -88,8 +88,6 @@
   ph.textContent = "Call " + D.charitySupport.phone;
   $("support-web").href = D.charitySupport.url;
 
-  /* How we built this */
-  D.howBuilt.forEach(function (t) { $("built-list").appendChild(el("li", null, t)); });
 
   /* Opportunities explorer (only runs when there are approved items) */
   function cardList(listEl, items, tagText) {
