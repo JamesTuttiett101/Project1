@@ -31,6 +31,10 @@ html.motion .v2-role.lit::before { background: var(--accent-neon-pink); box-shad
 /* Phone typography: more breathing room between lines and paragraphs */
 @media (max-width: 780px) {
     h1 { line-height: 1.04 !important; letter-spacing: -0.025em !important; }
+    /* Headline words must fit the screen in the real (very wide) Syne font */
+    header.v2-hero { grid-template-columns: minmax(0, 1fr) !important; }
+    header.v2-hero h1 { font-size: min(2.9rem, 10vw) !important; }
+    .page-hero h1 { font-size: min(3rem, 9vw) !important; }
     .section-title { line-height: 1.1 !important; letter-spacing: -0.02em !important; }
     h2, h3, h4 { line-height: 1.25; }
     p, li { line-height: 1.65; }
