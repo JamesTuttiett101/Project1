@@ -3,6 +3,8 @@
   "use strict";
   var D = window.SENSORA_DATA;
   if (!D) return;
+  // Opened straight from a computer (not the live site): browsers block the logo mask, so show the plain logo
+  if (location.protocol === "file:") document.documentElement.classList.add("local");
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var $ = function (id) { return document.getElementById(id); };
 
@@ -283,12 +285,39 @@
   showYear("2027");
   requestAnimationFrame(frame);
 
+  /* Header: turns solid once you scroll, and the opening logo shrinks and docks into it */
+  var bar = $("topbar"), big = $("hero-logo"), slot = document.querySelector(".mini .gradlogo");
+  var T0 = 0, L0 = 0, W0 = 1, Tt = 0, Lt = 0, Wt = 1, S = 1, ticking = false;
+  function measure() {
+    big.style.transform = ""; big.style.visibility = "";
+    var r = big.getBoundingClientRect(), t = slot.getBoundingClientRect();
+    T0 = r.top + window.scrollY; L0 = r.left; W0 = r.width || 1;
+    Tt = t.top; Lt = t.left; Wt = t.width || 1;
+    S = Math.max(1, T0 - Tt);
+  }
+  function onScroll() {
+    ticking = false;
+    var y = window.scrollY, p = Math.min(1, Math.max(0, y / S));
+    bar.classList.toggle("solid", y > 8);
+    bar.classList.toggle("docked", p >= 1);
+    if (reduce) return;
+    if (p >= 1) { big.style.visibility = "hidden"; return; }
+    big.style.visibility = "";
+    var k = 1 + (Wt / W0 - 1) * p;
+    big.style.transform = p > 0 ? "translate3d(" + ((Lt - L0) * p).toFixed(2) + "px,0,0) scale(" + k.toFixed(4) + ")" : "";
+  }
+  function queue() { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }
+  window.addEventListener("scroll", queue, { passive: true });
+  window.addEventListener("resize", function () { measure(); onScroll(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { measure(); onScroll(); });
+  measure(); onScroll();
+
   /* Gentle reveal on scroll */
   if (!reduce && "IntersectionObserver" in window) {
     document.documentElement.classList.add("js");
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.06 });
-    document.querySelectorAll("main section .wrap > *, .hero .wrap > *").forEach(function (n) { n.classList.add("rv"); io.observe(n); });
+    document.querySelectorAll("main section .wrap > *").forEach(function (n) { n.classList.add("rv"); io.observe(n); });
   }
 })();
