@@ -87,7 +87,7 @@ window.SENSORA_DATA = {
   // Creative Commons image (photographer, licence, link).
   music: {
     y2026: { name: "BICEP", image: "assets/img/music-bicep.webp", alt: "Black and white photo of BICEP", credit: "" },
-    y2027: { name: "Fatboy Slim", image: "assets/img/music-fatboy-slim.webp", alt: "Black and white photo of Fatboy Slim DJing", credit: "" }
+    y2027: { name: "Fatboy Slim", image: "assets/img/music-fatboy-slim-brighton.webp", alt: "Fatboy Slim on stage at Brighton beach, arms raised to the crowd", credit: "" }
   },
 
   nextEvent: {
