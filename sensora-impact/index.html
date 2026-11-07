@@ -7,25 +7,40 @@
 <meta name="description" content="What SENSORA has raised for The Brain Tumour Charity, the story behind it, and the chefs who cook for it.">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#0A0A0F">
+<link rel="preload" href="assets/fonts/unbounded.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/img/sensora-wordmark.svg" as="image">
+<link rel="icon" href="assets/img/sensora-icon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<div class="approval" role="note"><span class="dot" aria-hidden="true"></span><span id="approval-text">Needs Charity approval before use</span></div>
-
-<header class="hero" id="top">
-  <div class="hero-bg" aria-hidden="true"></div>
-  <div class="wrap">
-    <img class="logo" src="assets/img/sensora-logo.webp" alt="SENSORA" width="1000" height="163">
-    <p class="tag">Impact</p>
-    <div class="stripe" aria-hidden="true"></div>
-    <p class="money" id="money"></p>
-    <p class="money-cap" id="money-cap"></p>
-  </div>
+<header class="topbar" id="topbar">
+  <a class="mini" href="#top" aria-label="SENSORA, back to top"><span class="gradlogo" aria-hidden="true"></span></a>
+  <nav class="hnav" aria-label="On this page">
+    <a href="#story">Our story</a>
+    <a href="#achieved">2026</a>
+    <a href="#chefs">Chefs</a>
+    <a href="#next">2027</a>
+    <a href="#help" data-needs="fundraisingOpportunities">Ways to help</a>
+    <a href="#support">Support</a>
+  </nav>
+  <p class="approval" role="note"><span class="dot" aria-hidden="true"></span><span id="approval-text">Needs Charity approval before use</span></p>
 </header>
 
-<nav class="jump" aria-label="On this page">
+<div class="hero" id="top">
+  <div class="hero-glow" aria-hidden="true"><i class="g1"></i><i class="g2"></i><i class="g3"></i><span class="hero-symbol"></span></div>
+  <div class="wrap hero-in">
+    <h1 class="logo-wrap"><span class="gradlogo big" id="hero-logo" role="img" aria-label="SENSORA"></span></h1>
+    <p class="tag">Impact</p>
+    <p class="money" id="money"></p>
+    <p class="money-cap" id="money-cap"></p>
+    <a class="cue" href="#story"><span class="mouse" aria-hidden="true"></span>Scroll for our story</a>
+  </div>
+</div>
+
+<nav class="jump" aria-label="Sections">
   <div class="wrap">
     <a href="#story">Our story</a>
     <a href="#achieved">2026</a>
@@ -45,7 +60,7 @@
     <h2 id="h-story">Why SENSORA exists</h2>
     <div class="story-grid">
       <div>
-        <blockquote class="quote" id="quote"></blockquote>
+        <blockquote class="quote edge" id="quote"></blockquote>
         <ol class="beats" id="beats"></ol>
         <p class="more"><a id="article" target="_blank" rel="noopener noreferrer">Read the full story on The Brain Tumour Charity's site</a></p>
       </div>
@@ -62,12 +77,13 @@
     <p class="kicker">Achieved</p>
     <h2 id="h-achieved">The first SENSORA night</h2>
     <ul class="facts" id="facts"></ul>
+    <p class="swipe-hint" aria-hidden="true">Swipe for more</p>
     <div class="media-grid">
-    <figure class="act act-26">
+    <figure class="act act-26 edge26">
       <div class="act-img square"><img id="music26-img" alt="" width="428" height="428" loading="lazy"></div>
       <figcaption><span class="act-k">Music</span><span class="act-name" id="music26-name"></span><span class="act-credit" id="music26-credit"></span></figcaption>
     </figure>
-    <a class="film" id="film" target="_blank" rel="noopener noreferrer">
+    <a class="film edge26" id="film" target="_blank" rel="noopener noreferrer">
       <span class="film-img"><img id="film-img" alt="SENSORA 2026, the room at HERE at Outernet" width="640" height="360" loading="lazy"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 4v16l14-8z"/></svg></span></span>
       <span class="film-label"><span class="pill">Watch the 2026 film</span><small>Opens in a new tab</small></span>
     </a>
@@ -113,7 +129,7 @@
       <p class="where" id="next-venue"></p>
       <a class="pill ghost" id="next-link">See the 2027 partner preview</a>
     </div>
-    <figure class="act act-27">
+    <figure class="act act-27 edge">
       <div class="act-img tall"><img id="music27-img" alt="" width="1000" height="750" loading="lazy"></div>
       <figcaption><span class="act-k">Music</span><span class="act-name" id="music27-name"></span><span class="act-credit" id="music27-credit"></span></figcaption>
     </figure>
@@ -161,7 +177,7 @@
 
 <footer>
   <div class="wrap">
-    <img src="assets/img/sensora-wordmark.webp" alt="SENSORA" width="440" height="72" loading="lazy">
+    <span class="gradlogo" role="img" aria-label="SENSORA"></span>
     <p>Last updated <time id="updated"></time></p>
   </div>
 </footer>
