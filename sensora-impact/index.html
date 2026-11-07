@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SENSORA | Impact</title>
+<meta name="description" content="What SENSORA has raised for The Brain Tumour Charity, the story behind it, and the chefs who cook for it.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0A0A0F">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="approval" role="note"><span class="dot" aria-hidden="true"></span><span id="approval-text">Needs Charity approval before use</span></div>
+
+<header class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <img class="logo" src="assets/img/sensora-logo.webp" alt="SENSORA" width="1000" height="163">
+    <p class="tag">Impact</p>
+    <div class="stripe" aria-hidden="true"></div>
+    <p class="money" id="money"></p>
+    <p class="money-cap" id="money-cap"></p>
+    <div class="src-slot" id="money-src"></div>
+  </div>
+</header>
+
+<nav class="jump" aria-label="On this page">
+  <div class="wrap">
+    <a href="#achieved">2026</a>
+    <a href="#story">Our story</a>
+    <a href="#chefs">Chefs</a>
+    <a href="#next">2027</a>
+    <a href="#help" data-needs="fundraisingOpportunities">Ways to help</a>
+    <a href="#support">Support</a>
+  </div>
+</nav>
+
+<main id="main">
+<noscript><p class="wrap noscript">This page needs JavaScript switched on to show its figures.</p></noscript>
+
+<section id="achieved" class="y26" aria-labelledby="h-achieved">
+  <div class="wrap">
+    <p class="kicker">Achieved</p>
+    <h2 id="h-achieved">The first SENSORA night</h2>
+    <ul class="facts" id="facts"></ul>
+    <a class="film" id="film" target="_blank" rel="noopener noreferrer">
+      <span class="film-img"><img id="film-img" alt="SENSORA 2026, the room at HERE at Outernet" width="640" height="360" loading="lazy"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 4v16l14-8z"/></svg></span></span>
+      <span class="film-label"><span class="pill">Watch the 2026 film</span><small>Opens in a new tab</small></span>
+    </a>
+  </div>
+</section>
+
+<section id="story" aria-labelledby="h-story">
+  <div class="wrap">
+    <p class="kicker">Mark and James</p>
+    <h2 id="h-story">Why SENSORA exists</h2>
+    <div class="story-grid">
+      <div>
+        <blockquote class="quote" id="quote"></blockquote>
+        <ol class="beats" id="beats"></ol>
+        <p class="more"><a id="article" target="_blank" rel="noopener noreferrer">Read the full story on The Brain Tumour Charity's site</a></p>
+      </div>
+      <figure class="video" id="video-wrap">
+        <video id="video" controls preload="none" playsinline></video>
+        <figcaption id="video-cap"></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="chefs" aria-labelledby="h-chefs">
+  <div class="wrap">
+    <p class="kicker">The chefs</p>
+    <h2 id="h-chefs">Who cooks for SENSORA</h2>
+    <div class="tabs" role="tablist" aria-label="Choose a year">
+      <button type="button" role="tab" id="tab-2027" aria-controls="panel-chefs" aria-selected="true" data-year="2027">2027 confirmed</button>
+      <button type="button" role="tab" id="tab-2026" aria-controls="panel-chefs" aria-selected="false" data-year="2026" tabindex="-1">2026 alumni</button>
+    </div>
+  </div>
+  <div id="panel-chefs" role="tabpanel" aria-labelledby="tab-2027">
+    <div class="wrap"><figure class="lineup" id="lineup" hidden><img src="assets/img/2026-chefs-on-stage.webp" alt="The 2026 chefs on stage at HERE at Outernet" width="640" height="360" loading="lazy"></figure></div>
+    <div class="car" id="car" role="region" aria-roledescription="carousel" aria-label="Chef portraits">
+      <div class="car-view" id="car-view" tabindex="0" aria-label="Chef portraits. Use the left and right arrow keys to move.">
+        <ul class="car-track" id="car-track"></ul>
+      </div>
+      <div class="wrap car-ctrl">
+        <button type="button" class="round" id="car-prev" aria-label="Previous chef"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <span class="count" id="car-count" aria-live="polite"></span>
+        <button type="button" class="round" id="car-next" aria-label="Next chef"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+        <button type="button" class="round pause" id="car-pause" aria-label="Pause the moving portraits"><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg><svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5v14l12-7z"/></svg></button>
+      </div>
+    </div>
+    <div class="wrap">
+      <h3 class="list-h" id="list-h">2027 line-up</h3>
+      <ul class="stars" id="stars"></ul>
+      <p class="music" id="music"></p>
+      <div class="src-slot" id="chefs-src"></div>
+    </div>
+  </div>
+</section>
+
+<section id="next" class="y27" aria-labelledby="h-next">
+  <div class="wrap">
+    <p class="kicker">Planned</p>
+    <h2 id="h-next">SENSORA 2027</h2>
+    <p class="when" id="next-date"></p>
+    <p class="where" id="next-venue"></p>
+    <p class="with" id="next-music"></p>
+    <a class="pill ghost" id="next-link">See the 2027 partner preview</a>
+  </div>
+</section>
+
+<section id="help" data-needs="fundraisingOpportunities" aria-labelledby="h-help" hidden>
+  <div class="wrap">
+    <p class="kicker">Opportunities</p>
+    <h2 id="h-help">Ways to help</h2>
+    <div class="filters" id="filters" role="group" aria-label="Filter by type"></div>
+    <ul class="cards" id="opps"></ul>
+  </div>
+</section>
+
+<section id="research" data-needs="researchOpportunities" aria-labelledby="h-research" hidden>
+  <div class="wrap">
+    <p class="kicker">Opportunities</p>
+    <h2 id="h-research">Research support</h2>
+    <ul class="cards" id="research-list"></ul>
+  </div>
+</section>
+
+<section id="support" aria-labelledby="h-support">
+  <div class="wrap">
+    <div class="support">
+      <img src="assets/img/btc-logo.webp" alt="The Brain Tumour Charity" width="401" height="270" loading="lazy">
+      <div>
+        <h2 id="h-support">Support from The Brain Tumour Charity</h2>
+        <p>Information and Support Line, and information on the Charity's website. This page does not give medical advice.</p>
+        <p class="support-links"><a class="pill" id="support-phone"></a><a class="pill ghost" id="support-web" target="_blank" rel="noopener noreferrer">Visit the Charity's website</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="built" class="built" aria-labelledby="h-built">
+  <div class="wrap">
+    <p class="kicker">Behind the page</p>
+    <h2 id="h-built">How we built this</h2>
+    <ol class="built-list" id="built-list"></ol>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="assets/img/sensora-wordmark.webp" alt="SENSORA" width="440" height="72" loading="lazy">
+    <p>Last updated <time id="updated"></time></p>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
