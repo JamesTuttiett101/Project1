@@ -56,7 +56,7 @@ window.SENSORA_DATA = {
     video: {
       src: "assets/video/mark-and-james.mp4",
       poster: "assets/video/mark-and-james-poster.webp",
-      captions: "",  // add "assets/video/mark-and-james.vtt" once the caption file exists
+      captions: "assets/video/mark-and-james.vtt",
       title: "Mark and James on why SENSORA exists"
     }
   },

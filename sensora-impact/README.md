@@ -23,7 +23,7 @@ You never need to edit `index.html`, `styles.css` or `app.js` to change content.
 
 ## How to preview on your computer
 
-Double-click `index.html`. It opens in your browser and works without the internet or any setup.
+Double-click `index.html`. It opens in your browser and works without the internet or any setup. One exception: Chrome does not show the video captions on a page opened this way. They work on the live site.
 
 ## When the Charity signs off
 
