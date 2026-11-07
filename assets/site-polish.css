@@ -4,7 +4,7 @@
 /* The name logo and gradient headline words flow slowly through the brand colours */
 @keyframes jt-flow { to { background-position: 300% 50%; } }
 .logo, .gradient-text {
-    background-image: linear-gradient(90deg, var(--accent-azure), var(--accent-purple), var(--accent-neon-pink), var(--accent-sunset), var(--accent-neon-pink), var(--accent-purple), var(--accent-azure)) !important;
+    background-image: linear-gradient(90deg, var(--accent-azure, #33e6ff), var(--accent-purple, #7a5cff), var(--accent-neon-pink, #ff4fd8), var(--accent-sunset, #ff8a3d), var(--accent-neon-pink, #ff4fd8), var(--accent-purple, #7a5cff), var(--accent-azure, #33e6ff)) !important;
     background-size: 300% 100% !important;
     animation: jt-flow 12s linear infinite;
 }
@@ -31,6 +31,10 @@ html.motion .v2-role.lit::before { background: var(--accent-neon-pink); box-shad
 /* Phone typography: more breathing room between lines and paragraphs */
 @media (max-width: 780px) {
     h1 { line-height: 1.04 !important; letter-spacing: -0.025em !important; }
+    /* Headline words must fit the screen in the real (very wide) Syne font */
+    header.v2-hero { grid-template-columns: minmax(0, 1fr) !important; }
+    header.v2-hero h1 { font-size: min(2.9rem, 10vw) !important; }
+    .page-hero h1 { font-size: min(3rem, 9vw) !important; }
     .section-title { line-height: 1.1 !important; letter-spacing: -0.02em !important; }
     h2, h3, h4 { line-height: 1.25; }
     p, li { line-height: 1.65; }
