@@ -79,7 +79,7 @@ window.SENSORA_DATA = {
     { name: "Cal Byerley", role: "", image: "assets/chefs/chef-byerley.webp" },
     { name: "Holly Middleton-Joseph", role: "", image: "assets/chefs/chef-middleton-joseph.webp" },
     { name: "Mark Donald", role: "", image: "assets/chefs/chef-donald.webp" },
-    { name: "Will Murray", role: "Fallow, London", image: "" },
+    { name: "Will Murray", role: "Fallow, London", image: "assets/chefs/chef-murray.webp" },
     { name: "Tom Brown", role: "", image: "assets/chefs/chef-brown.webp" }
   ],
   chefsSource2027: { label: "SENSORA 2027 partner materials", date: "2026-11-05" },
