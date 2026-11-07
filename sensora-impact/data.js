@@ -27,7 +27,7 @@ window.SENSORA_DATA = {
   achievements: [
     { value: "5 May 2026", label: "First SENSORA night, HERE at Outernet, London",
       source: { label: "The Brain Tumour Charity story page", date: "2026-04-15" } },
-    { value: "About 300", label: "Guests on the night",
+    { value: "300", label: "Guests on the night",
       source: { label: "SENSORA 2027 partner materials", date: "2026-11-05" } },
     { value: "6 courses", label: "One course for each of the senses",
       source: { label: "The Brain Tumour Charity story page", date: "2026-04-15" } },
