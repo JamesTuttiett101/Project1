@@ -48,7 +48,7 @@
         }
         requestAnimationFrame(tick);
     }
-    var counters = document.querySelectorAll(".v2-proof strong, .v2-stats strong");
+    var counters = document.querySelectorAll(".v2-proof strong, .v2-stats strong, .count");
     var countIO = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) { if (e.isIntersecting) { countUp(e.target); countIO.unobserve(e.target); } });
     }, { threshold: 0.6 });

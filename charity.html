@@ -643,6 +643,26 @@
         }
     </style>
     <link rel="stylesheet" href="assets/site-polish.css">
+    <style id="sensora-motion">
+        /* SENSORA brand motion, matching the SENSORA impact page */
+        :root { --sx-summer: linear-gradient(90deg, #FFD23F, #FF7A1A, #FF3D7F, #FF2BD6, #FF6FA8, #FF7A1A, #FFD23F); }
+        @keyframes sx-flow { to { background-position: 300% 50%; } }
+        @keyframes sx-wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+        @keyframes sx-spin { to { transform: rotate(360deg); } }
+        @keyframes sx-drift { to { transform: translate3d(-8%, 6%, 0) scale(1.18); } }
+        .hero-copy > div { position: relative; z-index: 1; }
+        .sx-wordmark { display: block; width: min(100%, 400px); aspect-ratio: 1496 / 236; margin-bottom: 1.4rem; -webkit-mask: url(sensora-impact/assets/img/sensora-wordmark.svg) left center / contain no-repeat; mask: url(sensora-impact/assets/img/sensora-wordmark.svg) left center / contain no-repeat; background: var(--sx-summer); background-size: 300% 100%; animation: sx-flow 9s linear infinite, sx-wipe 1.3s cubic-bezier(.65, 0, .2, 1) .15s both; filter: drop-shadow(0 0 22px rgba(255, 61, 127, .3)); }
+        .sx-symbol { position: absolute; z-index: 0; right: -22%; top: -6%; width: 78%; max-width: 480px; aspect-ratio: 239 / 248; opacity: .12; pointer-events: none; -webkit-mask: url(sensora-impact/assets/img/sensora-symbol.svg) center / contain no-repeat; mask: url(sensora-impact/assets/img/sensora-symbol.svg) center / contain no-repeat; background: conic-gradient(from 0deg, #FFD23F, #FF7A1A, #FF3D7F, #FF2BD6, #FFD23F); animation: sx-spin 90s linear infinite; }
+        .sx-glow { position: absolute; z-index: 0; border-radius: 50%; pointer-events: none; animation: sx-drift 16s ease-in-out infinite alternate; }
+        .sx-g1 { width: 70%; aspect-ratio: 1; left: -25%; bottom: -25%; background: radial-gradient(closest-side, rgba(255, 43, 214, .22), transparent); }
+        .sx-g2 { width: 60%; aspect-ratio: 1; right: -15%; top: 30%; background: radial-gradient(closest-side, rgba(255, 122, 26, .2), transparent); animation-delay: -7s; }
+        .hero-copy .gradient-text, .stat-value { background-image: var(--sx-summer) !important; background-size: 300% 100% !important; animation: sx-flow 10s linear infinite; }
+        .section-card::after, .cta-card::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: var(--sx-summer); background-size: 300% 100%; animation: sx-flow 12s linear infinite; pointer-events: none; }
+        @media (max-width: 780px) { .sx-symbol { right: -35%; top: -4%; width: 95%; } .sx-wordmark { width: min(100%, 300px); } }
+        @media (prefers-reduced-motion: reduce) {
+            .sx-wordmark, .sx-symbol, .sx-glow, .hero-copy .gradient-text, .stat-value, .section-card::after, .cta-card::after { animation: none !important; }
+        }
+    </style>
 </head>
 <body>
     <nav>
@@ -664,7 +684,11 @@
         <section class="hero-shell">
             <div class="hero">
                 <article class="hero-copy">
+                    <span class="sx-symbol" aria-hidden="true"></span>
+                    <span class="sx-glow sx-g1" aria-hidden="true"></span>
+                    <span class="sx-glow sx-g2" aria-hidden="true"></span>
                     <div>
+                        <span class="sx-wordmark" role="img" aria-label="SENSORA"></span>
                         <div class="event-label">In aid of The Brain Tumour Charity | Sensora 2.0 coming soon</div>
                         <h1>Sensora <span class="gradient-text">2.0</span> is coming.</h1>
                         <p class="hero-tagline">The first Sensora took over HERE at Outernet in May 2026: six Michelin courses, BICEP live, and an evening that did not feel like a charity dinner. The second one is in the works. Details follow soon. Register your interest and you hear first.</p>
@@ -765,7 +789,7 @@
                 </div>
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <span class="stat-value">GBP200k+</span>
+                        <span class="stat-value count">GBP200k+</span>
                         <span class="stat-label">Raised by James for The Brain Tumour Charity to date</span>
                     </div>
                     <div class="stat-card">
