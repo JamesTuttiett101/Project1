@@ -4,7 +4,7 @@
 /* The name logo and gradient headline words flow slowly through the brand colours */
 @keyframes jt-flow { to { background-position: 300% 50%; } }
 .logo, .gradient-text {
-    background-image: linear-gradient(90deg, var(--accent-azure), var(--accent-purple), var(--accent-neon-pink), var(--accent-sunset), var(--accent-neon-pink), var(--accent-purple), var(--accent-azure)) !important;
+    background-image: linear-gradient(90deg, var(--accent-azure, #33e6ff), var(--accent-purple, #7a5cff), var(--accent-neon-pink, #ff4fd8), var(--accent-sunset, #ff8a3d), var(--accent-neon-pink, #ff4fd8), var(--accent-purple, #7a5cff), var(--accent-azure, #33e6ff)) !important;
     background-size: 300% 100% !important;
     animation: jt-flow 12s linear infinite;
 }
