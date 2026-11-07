@@ -629,6 +629,16 @@
         .nav-links a.nav-cta { padding: 0.55rem 1rem; border-radius: 999px; background: linear-gradient(45deg, var(--accent-azure), var(--accent-purple), var(--accent-neon-pink)); color: #08111f; }
         .nav-links a.nav-cta:hover { color: #08111f; filter: saturate(1.15); }
 
+        /* Opening motion: slow drifting light and flowing gradient lines */
+        header.v2-hero > .v2-flow { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: .5; }
+        .v2-flow path { fill: none; stroke: url(#jtFlow); stroke-width: 1.6; stroke-linecap: round; stroke-dasharray: 260 1400; animation: jt-dash 9s linear infinite; }
+        .v2-flow path:nth-child(3) { animation-duration: 11s; animation-delay: -3s; opacity: .8; }
+        .v2-flow path:nth-child(4) { animation-duration: 13s; animation-delay: -7s; opacity: .6; }
+        @keyframes jt-dash { from { stroke-dashoffset: 1660; } to { stroke-dashoffset: 0; } }
+        header.v2-hero::before { animation: jt-drift 14s ease-in-out infinite alternate; }
+        header.v2-hero::after { animation: jt-drift 18s ease-in-out infinite alternate-reverse; }
+        @keyframes jt-drift { to { transform: translate3d(-40px, 30px, 0) scale(1.25); } }
+        @media (prefers-reduced-motion: reduce) { .v2-flow path, header.v2-hero::before, header.v2-hero::after { animation: none; } .v2-flow path { stroke-dasharray: none; opacity: .25; } }
         header.v2-hero { min-height: min(100vh, 920px); max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.95fr); gap: 3rem; align-items: center; padding: 8rem 5% 4rem; }
         .v2-hero h1 { margin-bottom: 1.25rem; }
         header .v2-intro { font-size: 1.15rem; line-height: 1.6; max-width: 56ch; margin-bottom: 1.75rem; }
@@ -751,6 +761,7 @@
             .v2-post, .v2-link-btn { transition: none; }
         }
     </style>
+    <link rel="stylesheet" href="assets/site-polish.css">
 </head>
 <body>
 
@@ -774,6 +785,16 @@
 
     <!-- 1. OPENING -->
     <header id="home" class="v2-hero">
+        <svg class="v2-flow" aria-hidden="true" focusable="false" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice">
+            <defs>
+                <linearGradient id="jtFlow" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0" stop-color="#33e6ff"/><stop offset=".35" stop-color="#7a5cff"/><stop offset=".7" stop-color="#ff4fd8"/><stop offset="1" stop-color="#ff8a3d"/>
+                </linearGradient>
+            </defs>
+            <path d="M-80 520 C 180 380, 360 640, 620 470 S 1000 300, 1280 430"/>
+            <path d="M-80 580 C 220 470, 420 700, 680 540 S 1040 380, 1280 500"/>
+            <path d="M-80 640 C 260 560, 480 760, 740 610 S 1080 460, 1280 570"/>
+        </svg>
         <div class="v2-hero-copy">
             <span class="hero-kicker">AI Transformation Leadership</span>
             <h1>Building AI-native businesses, <span class="gradient-text">not AI pilots.</span></h1>
@@ -1236,6 +1257,7 @@
         l.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ l.classList.remove('open'); t.setAttribute('aria-expanded','false'); }); });
     })();
 </script>
+<script src="assets/site-polish.js" defer></script>
 </body>
 </html>
 
